@@ -16,5 +16,11 @@ namespace HotelDB
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SQL sql = new SQL();
+            MessageBox.Show(sql.Scalar("SELECT GETDATE()"));
+        }
     }
 }
