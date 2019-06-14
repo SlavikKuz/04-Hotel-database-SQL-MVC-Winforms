@@ -13,44 +13,46 @@ namespace HotelDB
     public partial class Form1 : Form
     {
         SQL sql;
+        Model.Client mClient;
 
         public Form1()
         {
             InitializeComponent();
             sql = new SQL();
 
-            Model.Client mClient = new Model.Client(sql);
-            mClient.SetNotes("----");
-            mClient.InsertClient();
-            MessageBox.Show(mClient.id.ToString());
+            mClient = new Model.Client(sql);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DataTable client = sql.Select("SELECT * FROM client");
-            //MessageBox.Show(client.Rows[0][1].ToString());
-            //MessageBox.Show(sql.Scalar("SELECT COUNT(*) FROM Client"));
-            //MessageBox.Show(sql.Scalar("SELECT * MAX(id) Client"));
+            DataTable client = mClient.SelectClients();
             dataGridView1.DataSource = client;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //do
-            //    sql.Insert("INSERT INTO Client " +
-            //        "VALUES(07," +
-            //        "'5Slavik Kuz'," +
-            //        "'5mymail@email.com'," +
-            //        "'123445678'," +
-            //        "'Follumsvei 11B, Nordfjord, 9611'," +
-            //        "'loyal client, traveling with a bike');");
-            //while (sql.SqlError());
-
             DataTable calendar;
             do calendar = sql.Select("SELECT * FROM Calendar");
             while (sql.SqlError());
 
             dataGridView1.DataSource = calendar;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+            //bad practice. opens database at every letter pressed
+        {
+            dataGridView1.DataSource = mClient.SelectClients(textBox1.Text);
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int id = int.Parse(dataGridView1[0, e.RowIndex].Value.ToString());
+            mClient.SelectClient(id);
+            
+            Random rand = new Random();
+            mClient.SetTel(rand.Next(1000000, 9999999).ToString());
+
+            mClient.UpdateClient(id);
         }
     }
 }

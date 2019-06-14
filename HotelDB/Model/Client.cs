@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,40 +74,72 @@ namespace HotelDB.Model
             while (this.sql.SqlError());
         }
 
-        //        ModelClient.SelectClients()
-        //// get a list of clients;
-        //        SELECT* FROM Client;
+        public DataTable SelectClients()
+        // get a list of clients;
+        {
+            DataTable client;
+            do client = sql.Select("SELECT * FROM Client");
+            while (sql.SqlError());
+            return client;
+        }
+
+        public DataTable SelectClients(string find)
+        // get a list of clients (filter);
+        {
+            DataTable client;
+            find = sql.AddSlash(find);
+
+            do client = sql.Select("SELECT * FROM Client " +
+                "WHERE client_full_name LIKE '%" + find + "%' " +
+                "OR email LIKE '%" + find + "%' " +
+                "OR tel LIKE '%" + find + "%' " +
+                "OR address LIKE '%" + find + "%' " +
+                "OR notes LIKE '%" + find + "%' " +
+                "OR id = '" + find + "';");
+            while (sql.SqlError());
+            return client;
+        }
+
+        public bool SelectClient(int client_id)
+        // get data for selected client;
+        {
+            DataTable client;
+            do client = sql.Select(
+                "SELECT id, client_full_name, email, tel, address, notes " +
+                "FROM Client " +
+                "WHERE id = '" + sql.AddSlash(client_id.ToString()) + "'");
+            while (sql.SqlError());
+
+            if (client.Rows.Count == 0)
+                return false;
+
+            this.id=int.Parse(client.Rows[0]["id"].ToString());
+            this.client_full_name = client.Rows[0]["client_full_name"].ToString();
+            this.email = client.Rows[0]["email"].ToString();
+            this.tel = client.Rows[0]["tel"].ToString();
+            this.address = client.Rows[0]["address"].ToString();
+            this.notes = client.Rows[0]["notes"].ToString();
+            return true;
+        }
 
 
-        //ModelClient.SelectClient(string fing)
-        //// get a list of clients (filter);
-        //        SELECT* FROM Client
-        //   WHERE client_full_name LIKE '%k%'
+        public bool UpdateClient(int client_id)
+        // change client's data;
+        {
+            int result =0;
+            do result = sql.Update(
+                "UPDATE Client " +
+                "SET client_full_name = '" + sql.AddSlash(this.client_full_name) + "'," +
+                    "email = '" + sql.AddSlash(this.email) + "'," +
+                    "tel = '" + sql.AddSlash(this.tel) + "'," +
+                    "address = '" + sql.AddSlash(this.address) + "'," +
+                    "notes = '" + sql.AddSlash(this.notes) + "' " +
+                    "WHERE id = '" + sql.AddSlash(client_id.ToString()) + "'");
+            while (sql.SqlError());
 
-        //        OR email   LIKE '%k%'
-        //		OR tel     LIKE '%k%'
-        //		OR address LIKE '%k%'
-        //		OR notes   LIKE '%k%'
-        //		OR id = 'g';
-
-
-        //        ModelClient.SelectClient(int client_id)
-        //            // get data for selected client;
-        //            SELECT client_full_name, email, tel, address, notes
-        //            FROM Client
-        //            WHERE id = '5';
-
-
-        //ModelClient.UpdateClient(int client_id)
-        //    // change client's data;
-        //    UPDATE Client
-        //    SET client_full_name = 'John Doe', 
-        //		email = 'newmail@smthmail.com',
-        //		tel = '987654321',
-        //		address = 'Trænevegen 32, Sørfjord, 3215',
-        //		notes = 'test'
-        //	WHERE id = 1
-
-        //    LIMIT 1; //control safety
+            if (result == 0)
+                return false;
+            return true;
+        }
     }
 }
