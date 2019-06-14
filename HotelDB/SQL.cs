@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace HotelDB
 {
-    class SQL
+    public class SQL
     {
         SqlConnection myConnection;
         SqlCommand cmd;
@@ -150,8 +150,6 @@ namespace HotelDB
             if (dr == DialogResult.Retry)
                 return true;
             return false;
-
-
         }
     }
 }
