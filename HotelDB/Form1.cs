@@ -22,23 +22,30 @@ namespace HotelDB
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //DataTable client = sql.Select("SELECT * FROM client");
+            DataTable client = sql.Select("SELECT * FROM client");
             //MessageBox.Show(client.Rows[0][1].ToString());
             //MessageBox.Show(sql.Scalar("SELECT COUNT(*) FROM Client"));
-            MessageBox.Show(sql.Scalar("SELECT max(id) FROM Client"));
+            //MessageBox.Show(sql.Scalar("SELECT * MAX(id) Client"));
+            dataGridView1.DataSource = client;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            do
-                sql.Insert("INSERT INTO Client " +
-                    "VALUES(07," +
-                    "'5Slavik Kuz'," +
-                    "'5mymail@email.com'," +
-                    "'123445678'," +
-                    "'Follumsvei 11B, Nordfjord, 9611'," +
-                    "'loyal client, traveling with a bike');");
+            //do
+            //    sql.Insert("INSERT INTO Client " +
+            //        "VALUES(07," +
+            //        "'5Slavik Kuz'," +
+            //        "'5mymail@email.com'," +
+            //        "'123445678'," +
+            //        "'Follumsvei 11B, Nordfjord, 9611'," +
+            //        "'loyal client, traveling with a bike');");
+            //while (sql.SqlError());
+
+            DataTable calendar;
+            do calendar = sql.Select("SELECT * FROM Calendar");
             while (sql.SqlError());
+
+            dataGridView1.DataSource = calendar;
         }
     }
 }
