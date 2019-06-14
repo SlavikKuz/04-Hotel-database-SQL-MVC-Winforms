@@ -30,13 +30,15 @@ namespace HotelDB
 
         private void button2_Click(object sender, EventArgs e)
         {
-            sql.Insert("INSERT INTO Client " + 
-                "VALUES(07," +
-                "'5Slavik Kuz'," +
-                "'5mymail@email.com'," +
-                "'123445678'," +
-                "'Follumsvei 11B, Nordfjord, 9611'," +
-                "'loyal client, traveling with a bike');");
+            do
+                sql.Insert("INSERT INTO Client " +
+                    "VALUES(07," +
+                    "'5Slavik Kuz'," +
+                    "'5mymail@email.com'," +
+                    "'123445678'," +
+                    "'Follumsvei 11B, Nordfjord, 9611'," +
+                    "'loyal client, traveling with a bike');");
+            while (sql.SqlError());
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Forms;
 
 namespace HotelDB
 {
@@ -12,7 +13,7 @@ namespace HotelDB
     {
         SqlConnection myConnection;
         SqlCommand cmd;
-        string error;
+        string error = "";
         string query;
 
         const string connectionString = "Data Source=LAPTOP-UG5GI195;Initial Catalog=HotelDB;Integrated Security=True";
@@ -99,8 +100,7 @@ namespace HotelDB
             if (rows > 0)
             {
                 cmd = new SqlCommand("SELECT max(id) FROM Client", myConnection);
-                int a=(Int32)cmd.ExecuteScalar();
-                return a;
+                return (Int32)cmd.ExecuteScalar();
             }
             return 0;
         }
@@ -127,6 +127,31 @@ namespace HotelDB
         public string AddSlash(string text)
         {
             return text.Replace("'","\\'");
+        }
+
+        public bool SqlError() //error checker
+        {
+            if (error == "")
+                return false;
+
+            DialogResult dr = MessageBox.Show(error + "\n" +
+                "Query:\n" + query +
+                "\nAbort - Abort" +
+                "\nRetry - Retry" +
+                "\nIgnore - Ignore", 
+                "Error", 
+                MessageBoxButtons.AbortRetryIgnore);
+            if (dr==DialogResult.Abort)
+            {
+                Application.Exit();
+                return false;
+            }
+
+            if (dr == DialogResult.Retry)
+                return true;
+            return false;
+
+
         }
     }
 }
