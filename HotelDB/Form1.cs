@@ -18,6 +18,11 @@ namespace HotelDB
         {
             InitializeComponent();
             sql = new SQL();
+
+            Model.Client mClient = new Model.Client(sql);
+            mClient.SetNotes("----");
+            mClient.InsertClient();
+            MessageBox.Show(mClient.id.ToString());
         }
 
         private void button1_Click(object sender, EventArgs e)
