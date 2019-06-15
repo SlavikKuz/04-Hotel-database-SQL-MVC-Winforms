@@ -275,6 +275,7 @@ ModelRoom.SelectFreeRooms()
 	
 NB! No client's data is planned to be deleted from a database.
 
-4. 
+4. Models
+4.1. Client.cs //work with clients
 
 

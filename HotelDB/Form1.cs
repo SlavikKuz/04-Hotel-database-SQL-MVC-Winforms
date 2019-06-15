@@ -52,7 +52,7 @@ namespace HotelDB
             Random rand = new Random();
             mClient.SetTel(rand.Next(1000000, 9999999).ToString());
 
-            mClient.UpdateClient(id);
+            mClient.UpdateClient();
         }
     }
 }

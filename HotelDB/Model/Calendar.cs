@@ -36,23 +36,12 @@ namespace HotelDB.Model
                 //    "weekend = " + weekend + "," +
                 //    "holiday = 0;";
 
-                //same in TSQL
+                //possible in TSQL
                 int holiday = 0;
                 string query =
                 "INSERT INTO Calendar (day,weekend,holiday) VALUES (" +
                     "'" + day.ToString("yyyy-MM-dd") + "'," +
                     weekend + "," + holiday + ") ";
-                //+ "WHERE NOT EXISTS (SELECT day FROM Calendar)";
-
-                //same in TSQL
-                //int holiday = 0;
-                //string query =
-                //    "INSERT INTO Calendar (day,weekend,holiday) VALUES ("+
-                //    "'" + day.ToString("yyyy-MM-dd") + "'," +
-                //    weekend + "," + holiday + ") " +
-                //    "SELECT '" + day.ToString("yyyy-MM-dd") + "' " +
-                //    "WHERE NOT EXISTS (SELECT * from Calendar WHERE " +
-                //    "day = '" + day.ToString("yyyy-MM-dd") + "')";
 
                 do
                 this.sql.Insert(query);
@@ -61,16 +50,25 @@ namespace HotelDB.Model
             }
         }
 
-        //        ModelCalendar.SetHolidays(string day)
-        //        ModelCalendar.OffHolidays(string day)
-        //// mark some days as holiday/days off;
-        //        UPDATE Calender
+        private void SetHoliday(DateTime day, bool holiday)
+        // mark some days as holiday/days off;
+        {     
+            string query = "UPDATE Calendar SET holiday =" +
+                (holiday ? "1" : "0") +
+                " WHERE day ='" + day.ToString("yyyy-MM-dd") + "'";
 
-        //    SET holiday = 1
+            do this.sql.Update(query);
+            while (sql.SqlError());
+        }
 
-        //    WHERE day = '2019-01-01';
+        public void AddHoliday(DateTime day)
+        {
+            SetHoliday(day, true);
+        }
 
-
-
+        public void RemoveHoliday(DateTime day)
+        {
+            SetHoliday(day, false);
+        }
     }
 }

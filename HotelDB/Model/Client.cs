@@ -123,7 +123,7 @@ namespace HotelDB.Model
         }
 
 
-        public bool UpdateClient(int client_id)
+        public bool UpdateClient()
         // change client's data;
         {
             int result =0;
@@ -134,7 +134,7 @@ namespace HotelDB.Model
                     "tel = '" + sql.AddSlash(this.tel) + "'," +
                     "address = '" + sql.AddSlash(this.address) + "'," +
                     "notes = '" + sql.AddSlash(this.notes) + "' " +
-                    "WHERE id = '" + sql.AddSlash(client_id.ToString()) + "'");
+                    "WHERE id = '" + sql.AddSlash(this.id.ToString()) + "'");
             while (sql.SqlError());
 
             if (result == 0)
