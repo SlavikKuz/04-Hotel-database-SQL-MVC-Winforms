@@ -34,14 +34,6 @@ namespace HotelDB.Model
         {
             this.order_date = order_date;
         }
-        public void SetDayFrom(DateTime day_from)
-        {
-            this.day_from = day_from;
-        }
-        public void SetDayTill(DateTime day_till)
-        {
-            this.day_till = day_till;
-        }
         public void SetAdults(int adults)
         {
             this.adults = adults;
@@ -129,5 +121,91 @@ namespace HotelDB.Model
             while (sql.SqlError());
             return result == 1;
         }
+
+
+        /// <summary>
+        /// Update or edit registration; 
+        /// </summary>
+        /// <param name="status">Status</param>
+        /// <returns></returns>
+        private bool UpdateStatus(string status)
+        {
+            if (this.id <= 0)
+                return false;
+
+            if (status != "waiting" &&
+                status != "confirmed" &&
+                status != "deleted")
+                return false;
+
+            int result;
+            do result = sql.Update(
+               "UPDATE Order " +
+               "SET status = '" + status + "'," +
+                   "WHERE id = '" + sql.AddSlash(this.id.ToString()) + "'");
+            while (sql.SqlError());
+
+            return result == 1;
+        }
+        
+        public bool SetStatusWaiting()
+        {
+            return UpdateStatus("waiting");
+        }
+
+        public bool SetStatusConfirmed()
+        {
+            return UpdateStatus("confirmed");
+        }
+
+        public bool SetStatusDeleted()
+        {
+            return UpdateStatus("deleted");
+        }
+
+        /// <summary>
+        /// Update date FROM
+        /// </summary>
+        /// <param name="day_from">Check-in date</param>
+        /// <returns></returns>
+        public bool UpdateDayFrom(DateTime day_from)
+        {
+            if (this.id <= 0)
+                return false;
+
+            this.day_from = day_from;
+
+            int result;
+            do result = sql.Update(
+               "UPDATE Order " +
+               "SET day_from = '" + day_from.ToString("yyyy-MM-dd") + "'," +
+                   "WHERE id = '" + sql.AddSlash(this.id.ToString()) + "'");
+            while (sql.SqlError());
+
+            return result == 1;
+        }
+
+        /// <summary>
+        /// Update date TILL
+        /// </summary>
+        /// <param name="day_till">Check-out date</param>
+        /// <returns></returns>
+        public bool UpdateDayTill(DateTime day_till)
+        {
+            if (this.id <= 0)
+                return false;
+
+            this.day_till = day_till;
+
+            int result;
+            do result = sql.Update(
+               "UPDATE Order " +
+               "SET day_from = '" + day_till.ToString("yyyy-MM-dd") + "'," +
+                   "WHERE id = '" + sql.AddSlash(this.id.ToString()) + "'");
+            while (sql.SqlError());
+
+            return result == 1;
+        }
+
     }
 }
