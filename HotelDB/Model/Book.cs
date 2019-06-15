@@ -60,8 +60,10 @@ namespace HotelDB.Model
                 "INSERT INTO Order " +
                 "SET client_id = '" + client_id + "'," +
                 "order_date = NOW()," +
-                "day_from = '" + day_from.ToString("yyyy-MM-dd") + "'," +
-                "day_till = '" + day_till.ToString("yyyy-MM-dd") + "'," +
+                //"day_from = '" + day_from.ToString("yyyy-MM-dd") + "'," +
+                //"day_till = '" + day_till.ToString("yyyy-MM-dd") + "'," +
+                "day_from = '" + sql.DateToString(day_from) + "'," +
+                "day_till = '" + sql.DateToString(day_till) + "'," +
                 "adults = '" + this.adults + "'," +
                 "kids = '" + this.kids + "'," +
                 "status = 'waiting'," +
@@ -178,7 +180,7 @@ namespace HotelDB.Model
             int result;
             do result = sql.Update(
                "UPDATE Order " +
-               "SET day_from = '" + day_from.ToString("yyyy-MM-dd") + "'," +
+               "SET day_from = '" + sql.DateToString(day_from) + "'," +
                    "WHERE id = '" + sql.AddSlash(this.id.ToString()) + "'");
             while (sql.SqlError());
 
@@ -200,7 +202,7 @@ namespace HotelDB.Model
             int result;
             do result = sql.Update(
                "UPDATE Order " +
-               "SET day_from = '" + day_till.ToString("yyyy-MM-dd") + "'," +
+               "SET day_from = '" + sql.DateToString(day_till) + "'," +
                    "WHERE id = '" + sql.AddSlash(this.id.ToString()) + "'");
             while (sql.SqlError());
 

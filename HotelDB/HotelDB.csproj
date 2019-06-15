@@ -55,6 +55,7 @@
     <Compile Include="Model\Book.cs" />
     <Compile Include="Model\Calendar.cs" />
     <Compile Include="Model\Client.cs" />
+    <Compile Include="Model\Plan.cs" />
     <Compile Include="Model\Room.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HotelDB.Model
 {
-    class Client
+    public class Client
     {
     public int id { get; private set; }
     public string client_full_name { get; private set; }
