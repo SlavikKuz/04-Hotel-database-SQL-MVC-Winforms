@@ -3,6 +3,7 @@ Hi!
 This is a project for a hypothetical small hotel. 
 The hotel needs a database that will help in managing its everyday activities.
 Keywords: C#, SQL, MVC, VS2017, SSMS2017. 
+The project does not use stored procedures, only c# code with SQL statements.
 
 1. Database description
 
