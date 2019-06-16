@@ -18,6 +18,9 @@ namespace HotelDB.Model
         public Plan()
         {
             this.sql = sql;
+            room_id = -1;
+            order_id = -1;
+            calendar_day = DateTime.MinValue;
         }
 
         public void SetStatus(string status)
@@ -84,6 +87,48 @@ namespace HotelDB.Model
                     adults = " + this.adults + @",
                     kids = " + this.kids);
             while (sql.SqlError());   
+        }
+
+        public DataTable Selectmap(DateTime day_from, DateTime day_till)
+        {
+            DataTable plan;
+            do plan = sql.Select(
+                @"SELECT room_id, order_id, calendar_day, status, adults, kids
+                FROM HotelPlan
+                WHERE calendar_day BETWEEN '" +
+                sql.DateToString(day_from) + "' AND' " +
+                sql.DateToString(day_till) + "'");
+            while (this.sql.SqlError());
+
+            return plan;
+        }
+
+        private void DeletePlan()
+        {
+            if (room_id < 0) return;
+            if (order_id < 0) return;
+            if (calendar_day == DateTime.MinValue) return;
+
+            do sql.Update(
+                "DELETE" +
+                " FROM HotelPlan " +
+                " WHERE room_id = '" + sql.AddSlash(this.room_id.ToString()) + "'" +
+                "AND order_id = '" + sql.AddSlash(this.order_id.ToString()) + "'" +
+                "AND calendar_day = '" + sql.DateToString(this.calendar_day) + "';");
+            while (sql.SqlError());
+        }
+
+        public void UpdatePlan()
+        {
+            do sql.Update(
+                "UPDATE HotelPlan" +
+                "SET status = '" + sql.AddSlash(this.status) +"',"+
+                " adults = " + adults + ","+
+                " kids = " + kids + " " +
+                " WHERE room_id = '" + sql.AddSlash(this.room_id.ToString()) + "'" +
+                "AND order_id = '" + sql.AddSlash(this.order_id.ToString()) + "'" +
+                "AND calendar_day = '" + sql.DateToString(this.calendar_day) + "';");
+            while (sql.SqlError());
         }
 
     }
