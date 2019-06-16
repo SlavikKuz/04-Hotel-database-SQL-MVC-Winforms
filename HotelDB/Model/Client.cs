@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 
 namespace HotelDB.Model
 {
@@ -15,18 +10,19 @@ namespace HotelDB.Model
     public string tel { get; private set; }
     public string address { get; private set; }
     public string notes { get; private set; }
-    private SQL sql;
+
+        private SQL sql;
 
         public Client(SQL sql)
-    {
-        id = 0;
-        client_full_name = "";
-        email = "";
-        tel = "";
-        address = "";
-        notes = "";
-        this.sql = sql;
-    }
+        {
+            id = 0;
+            client_full_name = "";
+            email = "";
+            tel = "";
+            address = "";
+            notes = "";
+            this.sql = sql;
+        }
     
         public void SetClient (string client_name)
         {

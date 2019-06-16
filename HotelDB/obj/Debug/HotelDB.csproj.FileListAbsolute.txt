@@ -8,3 +8,4 @@ c:\Users\slavi\source\repos\HotelDB\HotelDB\obj\Debug\HotelDB.csproj.GenerateRes
 c:\Users\slavi\source\repos\HotelDB\HotelDB\obj\Debug\HotelDB.csproj.CoreCompileInputs.cache
 c:\Users\slavi\source\repos\HotelDB\HotelDB\obj\Debug\HotelDB.exe
 c:\Users\slavi\source\repos\HotelDB\HotelDB\obj\Debug\HotelDB.pdb
+C:\Users\slavi\source\repos\HotelDB\HotelDB\obj\Debug\HotelDB.View.ClientView.resources
