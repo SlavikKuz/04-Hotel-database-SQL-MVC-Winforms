@@ -1,21 +1,24 @@
-Hi!
+## Hi!
 
 This is a project for a hypothetical small hotel. 
 The hotel needs a database that will help in managing its everyday activities.
 Keywords: C#, SQL, MVC, VS2017, SSMS2017. 
 The project does not use stored procedures, only c# code with SQL statements.
 
-1. Database description
+## 1. Database description
 
-- entity Client
+### - entity Client
+```
 	*id, int
 	client_full_name, varchar
 	email, varchar
 	tel, varchar
 	address, varchar
-	notes, text //any kind of additional information
+	notes, text ![#f03c15]//any kind of additional information `#f03c15`
+```
 
-- entity Order
+### - entity Order
+```
 	*id, id
 	client_id, id  
 	order_date, datetime
@@ -25,33 +28,40 @@ The project does not use stored procedures, only c# code with SQL statements.
 	kids, int
 	status, varchar //paid, canceled, etc
 	info, text
- 
-- entity Calendar
+```
+
+### - entity Calendar
+```
 	*day, date // not int, date type
 	weekend, bool //for pricing policy
-	holiday, bool //for pricing policy	
+	holiday, bool //for pricing policy
+```	
 
-- entity Room
+### - entity Room
+```
 	*id, id
 	room, varchar //room number with letters
 	beds, int //places in the room
 	floor, varchar //incuding attic, basement, etc
 	info, text
-	step // int, equal to id, for ORDER BY purpose if any change in room number happens 
+	step // int, equal to id, for ORDER BY purpose if any change in room number happens
+```
 
-- entity HotelPlan
+### - entity HotelPlan
+```
 	*room_id, int //ocupied room
 	*order_id, int //ocupied after order
 	*calendar_day, date //ocupied till
 	status, varchar //ocupied, paid, reserved, etc
 	adults, int
 	kids, int //for group orders after single resevation, placement info
+```
 
-2. Please see DBdiagram.PNG for database diagram.
+## 2. Please see DBdiagram.PNG for database diagram.
 
-3. Model of database (from MVC).
+## 3. Model of database (from MVC). 
+
 Tasks (with sample SQL queries):
-
 
 ModelClient.InsertClient()
 // register a new client
@@ -276,7 +286,7 @@ ModelRoom.SelectFreeRooms()
 	
 NB! No client's data is planned to be deleted from a database.
 
-4. Models
+## 4. Models
 4.1. Client.cs //work with clients
 
 
