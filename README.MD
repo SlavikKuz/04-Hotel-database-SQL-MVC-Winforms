@@ -8,17 +8,17 @@ The project does not use stored procedures, only c# code with SQL statements.
 ## 1. Database description
 
 ### - entity Client
-```
+```json
 	*id, int
 	client_full_name, varchar
 	email, varchar
 	tel, varchar
 	address, varchar
-	notes, text ![#f03c15]//any kind of additional information `#f03c15`
+	notes, text //any kind of additional information
 ```
 
 ### - entity Order
-```
+```html
 	*id, id
 	client_id, id  
 	order_date, datetime
@@ -31,14 +31,14 @@ The project does not use stored procedures, only c# code with SQL statements.
 ```
 
 ### - entity Calendar
-```
+```js
 	*day, date // not int, date type
 	weekend, bool //for pricing policy
 	holiday, bool //for pricing policy
 ```	
 
 ### - entity Room
-```
+```css
 	*id, id
 	room, varchar //room number with letters
 	beds, int //places in the room
@@ -48,7 +48,7 @@ The project does not use stored procedures, only c# code with SQL statements.
 ```
 
 ### - entity HotelPlan
-```
+```diff
 	*room_id, int //ocupied room
 	*order_id, int //ocupied after order
 	*calendar_day, date //ocupied till
