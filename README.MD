@@ -8,7 +8,7 @@ The project does not use stored procedures, only c# code with SQL statements.
 ## 1. Database description
 
 ### - entity Client
-```json
+```js
 	*id, int
 	client_full_name, varchar
 	email, varchar
@@ -18,7 +18,7 @@ The project does not use stored procedures, only c# code with SQL statements.
 ```
 
 ### - entity Order
-```html
+```js
 	*id, id
 	client_id, id  
 	order_date, datetime
@@ -38,7 +38,7 @@ The project does not use stored procedures, only c# code with SQL statements.
 ```	
 
 ### - entity Room
-```css
+```js
 	*id, id
 	room, varchar //room number with letters
 	beds, int //places in the room
@@ -48,7 +48,7 @@ The project does not use stored procedures, only c# code with SQL statements.
 ```
 
 ### - entity HotelPlan
-```diff
+```js
 	*room_id, int //ocupied room
 	*order_id, int //ocupied after order
 	*calendar_day, date //ocupied till
@@ -57,12 +57,15 @@ The project does not use stored procedures, only c# code with SQL statements.
 	kids, int //for group orders after single resevation, placement info
 ```
 
-## 2. Please see DBdiagram.PNG for database diagram.
+## 2. Please see DBdiagram.PNG for database diagram
+![DB diagram](/relative/DBdiagram.PNG?raw=true "DB diagram")
 
 ## 3. Model of database (from MVC). 
+NB! No client's data is planned to be deleted from a database.
 
 Tasks (with sample SQL queries):
 
+```c
 ModelClient.InsertClient()
 // register a new client
 	INSERT INTO Client 
@@ -72,13 +75,15 @@ ModelClient.InsertClient()
 		'123445678', 
 		'Follumsvei 11B, Nordfjord, 9611', 
 		'loyal client, traveling with a bike');
+```
 
-
+```c
 ModelClient.SelectClients()
 // get a list of clients;
 	SELECT * FROM Client;
+```
 
-
+```c
 ModelClient.SelectClient(string fing)
 // get a list of clients (filter);
 	SELECT * FROM Client 
@@ -88,15 +93,15 @@ ModelClient.SelectClient(string fing)
 		OR address LIKE '%k%'
 		OR notes   LIKE '%k%'
 		OR id = 'g';
-
-
+```
+```c
 ModelClient.SelectClient(int client_id)
 // get data for selected client;
 	SELECT client_full_name, email, tel, address, notes 
 	FROM Client
 	WHERE id = '5';
-
-
+```
+```c
 ModelClient.UpdateClient(int client_id)
 // change client's data;
 	UPDATE Client
@@ -107,30 +112,32 @@ ModelClient.UpdateClient(int client_id)
 		notes = 'test'
 	WHERE id = 1
 	LIMIT 1; //control safety
-
-
+```
+```c
 ModelCalendar.InsertDays(int year)
 // create a calendar for selected year;
 	INSERT INTO Calendar
 	SET day = '2019-01-01',
 	weekend = 1,
 	holiday = 0;
+```
 
-
+```c
 ModelCalendar.SetHolidays(string day) 
 ModelCalendar.OffHolidays(string day) 
 // mark some days as holiday/days off;
 	UPDATE Calender
 	SET holiday = 1
 	WHERE day = '2019-01-01';
+```
 
-
+```c
 ModelRoom.SelectRoom()
 // get a list of rooms;
 	SELECT * FROM Room
 	ORDER BY step; 
-
-
+```
+```c
 ModelRoom.InsertRoom()
 // add a new room;
 	INSERT INTO Room
@@ -141,14 +148,15 @@ ModelRoom.InsertRoom()
 	UPDATE Room
 	SET step = 2
 	WHERE id = 2;
-
-
+```
+```c
 ModelRoom.SelectRoom(int room_id)
 // get info on selected room;
 	SELECT * FROM Room
 	WHERE id = 1;
+```
 
-
+```c
 ModelRoom.UpdateRoom(int room_id)
 // change data for selected room;
 	UPDATE Room
@@ -157,8 +165,8 @@ ModelRoom.UpdateRoom(int room_id)
 		floor = 1,
 		info = 'Nice single'
 	WHERE id = 2;
-
-
+```
+```c
 ModelBook.InsertBook()
 // add a new registration;
 	INSERT INTO Order
@@ -170,15 +178,16 @@ ModelBook.InsertBook()
 		kids = 0,
 		status = 'paid',
 		info = 'test of the field';
-
-
+```
+```c
 ModelBook.UpdateStatus (int book_id, string status)
 // change registarion's status (canceled, confirmed, waiting confirmation);
 	UPDATE Order
 	SET status = 'confirmed'
 	WHERE id = 1;
+```
 
-
+```c
 ModelBook.UpdateBook(int book_id)
 // edit registration;
 	UPDATE Order
@@ -186,8 +195,9 @@ ModelBook.UpdateBook(int book_id)
 	kids = 1,
 	info = 'not specified'
 	WHERE id = 1;
+```
 
-
+```c
 ModelBook.UpdateFromDay (int book_id, string day_from)
 ModelBook.UpdateTillDay (int book_id, string day_till)
 // edit registration period;
@@ -195,8 +205,9 @@ ModelBook.UpdateTillDay (int book_id, string day_till)
 	SET day_from = '2016-01-02',
 	    day_till = '2016-01-02',
 	WHERE id = 1;
+```
 
-
+```c
 ModelBook.SelectBooks()
 // get a list of registrations;
 	SELECT client_id, 
@@ -212,8 +223,9 @@ ModelBook.SelectBooks()
 	LEFT JOIN Client c
 	ON o.client_id = c.id
 	WHERE o.id = 1;
+```
 
-
+```c
 ModelBook.SelectBooks(string find)
 // get a list of registrations (filter);
 	SELECT client_id, 
@@ -236,15 +248,17 @@ ModelBook.SelectBooks(string find)
 	OR kids = 'g'
 	OR status = 'g'
 	OR o.info LIKE '%g%';
+```
 
-
+```c
 ModelPlan.SelectPlan(string day_from, string day_till)
 // get a list of booked rooms on a selected month;
 	SELECT room_id, order_id, calendar_day, status, adults, kids
 	FROM HotelPlan
 	WHERE calendar_day BETWEEN '2019-05-01' AND '2019-05-31';
+```
 
-
+```c
 ModelPlan.InsertPlan()
 // add a reservation to HotelPlan;
 	INSERT INTO HotelPlan
@@ -254,7 +268,9 @@ ModelPlan.InsertPlan()
 		status = 'confirmed', 
 		adults = 1, 
 		kids = 1;
+```
 
+```c
 ModelPlan.ModelPlan(int room_id, init book_id, string calendar_day)
 ModelPlan.UpdatePlan()
 // change/delete this reservation;
@@ -265,17 +281,18 @@ ModelPlan.UpdatePlan()
 	WHERE room_id = 1,
 		book_id=1,
 		calendar_day = '2019-05-20';
+```
 
-
+```c
 ModelPlan.DeletePlan()
 // delete this reservation;
 	DELETE FROM HotelPlan
 	WHERE room_id = 1,
 		book_id=1,
 		calendar_day = '2019-05-20';
-	
+```
 
-
+```c
 ModelRoom.SelectFreeRooms()
 // get a list og empty rooms on selected date;
 	SELECT * FROM room
@@ -283,8 +300,8 @@ ModelRoom.SelectFreeRooms()
 		(SELECT room_id 
 		FROM HotelPlan 
 		WHERE calendar_day = '2019-05-20');
-	
-NB! No client's data is planned to be deleted from a database.
+```
+
 
 ## 4. Models
 4.1. Client.cs //work with clients
