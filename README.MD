@@ -58,7 +58,8 @@ The project does not use stored procedures, only c# code with SQL statements.
 ```
 
 ## 2. Please see DBdiagram.PNG for database diagram
-![DB diagram](/relative/DBdiagram.PNG?raw=true "DB diagram")
+![DB diagram](/DBdiagram.PNG?raw=true "DB diagram")
+
 
 ## 3. Model of database (from MVC). 
 NB! No client's data is planned to be deleted from a database.
@@ -304,6 +305,68 @@ ModelRoom.SelectFreeRooms()
 
 
 ## 4. Models
-4.1. Client.cs //work with clients
+#### 4.1. Client.cs 
+//work with clients
 
+Properties:
+```c
+public int id { get; private set; }
+public string client_full_name { get; private set; }
+public string email { get; private set; }
+public string tel { get; private set; }
+public string address { get; private set; }
+public string notes { get; private set; }
+```
 
+#### 4.2 Room.cs 
+//room description
+
+Properties:
+```c
+public long id { get; private set; }
+public string room { get; private set; }
+public int beds { get; private set; }
+public string floor { get; private set; }
+public int step { get; private set; }
+public string info  { get; private set; }
+```
+
+#### 4.3 Calendar.cs
+//schedule for bookings, calendar
+```c
+public DateTime day { get; private set; }
+public DateTime weekend;//autofill
+public DateTime holiday;//autofill
+```
+
+#### 4.4 Book.cs
+//reservation
+
+Properties:
+```c
+public long id { get; private set; }
+public long client_id { get; private set; }
+public DateTime order_date { get; private set; }
+public DateTime day_from { get; private set; }
+public DateTime day_till { get; private set; }
+public int adults { get; private set; }
+public int kids { get; private set; }
+public string status { get; private set; }
+public string info { get; private set; }
+```
+
+#### 4.5 Plan.cs
+//rooms and positions, reservatons
+
+Properties:
+```c
+long room_id;
+long order_id;
+DateTime calendar_day;
+public string status { get; private set; }
+public int adults { get; private set; }
+public int kids { get; private set; }
+```
+
+## 5. Controllers and Views
+in the development;
