@@ -1,4 +1,4 @@
-## Hi!
+## (DEVELOPING!) Hi!
 
 This is a project for a hypothetical small hotel. 
 The hotel needs a database that will help in managing its everyday activities.
@@ -305,11 +305,10 @@ ModelRoom.SelectFreeRooms()
 
 
 ## 4. Models
-#### 4.1. Client.cs 
-//work with clients
+#### Client.cs 
 
-Properties:
 ```c
+//work with clients
 public int id { get; private set; }
 public string client_full_name { get; private set; }
 public string email { get; private set; }
@@ -318,11 +317,9 @@ public string address { get; private set; }
 public string notes { get; private set; }
 ```
 
-#### 4.2 Room.cs 
-//room description
+#### Room.cs 
 
-Properties:
-```c
+```c//room description
 public long id { get; private set; }
 public string room { get; private set; }
 public int beds { get; private set; }
@@ -331,19 +328,19 @@ public int step { get; private set; }
 public string info  { get; private set; }
 ```
 
-#### 4.3 Calendar.cs
-//schedule for bookings, calendar
+#### Calendar.cs
+
 ```c
+//schedule for bookings, calendar
 public DateTime day { get; private set; }
 public DateTime weekend;//autofill
 public DateTime holiday;//autofill
 ```
 
-#### 4.4 Book.cs
-//reservation
+#### Book.cs
 
-Properties:
 ```c
+//reservation
 public long id { get; private set; }
 public long client_id { get; private set; }
 public DateTime order_date { get; private set; }
@@ -355,11 +352,10 @@ public string status { get; private set; }
 public string info { get; private set; }
 ```
 
-#### 4.5 Plan.cs
-//rooms and positions, reservatons
+#### Plan.cs
 
-Properties:
 ```c
+//rooms and positions, reservatons
 long room_id;
 long order_id;
 DateTime calendar_day;
