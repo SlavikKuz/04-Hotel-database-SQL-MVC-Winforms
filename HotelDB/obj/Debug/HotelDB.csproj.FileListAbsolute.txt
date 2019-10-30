@@ -9,3 +9,14 @@ c:\Users\slavi\source\repos\HotelDB\HotelDB\obj\Debug\HotelDB.csproj.CoreCompile
 c:\Users\slavi\source\repos\HotelDB\HotelDB\obj\Debug\HotelDB.exe
 c:\Users\slavi\source\repos\HotelDB\HotelDB\obj\Debug\HotelDB.pdb
 C:\Users\slavi\source\repos\HotelDB\HotelDB\obj\Debug\HotelDB.View.ClientView.resources
+c:\Users\slavi\source\repos\04 - HotelDB\HotelDB\bin\Debug\HotelDB.exe.config
+c:\Users\slavi\source\repos\04 - HotelDB\HotelDB\bin\Debug\HotelDB.exe
+c:\Users\slavi\source\repos\04 - HotelDB\HotelDB\bin\Debug\HotelDB.pdb
+c:\Users\slavi\source\repos\04 - HotelDB\HotelDB\obj\Debug\HotelDB.csprojAssemblyReference.cache
+c:\Users\slavi\source\repos\04 - HotelDB\HotelDB\obj\Debug\HotelDB.Form1.resources
+c:\Users\slavi\source\repos\04 - HotelDB\HotelDB\obj\Debug\HotelDB.Properties.Resources.resources
+c:\Users\slavi\source\repos\04 - HotelDB\HotelDB\obj\Debug\HotelDB.View.ClientView.resources
+c:\Users\slavi\source\repos\04 - HotelDB\HotelDB\obj\Debug\HotelDB.csproj.GenerateResource.cache
+c:\Users\slavi\source\repos\04 - HotelDB\HotelDB\obj\Debug\HotelDB.csproj.CoreCompileInputs.cache
+c:\Users\slavi\source\repos\04 - HotelDB\HotelDB\obj\Debug\HotelDB.exe
+c:\Users\slavi\source\repos\04 - HotelDB\HotelDB\obj\Debug\HotelDB.pdb
