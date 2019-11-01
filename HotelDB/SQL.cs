@@ -16,7 +16,7 @@ namespace HotelDB
         string error = "";
         string query;
 
-        const string connectionString = "Data Source=LAPTOP-UG5GI195;Initial Catalog=HotelDB;Integrated Security=True";
+        const string connectionString = "Server=tcp:slvk19azr.database.windows.net,1433;Initial Catalog=ht_localdb_30102019;Persist Security Info=False;User ID=ht;Password=sc%:pA_sASf;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         protected bool Open()
         {
