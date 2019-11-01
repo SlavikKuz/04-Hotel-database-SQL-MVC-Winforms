@@ -11,7 +11,12 @@ namespace HotelDB
 {
     public static class GlobalConfig
     {
-        public static IDataConnection InitConnection { get; private set; } = new SqlConnector();
+        public static IDataConnection Connection { get; private set; }
+
+        public static void InitializeConnection()
+        {
+            Connection = new SqlConnector(); 
+        }
 
         public static string CnnString(string name)
         {

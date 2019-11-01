@@ -24,9 +24,9 @@ d:\Repos\04 - HotelDB\HotelDB\bin\Debug\HotelDB.exe.config
 d:\Repos\04 - HotelDB\HotelDB\bin\Debug\HotelDB.exe
 d:\Repos\04 - HotelDB\HotelDB\bin\Debug\HotelDB.pdb
 d:\Repos\04 - HotelDB\HotelDB\obj\Debug\HotelDB.csprojAssemblyReference.cache
-d:\Repos\04 - HotelDB\HotelDB\obj\Debug\HotelDB.Form1.resources
 d:\Repos\04 - HotelDB\HotelDB\obj\Debug\HotelDB.Properties.Resources.resources
 d:\Repos\04 - HotelDB\HotelDB\obj\Debug\HotelDB.View.ClientView.resources
 d:\Repos\04 - HotelDB\HotelDB\obj\Debug\HotelDB.csproj.GenerateResource.cache
 d:\Repos\04 - HotelDB\HotelDB\obj\Debug\HotelDB.exe
 d:\Repos\04 - HotelDB\HotelDB\obj\Debug\HotelDB.pdb
+d:\Repos\04 - HotelDB\HotelDB\obj\Debug\HotelDB.DashboardView.resources

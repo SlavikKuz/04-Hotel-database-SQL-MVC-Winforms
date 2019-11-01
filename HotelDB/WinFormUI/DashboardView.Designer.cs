@@ -1,6 +1,6 @@
 ﻿namespace HotelDB
 {
-    partial class Form1
+    partial class DashboardView
     {
         /// <summary>
         /// Required designer variable.

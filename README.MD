@@ -1,67 +1,125 @@
-## (DEVELOPING!) Hi!
+## Hi!
 
-This is a project for a hypothetical small hotel. 
-The hotel needs a database that will help in managing its everyday activities.
-Keywords: C#, SQL, MVC, VS2017, SSMS2017. 
-The project does not use stored procedures, only c# code with SQL statements.
+This is a Web App for a hypothetical small hotel where I can test some ideas in ASP.Net Core. 
 
-## 1. Database description
+Keywords: C#, SQL, ASP.net Core, MVC, VS2019, SSMS18, Azure 
 
-### - entity Client
-```js
-	*id, int
-	client_full_name, varchar
-	email, varchar
-	tel, varchar
-	address, varchar
-	notes, text //any kind of additional information
+## 1. Database design
+Database must store information about client, booking, dates, and available rooms. It is possible to store also some additional informanion as comments, or notes for clients' special needs or requests.
+
+![DB diagram](https://github.com/SlavikKuz/04-Simple-Small-Hotel-Database/raw/master/DBdiagram.PNG?raw=true "DB diagram")
+
+### dbo.CIient
+```sql
+id (PK, int, not null)
+client_full_name (varchar(50), not null)
+email (varchar(50), not null)
+tel (varchar(50), not null)
+address (varchar(50), not null)
+notes (text, not null) //any kind of additional information
 ```
 
-### - entity Order
-```js
-	*id, id
-	client_id, id  
-	order_date, datetime
-	day_from, date
-	day_till, date
-	adults, int //number of
-	kids, int
-	status, varchar //paid, canceled, etc
-	info, text
+### dbo.Order
+```sql
+id (PK, int, not null)
+client_id (FK, int, not null)
+order_date (datetime, not null)
+day_from (FK, date, not null)
+day_till (FK, date, not null)
+kids (int, not null)
+status (varchar(50), not null)
+info (text, not null)
+```
+### dbo.Calendar
+```sql
+day (PK, date, not null)
+weekend (bit, not null) //for pricing policy
+holiday (bit, not null) //for pricing policy
+```
+### dbo.Room
+```sql
+id (PK, int, not null)
+room (varchar(50), not null) //room number with letters
+beds (int, not null) //places in the room
+floor (varchar(50), not null) //incuding attic, basement, etc
+info (text, not null)
+step (int, not null) // int, equal to id, for ORDER BY purpose if any change in room number happens
+```
+### dbo.HotelPlan
+```sql
+room_id (PK, FK, int, not null) //ocupied room
+order_id (PK, FK, int, not null) //ocupied after order
+calendar_day (PK, FK, date, not null) //ocupied till
+status (varchar(50), not null) //ocupied, paid, reserved, etc
+adults (int, not null)
+kids (int, not null) //for group orders after single resevation, placement info
 ```
 
-### - entity Calendar
-```js
-	*day, date // not int, date type
-	weekend, bool //for pricing policy
-	holiday, bool //for pricing policy
-```	
+## 2. `HotelDB` Project Library
 
-### - entity Room
-```js
-	*id, id
-	room, varchar //room number with letters
-	beds, int //places in the room
-	floor, varchar //incuding attic, basement, etc
-	info, text
-	step // int, equal to id, for ORDER BY purpose if any change in room number happens
+### 2.1. Models
+
+#### Client.cs 
+
+```c
+//work with clients
+public int id { get; private set; }
+public string client_full_name { get; private set; }
+public string email { get; private set; }
+public string tel { get; private set; }
+public string address { get; private set; }
+public string notes { get; private set; }
 ```
 
-### - entity HotelPlan
-```js
-	*room_id, int //ocupied room
-	*order_id, int //ocupied after order
-	*calendar_day, date //ocupied till
-	status, varchar //ocupied, paid, reserved, etc
-	adults, int
-	kids, int //for group orders after single resevation, placement info
+#### Room.cs 
+
+```c//room description
+public long id { get; private set; }
+public string room { get; private set; }
+public int beds { get; private set; }
+public string floor { get; private set; }
+public int step { get; private set; }
+public string info  { get; private set; }
 ```
 
-## 2. Please see DBdiagram.PNG for database diagram
-![DB diagram](/DBdiagram.PNG?raw=true "DB diagram")
+#### Calendar.cs
+
+```c
+//schedule for bookings, calendar
+public DateTime day { get; private set; }
+public DateTime weekend;//autofill
+public DateTime holiday;//autofill
+```
+
+#### Book.cs
+
+```c
+//reservation
+public long id { get; private set; }
+public long client_id { get; private set; }
+public DateTime order_date { get; private set; }
+public DateTime day_from { get; private set; }
+public DateTime day_till { get; private set; }
+public int adults { get; private set; }
+public int kids { get; private set; }
+public string status { get; private set; }
+public string info { get; private set; }
+```
+
+#### Plan.cs
+
+```c
+//rooms and positions, reservatons
+long room_id;
+long order_id;
+DateTime calendar_day;
+public string status { get; private set; }
+public int adults { get; private set; }
+public int kids { get; private set; }
+```
 
 
-## 3. Model of database (from MVC). 
+## 3.  of database (from MVC). 
 NB! No client's data is planned to be deleted from a database.
 
 Tasks (with sample SQL queries):
@@ -304,65 +362,7 @@ ModelRoom.SelectFreeRooms()
 ```
 
 
-## 4. Models
-#### Client.cs 
 
-```c
-//work with clients
-public int id { get; private set; }
-public string client_full_name { get; private set; }
-public string email { get; private set; }
-public string tel { get; private set; }
-public string address { get; private set; }
-public string notes { get; private set; }
-```
-
-#### Room.cs 
-
-```c//room description
-public long id { get; private set; }
-public string room { get; private set; }
-public int beds { get; private set; }
-public string floor { get; private set; }
-public int step { get; private set; }
-public string info  { get; private set; }
-```
-
-#### Calendar.cs
-
-```c
-//schedule for bookings, calendar
-public DateTime day { get; private set; }
-public DateTime weekend;//autofill
-public DateTime holiday;//autofill
-```
-
-#### Book.cs
-
-```c
-//reservation
-public long id { get; private set; }
-public long client_id { get; private set; }
-public DateTime order_date { get; private set; }
-public DateTime day_from { get; private set; }
-public DateTime day_till { get; private set; }
-public int adults { get; private set; }
-public int kids { get; private set; }
-public string status { get; private set; }
-public string info { get; private set; }
-```
-
-#### Plan.cs
-
-```c
-//rooms and positions, reservatons
-long room_id;
-long order_id;
-DateTime calendar_day;
-public string status { get; private set; }
-public int adults { get; private set; }
-public int kids { get; private set; }
-```
 
 ## 5. Controllers and Views
 in the development;

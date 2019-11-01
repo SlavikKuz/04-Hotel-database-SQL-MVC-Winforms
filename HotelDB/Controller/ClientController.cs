@@ -8,12 +8,12 @@ namespace HotelDB.Controller
     {
         IClient _view;
         SQL _sql;
-        Client _mClient;
+        ClientModel _mClient;
         DataTable _clientTable;
 
         //constructor
         public ClientController(IClient view, SQL sql, 
-            Client mClient, DataTable clientTable)
+            ClientModel mClient, DataTable clientTable)
         {
             _view = view;
             _sql = sql;

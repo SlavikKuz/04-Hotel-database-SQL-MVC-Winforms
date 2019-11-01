@@ -2,51 +2,55 @@
 
 namespace HotelDB.Model
 {
-    public class Client
+    public class ClientModel
     {
-    public int id { get; private set; }
-    public string client_full_name { get; private set; }
-    public string email { get; private set; }
-    public string tel { get; private set; }
-    public string address { get; private set; }
-    public string notes { get; private set; }
+    public int Id { get; set; }
+    public string Client_full_name { get; set; }
+    public string Email { get; set; }
+    public string Tel { get; set; }
+    public string Address { get; set; }
+    public string Notes { get; set; }
 
         private SQL sql;
 
-        public Client(SQL sql)
+        public ClientModel(SQL sql)
         {
-            id = 0;
-            client_full_name = "";
-            email = "";
-            tel = "";
-            address = "";
-            notes = "";
+            Id = 0;
+            Client_full_name = "";
+            Email = "";
+            Tel = "";
+            Address = "";
+            Notes = "";
             this.sql = sql;
         }
-    
+
+        public ClientModel()
+        {
+        }
+
         public void SetClient (string client_name)
         {
-            this.client_full_name = client_name;
+            this.Client_full_name = client_name;
         }
 
         public  void SetEmail(string email)
         {
-            this.email = email;
+            this.Email = email;
         }
 
         public void SetTel(string tel)
         {
-            this.tel = tel;
+            this.Tel = tel;
         }
 
         public void SetAddress(string address)
         {
-            this.address = address;
+            this.Address = address;
         }
 
         public void SetNotes(string notes)
         {
-            this.notes = notes;
+            this.Notes = notes;
         }
 
         public void InsertClient()
@@ -60,18 +64,18 @@ namespace HotelDB.Model
                 "address, " +
                 "notes) " +
                     "VALUES('" + 
-                    sql.AddSlash(client_full_name) +
-                    "','" + sql.AddSlash(email) + 
-                    "','" + sql.AddSlash(tel) + 
-                    "','" + sql.AddSlash(address) +
-                    "','" + sql.AddSlash(notes) + "');";
+                    sql.AddSlash(Client_full_name) +
+                    "','" + sql.AddSlash(Email) + 
+                    "','" + sql.AddSlash(Tel) + 
+                    "','" + sql.AddSlash(Address) +
+                    "','" + sql.AddSlash(Notes) + "');";
 
-            do this.id = this.sql.Insert(query);
+            do this.Id = this.sql.Insert(query);
             while (this.sql.SqlError());
         }
 
+        //kill
         public DataTable SelectClients()
-        // get a list of clients;
         {
             DataTable client;
             do client = sql.Select("SELECT * FROM Client");
@@ -109,12 +113,12 @@ namespace HotelDB.Model
             if (client.Rows.Count == 0)
                 return false;
 
-            this.id=int.Parse(client.Rows[0]["id"].ToString());
-            this.client_full_name = client.Rows[0]["client_full_name"].ToString();
-            this.email = client.Rows[0]["email"].ToString();
-            this.tel = client.Rows[0]["tel"].ToString();
-            this.address = client.Rows[0]["address"].ToString();
-            this.notes = client.Rows[0]["notes"].ToString();
+            this.Id=int.Parse(client.Rows[0]["id"].ToString());
+            this.Client_full_name = client.Rows[0]["client_full_name"].ToString();
+            this.Email = client.Rows[0]["email"].ToString();
+            this.Tel = client.Rows[0]["tel"].ToString();
+            this.Address = client.Rows[0]["address"].ToString();
+            this.Notes = client.Rows[0]["notes"].ToString();
             return true;
         }
 
@@ -125,12 +129,12 @@ namespace HotelDB.Model
             int result =0;
             do result = sql.Update(
                 "UPDATE Client " +
-                "SET client_full_name = '" + sql.AddSlash(this.client_full_name) + "'," +
-                    "email = '" + sql.AddSlash(this.email) + "'," +
-                    "tel = '" + sql.AddSlash(this.tel) + "'," +
-                    "address = '" + sql.AddSlash(this.address) + "'," +
-                    "notes = '" + sql.AddSlash(this.notes) + "' " +
-                    "WHERE id = '" + sql.AddSlash(this.id.ToString()) + "'");
+                "SET client_full_name = '" + sql.AddSlash(this.Client_full_name) + "'," +
+                    "email = '" + sql.AddSlash(this.Email) + "'," +
+                    "tel = '" + sql.AddSlash(this.Tel) + "'," +
+                    "address = '" + sql.AddSlash(this.Address) + "'," +
+                    "notes = '" + sql.AddSlash(this.Notes) + "' " +
+                    "WHERE id = '" + sql.AddSlash(this.Id.ToString()) + "'");
             while (sql.SqlError());
 
             if (result == 0)

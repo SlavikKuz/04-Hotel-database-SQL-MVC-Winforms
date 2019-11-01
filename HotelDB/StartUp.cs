@@ -11,7 +11,7 @@ using System.Data;
 
 namespace HotelDB
 {
-    static class Program
+    static class StartUp
     {
         /// <summary>
         /// The main entry point for the application.
@@ -25,7 +25,7 @@ namespace HotelDB
             ClientView view = new ClientView();
 
             SQL sql = new SQL();
-            Client mClient = new Client(sql);
+            ClientModel mClient = new ClientModel(sql);
 
             DataTable clientData;
             clientData = mClient.SelectClients();
@@ -33,7 +33,7 @@ namespace HotelDB
             ClientController controller = 
                 new ClientController(view, sql, mClient, clientData);
 
-            Application.Run(new ClientView());
+            Application.Run(new DashboardView());
 
         }
     }

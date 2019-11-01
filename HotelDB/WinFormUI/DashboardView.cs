@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelDB.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,17 +11,22 @@ using System.Windows.Forms;
 
 namespace HotelDB
 {
-    public partial class Form1 : Form
-    {
+    public partial class DashboardView : Form
+    {                 
         SQL sql;
-        Model.Client mClient;
+        Model.ClientModel mClient;
 
-        public Form1()
+        public DashboardView() 
         {
-            InitializeComponent();
-            sql = new SQL();
+            InitializeComponent(); //+
+            HotelDB.GlobalConfig.InitializeConnection(); //+
+            List<ClientModel> clients = GlobalConfig.Connection.GetClientsAll(); //+
 
-            mClient = new Model.Client(sql);
+            //sql = new SQL();//-
+            //mClient = new Model.ClientModel(sql);//-
+            //DataTable client = mClient.SelectClients(); //-
+
+            dataGridView1.DataSource = clients;
         }
 
         private void button1_Click(object sender, EventArgs e)
