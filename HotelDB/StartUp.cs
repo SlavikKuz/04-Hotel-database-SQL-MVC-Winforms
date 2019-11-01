@@ -27,11 +27,11 @@ namespace HotelDB
             SQL sql = new SQL();
             ClientModel mClient = new ClientModel(sql);
 
-            DataTable clientData;
-            clientData = mClient.SelectClients();
+            //DataTable clientData;
+            //clientData = mClient.SelectClients();
 
-            ClientController controller = 
-                new ClientController(view, sql, mClient, clientData);
+            //ClientController controller = 
+            //    new ClientController(view, sql, mClient, clientData);
 
             Application.Run(new DashboardView());
 

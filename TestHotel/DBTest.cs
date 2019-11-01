@@ -26,19 +26,19 @@ namespace TestHotel
         //[TestMethod]
         //public void TestCalendarAddDays()
         //{
-        //    Calendar calendar = new Calendar(sql);
+        //    CalendarModel calendar = new CalendarModel(sql);
         //    calendar.InsertDays(2019);
         //}
 
         //[TestMethod]
         //public void TestCalendarHoliday()
         //{
-        //    Calendar calendar = new Calendar(sql);
+        //    CalendarModel calendar = new CalendarModel(sql);
         //    calendar.AddHoliday(new DateTime(2019, 1, 22));
 
         //    string days = sql.Scalar(
         //        "SELECT COUNT(*) " +
-        //        " FROM Calendar " +
+        //        " FROM CalendarModel " +
         //        " WHERE day = '2019-01-22' " +
         //        "AND holiday = 1");
         //    Assert.AreEqual(days, "1");

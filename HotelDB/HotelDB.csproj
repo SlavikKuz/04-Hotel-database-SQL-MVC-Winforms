@@ -58,7 +58,7 @@
     </Compile>
     <Compile Include="GlobalConfig.cs" />
     <Compile Include="Models\Book.cs" />
-    <Compile Include="Models\Calendar.cs" />
+    <Compile Include="Models\CalendarModel.cs" />
     <Compile Include="Models\ClientModel.cs" />
     <Compile Include="Models\Plan.cs" />
     <Compile Include="Models\Room.cs" />

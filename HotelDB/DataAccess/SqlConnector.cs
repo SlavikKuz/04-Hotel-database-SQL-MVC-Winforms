@@ -13,7 +13,7 @@ namespace HotelDB.DataAccess
     {
         private const string db = "ht_localdb_30102019";
 
-        //SQL query, not stored procedure
+        //SQL queries, not stored procedures
         public List<ClientModel> GetClientsAll()
         {
             using (SqlConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
@@ -21,6 +21,24 @@ namespace HotelDB.DataAccess
                 connection.Open();
                 using (SqlCommand command = new SqlCommand("SELECT * FROM Client", connection))
                 return FillListOfClientModels(command);                
+            }
+        }
+ 
+        public List<ClientModel> GetClientsAll(string clientSearch)
+        {
+            using (SqlConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                connection.Open();
+                string query = "SELECT * FROM Client " +
+                               "WHERE client_full_name LIKE '%" + clientSearch + "%' " +
+                               "OR email LIKE '%" + clientSearch + "%' " +
+                               "OR tel LIKE '%" + clientSearch + "%' " +
+                               "OR address LIKE '%" + clientSearch + "%' " +
+                               "OR notes LIKE '%" + clientSearch + "%' " +
+                               "OR id = '" + clientSearch + "';";
+                
+                using (SqlCommand command = new SqlCommand(query, connection))
+                    return FillListOfClientModels(command);
             }
         }
 
@@ -45,8 +63,6 @@ namespace HotelDB.DataAccess
             }
             return output;
         }
-
-        //TODO methods
 
     }
 }

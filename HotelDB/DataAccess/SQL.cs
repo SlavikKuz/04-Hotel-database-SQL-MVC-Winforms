@@ -136,27 +136,5 @@ namespace HotelDB
             return text.Replace("'","\\'");
         }
 
-        public bool SqlError() //error checker
-        {
-            if (error == "")
-                return false;
-
-            DialogResult dr = MessageBox.Show(error + "\n" +
-                "Query:\n" + query +
-                "\nAbort - Abort" +
-                "\nRetry - Retry" +
-                "\nIgnore - Ignore", 
-                "Error", 
-                MessageBoxButtons.AbortRetryIgnore);
-            if (dr==DialogResult.Abort)
-            {
-                Application.Exit();
-                return false;
-            }
-
-            if (dr == DialogResult.Retry)
-                return true;
-            return false;
-        }
     }
 }

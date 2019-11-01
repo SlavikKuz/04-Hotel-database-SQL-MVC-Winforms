@@ -11,5 +11,6 @@ namespace HotelDB.DataAccess
     {
         //TODO: methods to save and retrieve data;     
         List<ClientModel> GetClientsAll();
+        List<ClientModel> GetClientsAll(string clientSearch);
     }
 }

@@ -74,53 +74,6 @@ namespace HotelDB.Model
             while (this.sql.SqlError());
         }
 
-        //kill
-        public DataTable SelectClients()
-        {
-            DataTable client;
-            do client = sql.Select("SELECT * FROM Client");
-            while (sql.SqlError());
-            return client;
-        }
-
-        public DataTable SelectClients(string find)
-        // get a list of clients (filter);
-        {
-            DataTable client;
-            find = sql.AddSlash(find);
-
-            do client = sql.Select("SELECT * FROM Client " +
-                "WHERE client_full_name LIKE '%" + find + "%' " +
-                "OR email LIKE '%" + find + "%' " +
-                "OR tel LIKE '%" + find + "%' " +
-                "OR address LIKE '%" + find + "%' " +
-                "OR notes LIKE '%" + find + "%' " +
-                "OR id = '" + find + "';");
-            while (sql.SqlError());
-            return client;
-        }
-
-        public bool SelectClient(int client_id)
-        // get data for selected client;
-        {
-            DataTable client;
-            do client = sql.Select(
-                "SELECT id, client_full_name, email, tel, address, notes " +
-                "FROM Client " +
-                "WHERE id = '" + sql.AddSlash(client_id.ToString()) + "'");
-            while (sql.SqlError());
-
-            if (client.Rows.Count == 0)
-                return false;
-
-            this.Id=int.Parse(client.Rows[0]["id"].ToString());
-            this.Client_full_name = client.Rows[0]["client_full_name"].ToString();
-            this.Email = client.Rows[0]["email"].ToString();
-            this.Tel = client.Rows[0]["tel"].ToString();
-            this.Address = client.Rows[0]["address"].ToString();
-            this.Notes = client.Rows[0]["notes"].ToString();
-            return true;
-        }
 
 
         public bool UpdateClient()
