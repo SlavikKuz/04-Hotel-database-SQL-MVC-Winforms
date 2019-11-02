@@ -25,7 +25,7 @@ namespace HotelDB.DataAccess
             }
         }
 
-        public ClientModel GetClientsAll(int clientPosition)
+        public ClientModel GetClient(int clientPosition)
         {
             using (SqlConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
             {
@@ -64,7 +64,7 @@ namespace HotelDB.DataAccess
                     ClientModel client = new ClientModel()
                     {
                         Id = (int)reader["id"],
-                        Client_full_name = reader["client_full_name"].ToString(),
+                        ClientFullName = reader["client_full_name"].ToString(),
                         Email = reader["email"].ToString(),
                         Tel = reader["tel"].ToString(),
                         Address = reader["address"].ToString(),
@@ -84,7 +84,7 @@ namespace HotelDB.DataAccess
                 connection.Open();
                 string query = "INSERT INTO Client (" +
                            "client_full_name, email, tel, address, notes) VALUES ('" +
-                           client.Client_full_name + "','" +
+                           client.ClientFullName + "','" +
                            client.Email + "','" +
                            client.Tel + "','" +
                            client.Address + "','" +
@@ -110,7 +110,7 @@ namespace HotelDB.DataAccess
                 int rows = 0;
                 connection.Open();
                 string query = "UPDATE Client SET" +
-                           "client_full_name = '" + client.Client_full_name + "', " +
+                           "client_full_name = '" + client.ClientFullName + "', " +
                            "email = '" + client.Email + "', " +
                            "tel = '" + client.Tel + "', " +
                            "address = '" + client.Address + "', " +
@@ -129,6 +129,160 @@ namespace HotelDB.DataAccess
                     client.Id = (Int32)command.ExecuteScalar();
                 }
             }
+        }
+
+        public List<BookingModel> GetBookingsAll()
+        {
+            //TODO booking
+            throw new NotImplementedException();
+        }
+
+        public List<BookingModel> GetBookingsAll(int clientId)
+        {
+            //TODO booking
+            throw new NotImplementedException();
+        }
+
+        public List<BookingModel> GetBookingsAll(DateTime date)
+        {
+            //TODO booking
+            throw new NotImplementedException();
+            //    this.day_from = DateTime.Parse(book.Rows[0]["day_from"].ToString());
+            //    this.day_till = DateTime.Parse(book.Rows[0]["day_till"].ToString());
+        }
+
+        public List<BookingModel> GetBookingsAll(string status)
+        {
+            //TODO booking
+            throw new NotImplementedException();
+            //    if (status != "waiting" &&
+            //        status != "confirmed" &&
+            //        status != "deleted")
+            //        return false;
+
+            //    int result;
+            //    do result = sql.Update(
+            //       "UPDATE Order " +
+            //       "SET status = '" + status + "'," +
+            //           "WHERE id = '" + sql.AddSlash(this.id.ToString()) + "'");
+            //    while (false);
+        }
+
+        public BookingModel GetBooking(int bookingId)
+        {
+            //TODO booking
+            throw new NotImplementedException();
+            //    this.id = book_id;
+            //    do book = sql.Select(
+            //        "SELECT client_id, order_date, day_from, " +
+            //        "day_till, adults, kids, status, info" +
+            //        " FROM Order" +
+            //        " WHERE id='" + sql.AddSlash(this.id.ToString()) + "'");
+        }
+
+        public void CreateBooking(BookingModel booking)
+        {
+            //TODO booking
+            throw new NotImplementedException();
+        //    "INSERT INTO Order " +
+        //        "SET client_id = '" + client_id + "'," +
+        //        "order_date = NOW()," +
+        //        //"day_from = '" + day_from.ToString("yyyy-MM-dd") + "'," +
+        //        //"day_till = '" + day_till.ToString("yyyy-MM-dd") + "'," +
+        //        "day_from = '" + sql.DateToString(day_from) + "'," +
+        //        "day_till = '" + sql.DateToString(day_till) + "'," +
+        //        "adults = '" + this.adults + "'," +
+        //        "kids = '" + this.kids + "'," +
+        //        "status = 'waiting'," +
+        //        "info = '" + sql.AddSlash(this.info) + "'");
+        }
+
+        public void UpdateBooking(BookingModel booking)
+        {
+            //TODO booking
+            throw new NotImplementedException();
+        }
+
+        public void DeactivateBooking(BookingModel booking)
+        {
+            //TODO
+            //bookings are never deleted, change status only, seen in history
+            throw new NotImplementedException();
+        }
+
+        public decimal GetPriceOnDay(DayModel day)
+        {
+            day.CheckWeekend();
+            throw new NotImplementedException();
+            //it will check the day while booking.
+            //normal day - average, weekend - highter, holiday - highest price
+
+            //2. SQL Table will contain only holidays
+            //3. Methods checks if date is holiday form the table.
+        }
+
+        public List<RoomModel> GetRoomsAll()
+        {
+            //TODO
+            throw new NotImplementedException();
+            //    do room = sql.Select("SELECT id, room, beds, floor, step, info " +
+            //        "FROM Room " +
+            //        "ORDER BY step");
+        }
+
+        public RoomModel GetRoom(int roomId)
+        {
+            //TODO
+            throw new NotImplementedException();
+            //    do room = sql.Select(
+            //        "SELECT id, room, beds, floor, step, info " +
+            //        "FROM Room " +
+            //        "WHERE id = '" + sql.AddSlash(room_id.ToString()) + "'");
+        }
+
+        public void CreateHoliday(DayModel day)
+        {
+            //TODO
+            throw new NotImplementedException();
+        }
+
+        public void DeleteHoliday(DayModel day)
+        {
+            //TODO
+            throw new NotImplementedException();
+        }
+
+        public void CreateRoom(RoomModel room)
+        {
+            //TODO
+            throw new NotImplementedException();
+            //    string query = "INSERT INTO Room (room, beds, floor, info, step) " +
+            //            "VALUES('" +
+            //            sql.AddSlash(this.room) +
+            //            "','" + sql.AddSlash(this.beds.ToString()) +
+            //            "','" + sql.AddSlash(this.floor) +
+            //            "','" + sql.AddSlash(this.info) + "',0);";
+        }
+
+        public void UpdateRoom(RoomModel room)
+        {
+            //TODO
+            throw new NotImplementedException();
+            //        "UPDATE Room " +
+            //        "SET room = '" + sql.AddSlash(this.room) + "'," +
+            //            "beds = '" + sql.AddSlash(this.beds.ToString()) + "'," +
+            //            "floor = '" + sql.AddSlash(this.floor) + "'," +
+            //            "info = '" + sql.AddSlash(this.info) + "' " +
+            //            "WHERE id = '" + sql.AddSlash(this.id.ToString()) + "'");
+        }
+
+        public void DeleteRoom(RoomModel room)
+        {
+            //TODO:
+            throw new NotImplementedException();
+            //        "DELETE FROM Room " +
+            //            "WHERE id = '" + sql.AddSlash(room_id.ToString()) + "'");
+
         }
     }
 }

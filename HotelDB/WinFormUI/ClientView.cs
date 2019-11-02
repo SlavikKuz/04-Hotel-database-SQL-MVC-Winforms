@@ -20,7 +20,7 @@ namespace HotelDB.View
 
         private void FillClientToForm(ClientModel selectedClient)
         {
-            textBoxFullName.Text = selectedClient.Client_full_name.ToString();
+            textBoxFullName.Text = selectedClient.ClientFullName.ToString();
             textBoxEmail.Text = selectedClient.Email.ToString();
             textBoxAddress.Text = selectedClient.Address.ToString();
             textBoxNotes.Text = selectedClient.Notes.ToString();
@@ -30,7 +30,7 @@ namespace HotelDB.View
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             ClientModel client = new ClientModel();
-            client.Client_full_name = textBoxFullName.Text;
+            client.ClientFullName = textBoxFullName.Text;
             client.Email = textBoxEmail.Text;
             client.Address = textBoxAddress.Text;
             client.Tel = textBoxTel.Text;

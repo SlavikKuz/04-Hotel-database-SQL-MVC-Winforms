@@ -34,7 +34,7 @@ namespace HotelDB
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int clientPosition = int.Parse(dataGridView1[0, e.RowIndex].Value.ToString());
-            ClientModel selectedClient = GlobalConfig.Connection.GetClientsAll(clientPosition);
+            ClientModel selectedClient = GlobalConfig.Connection.GetClient(clientPosition);
             ClientView frm = new ClientView(selectedClient);
             frm.Show();
         }

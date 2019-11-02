@@ -5,7 +5,7 @@ namespace HotelDB.Model
     public class ClientModel
     {
     public int Id { get; set; }
-    public string Client_full_name { get; set; }
+    public string ClientFullName { get; set; }
     public string Email { get; set; }
     public string Tel { get; set; }
     public string Address { get; set; }
