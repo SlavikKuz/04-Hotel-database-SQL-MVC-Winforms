@@ -8,9 +8,11 @@ using HotelDB.Model;
 namespace HotelDB.DataAccess
 {
     public interface IDataConnection
-    {
-        //TODO: methods to save and retrieve data;     
+    { 
         List<ClientModel> GetClientsAll();
         List<ClientModel> GetClientsAll(string clientSearch);
+        ClientModel GetClientsAll(int clientPosition);
+        void CreateClient(ClientModel client);
+        void UpdateClient(ClientModel client);
     }
 }

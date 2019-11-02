@@ -1,4 +1,5 @@
 ﻿using HotelDB.Model;
+using HotelDB.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,9 +33,10 @@ namespace HotelDB
         //click and get edit form of what was selected
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //int id = int.Parse(dataGridView1[0, e.RowIndex].Value.ToString());
-            //mClient.SelectClient(id);
-
+            int clientPosition = int.Parse(dataGridView1[0, e.RowIndex].Value.ToString());
+            ClientModel selectedClient = GlobalConfig.Connection.GetClientsAll(clientPosition);
+            ClientView frm = new ClientView(selectedClient);
+            frm.Show();
         }
     }
 }

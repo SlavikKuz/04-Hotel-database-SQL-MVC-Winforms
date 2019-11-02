@@ -1,83 +1,44 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
-
-using HotelDB.Controller;
 using HotelDB.Model;
 
 namespace HotelDB.View
 {
-    public partial class ClientView : Form, IClient
+    public partial class ClientView : Form
     {
 
-        public ClientView()
+        public ClientView(ClientModel selectedClient)
         {
             InitializeComponent();
+
+            FillClientToForm(selectedClient);
+            
+            //list of bookings of the client
+            //dataGridViewClient.DataSource;
         }
 
-        ClientController _controller;
-
-        private void button1_Click(object sender, EventArgs e)
+        private void FillClientToForm(ClientModel selectedClient)
         {
-            dataGridView1.DataSource =
-               this._controller.SelectClients(textBox1.Text);
-        }
-        
-        //interface implementation
-
-        public void SetController(ClientController controller)
-        {
-            _controller=controller;
+            textBoxFullName.Text = selectedClient.Client_full_name.ToString();
+            textBoxEmail.Text = selectedClient.Email.ToString();
+            textBoxAddress.Text = selectedClient.Address.ToString();
+            textBoxNotes.Text = selectedClient.Notes.ToString();
+            textBoxTel.Text = selectedClient.Tel.ToString();
         }
 
-        public void InsertClient()
+        private void buttonAdd_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
-        }
+            ClientModel client = new ClientModel();
+            client.Client_full_name = textBoxFullName.Text;
+            client.Email = textBoxEmail.Text;
+            client.Address = textBoxAddress.Text;
+            client.Tel = textBoxTel.Text;
+            client.Notes = textBoxNotes.Text;
 
-        public DataTable SelectClients()
-        {
-            throw new NotImplementedException();
-        }
+            GlobalConfig.Connection.CreateClient(client);
 
-        public void SelectClients(string find)
-        {
-            MessageBox.Show("done");
-        }
-
-        public bool SelectClient(int client_id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool UpdateClient()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetClient(string client_name)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetEmail(string email)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetTel(string tel)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetAddress(string address)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetNotes(string notes)
-        {
-            throw new NotImplementedException();
+            //update model with new Id on screen?
         }
     }
 }
