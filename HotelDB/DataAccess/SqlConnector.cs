@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -46,8 +47,10 @@ namespace HotelDB.DataAccess
                                "OR email LIKE '%" + clientSearch + "%' " +
                                "OR tel LIKE '%" + clientSearch + "%' " +
                                "OR address LIKE '%" + clientSearch + "%' " +
-                               "OR notes LIKE '%" + clientSearch + "%' " +
-                               "OR id = '" + clientSearch + "';";
+                               "OR notes LIKE '%" + clientSearch + "%' ";
+                
+                if (Regex.Matches(clientSearch, @"[a-zA-Z]").Count == 0)
+                query = query + "OR id = '" + clientSearch + "';";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                     return FillListOfClientModels(command);

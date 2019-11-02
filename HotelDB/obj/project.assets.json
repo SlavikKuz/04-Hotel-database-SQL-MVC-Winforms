@@ -1,0 +1,112 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.6.1": {
+      "Microsoft.DotNet.Analyzers.Compatibility/0.2.12-alpha": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.DotNet.Analyzers.Compatibility.targets": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.1/win": {
+      "Microsoft.DotNet.Analyzers.Compatibility/0.2.12-alpha": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.DotNet.Analyzers.Compatibility.targets": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.1/win-x64": {
+      "Microsoft.DotNet.Analyzers.Compatibility/0.2.12-alpha": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.DotNet.Analyzers.Compatibility.targets": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.1/win-x86": {
+      "Microsoft.DotNet.Analyzers.Compatibility/0.2.12-alpha": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.DotNet.Analyzers.Compatibility.targets": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Microsoft.DotNet.Analyzers.Compatibility/0.2.12-alpha": {
+      "sha512": "uu3yAa6hQZJoJZfBwXSvh+bN03KO06sWNZXwodxz7J1wva1g1+O4TnWJxX4dmsP6tLDTZtKy8IHiPLOOZIwt9w==",
+      "type": "package",
+      "path": "microsoft.dotnet.analyzers.compatibility/0.2.12-alpha",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/cs/Microsoft.DotNet.Analyzers.Compatibility.dll",
+        "analyzers/dotnet/cs/Microsoft.DotNet.Csv.dll",
+        "build/Microsoft.DotNet.Analyzers.Compatibility.targets",
+        "microsoft.dotnet.analyzers.compatibility.0.2.12-alpha.nupkg.sha512",
+        "microsoft.dotnet.analyzers.compatibility.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.6.1": [
+      "Microsoft.DotNet.Analyzers.Compatibility >= 0.2.12-alpha"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\slavi\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "d:\\Repos\\04 - HotelDB\\HotelDB\\HotelDB.csproj",
+      "projectName": "HotelDB",
+      "projectPath": "d:\\Repos\\04 - HotelDB\\HotelDB\\HotelDB.csproj",
+      "packagesPath": "C:\\Users\\slavi\\.nuget\\packages\\",
+      "outputPath": "d:\\Repos\\04 - HotelDB\\HotelDB\\obj\\",
+      "projectStyle": "PackageReference",
+      "skipContentFileWrite": true,
+      "configFilePaths": [
+        "C:\\Users\\slavi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net461"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net461": {
+          "projectReferences": {}
+        }
+      }
+    },
+    "frameworks": {
+      "net461": {
+        "dependencies": {
+          "Microsoft.DotNet.Analyzers.Compatibility": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[0.2.12-alpha, )"
+          }
+        }
+      }
+    },
+    "runtimes": {
+      "win": {
+        "#import": []
+      },
+      "win-x64": {
+        "#import": []
+      },
+      "win-x86": {
+        "#import": []
+      }
+    }
+  }
+}
