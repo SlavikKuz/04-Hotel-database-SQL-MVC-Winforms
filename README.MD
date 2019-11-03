@@ -7,7 +7,7 @@ Keywords: C#, SQL, ASP.net Core, MVC, VS2019, SSMS18, Azure
 ## 1. Database design
 Database must store information about client, booking, dates, and available rooms. It is possible to store also some additional informanion as comments, or notes for clients' special needs or requests.
 
-![DB diagram](https://github.com/SlavikKuz/04-Simple-Small-Hotel-Database/raw/master/DBdiagram.PNG?raw=true "DB diagram")
+![DB diagram](https://github.com/SlavikKuz/04-Simple-Small-Hotel-Database/raw/master/Readme/DBdiagram.PNG?raw=true "DB diagram")
 
 ### dbo.CIient
 ```sql
