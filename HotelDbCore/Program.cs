@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HotelDbCore
+namespace HotelDB.Domain
 {
     class Program
     {

@@ -1,7 +1,6 @@
-﻿using HotelDBCore.DataAccess;
+﻿using HotelDB.Domain.DataAccess;
 
-
-namespace HotelDBCore
+namespace HotelDB.Domain
 {
     public static class GlobalConfig
     {
@@ -14,7 +13,8 @@ namespace HotelDBCore
 
         public static string CnnString(string name)
         {
-            return ConfigurationManager.ConnectionStrings[name].ConnectionString;
+            return "  "; 
+                //ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
 
     }

@@ -1,11 +1,12 @@
-﻿using HotelDBCore.Model;
+﻿using HotelDB.Domain.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text.RegularExpressions;
 
 
-namespace HotelDBCore.DataAccess
+namespace HotelDB.Domain.DataAccess
 {
     public class SqlConnector : IDataConnection
     {
@@ -90,8 +91,6 @@ namespace HotelDBCore.DataAccess
                            client.Notes + "');";
                 SqlCommand command = new SqlCommand(query, connection);
 
-                MessageBox.Show(query.ToString());
-
                 rows = command.ExecuteNonQuery();
 
                 if (rows > 0)
@@ -117,8 +116,6 @@ namespace HotelDBCore.DataAccess
                            "WHERE id = '" + client.Id.ToString() + "'";
 
                 SqlCommand command = new SqlCommand(query, connection);
-
-                MessageBox.Show(query.ToString());
 
                 rows = command.ExecuteNonQuery();
 
@@ -211,7 +208,7 @@ namespace HotelDBCore.DataAccess
 
         public decimal GetPriceOnDay(DayModel day)
         {
-            day.CheckWeekend();
+            //day.CheckWeekend();
             throw new NotImplementedException();
             //it will check the day while booking.
             //normal day - average, weekend - highter, holiday - highest price

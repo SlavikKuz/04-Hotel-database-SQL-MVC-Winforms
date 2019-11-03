@@ -1,6 +1,6 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
 
-namespace HotelDBCore.Model
+namespace HotelDB.Domain.Model
 {
     public class ClientModel
     {
@@ -10,5 +10,6 @@ namespace HotelDBCore.Model
     public string Tel { get; set; }
     public string Address { get; set; }
     public string Notes { get; set; }
+    public List<BookingModel> BookingsHistory { get; set; } = new List<BookingModel>();
     }
 }

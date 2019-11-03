@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace HotelDBCore.Model
+namespace HotelDB.Domain.Model
 {
     public class RoomModel
     {
@@ -11,6 +11,7 @@ namespace HotelDBCore.Model
         public string Floor { get; set; }
         public string Info  { get; set; }
         
+        public BookingModel Booking { get; set; }
         //ready or not to accept guests, not - renowation, flood, etc
         public string Active { get; set; }
 

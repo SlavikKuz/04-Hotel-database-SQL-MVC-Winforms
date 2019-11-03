@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using HotelDBCore.Model;
+using HotelDB.Domain.Model;
 
-namespace HotelDBCore.DataAccess
+namespace HotelDB.Domain.DataAccess
 {
     public interface IDataConnection
     { 
