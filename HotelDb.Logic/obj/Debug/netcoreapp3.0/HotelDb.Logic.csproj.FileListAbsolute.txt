@@ -1,0 +1,12 @@
+d:\Repos\04 - HotelDB\HotelDb.Logic\bin\Debug\netcoreapp3.0\HotelDb.DataLayer.exe
+d:\Repos\04 - HotelDB\HotelDb.Logic\bin\Debug\netcoreapp3.0\HotelDb.Logic.deps.json
+d:\Repos\04 - HotelDB\HotelDb.Logic\bin\Debug\netcoreapp3.0\HotelDb.Logic.dll
+d:\Repos\04 - HotelDB\HotelDb.Logic\bin\Debug\netcoreapp3.0\HotelDb.DataLayer.dll
+d:\Repos\04 - HotelDB\HotelDb.Logic\bin\Debug\netcoreapp3.0\HotelDb.DataLayer.pdb
+d:\Repos\04 - HotelDB\HotelDb.Logic\obj\Debug\netcoreapp3.0\HotelDb.Logic.csprojAssemblyReference.cache
+d:\Repos\04 - HotelDB\HotelDb.Logic\obj\Debug\netcoreapp3.0\HotelDb.Logic.AssemblyInfoInputs.cache
+d:\Repos\04 - HotelDB\HotelDb.Logic\obj\Debug\netcoreapp3.0\HotelDb.Logic.AssemblyInfo.cs
+d:\Repos\04 - HotelDB\HotelDb.Logic\obj\Debug\netcoreapp3.0\HotelDb.Logic.csproj.CopyComplete
+d:\Repos\04 - HotelDB\HotelDb.Logic\bin\Debug\netcoreapp3.0\HotelDb.Logic.pdb
+d:\Repos\04 - HotelDB\HotelDb.Logic\obj\Debug\netcoreapp3.0\HotelDb.Logic.dll
+d:\Repos\04 - HotelDB\HotelDb.Logic\obj\Debug\netcoreapp3.0\HotelDb.Logic.pdb
