@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using HotelDb.DataLayer.Context;
 using HotelDb.Logic;
 using HotelDb.WebUI.Models;
@@ -12,9 +13,14 @@ namespace HotelDb.WebUI.Controllers
 {
     public class ClientModelController : Controller
     {
-        private HotelDbContext database;
-        
-        
+        //private HotelDbContext database;
+        private readonly IMapper mapper;
+
+        public ClientModelController(IMapper mapper)
+        {
+            this.mapper = mapper;
+        }
+
         // GET: ClientModel
         public ActionResult Index()
         {
@@ -24,13 +30,12 @@ namespace HotelDb.WebUI.Controllers
 
         public ActionResult ShowAll()
         {
-            List<ClientModel> list;
+            List<ClientModel> list = null;
 
-            //using (var database = new LogicLL())
-                //list = return from LL
-                    //match ClientModel and ClientLL
+            using (var database = new LogicLL())
+                list = mapper.Map<List<ClientModel>>(database.GetAllClients());
 
-            return View(); //View(list)
+                return View(list);
         }
 
         // GET: ClientModel/Details/5

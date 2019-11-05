@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using HotelDb.DataLayer;
 using HotelDb.DataLayer.Entities;
+using HotelDb.DataLogic;
 using HotelDb.Logic.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,22 +9,21 @@ using System.Collections.Generic;
 namespace HotelDb.Logic
 {
     public class LogicLL : IDisposable
-    {
-        private UnitOfWork DataBase { get; }                         
-        private readonly IMapper mapper ;        
+    {             
+        private UnitOfWork DataBase { get; }
+        private IMapper mapper = ObjectMapper.Mapper;
         
-        public LogicLL(IMapper mapper)
+        public LogicLL() 
         {
-            DataBase = new UnitOfWork(); 
-            this.mapper = mapper;
+            DataBase = new UnitOfWork();
         }
-       
+
         public IEnumerable<ClientLL> GetAllClients()
         {
             List<ClientLL> result = new List<ClientLL>();
 
-            foreach (ClientDL cl  in DataBase.Clients.ReadAll())
-                result.Add( mapper.Map<ClientLL>(cl));
+            foreach (ClientDL cl in DataBase.Clients.ReadAll())
+                result.Add(mapper.Map<ClientLL>(cl));
             return result;
         }
 

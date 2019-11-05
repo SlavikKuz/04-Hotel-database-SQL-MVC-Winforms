@@ -7,20 +7,10 @@ namespace HotelDb.DataLayer.Context
 {
     public class HotelDbContext : DbContext
     {
-        private ILoggerFactory MyConsoleLoggerFactory;
-        public HotelDbContext()
-        {
-            IServiceCollection serviceCollection = new ServiceCollection();
-            serviceCollection.AddLogging(builder => builder
-                        .AddConsole()
-                        .AddFilter
-                        (DbLoggerCategory.Database.Command.Name, LogLevel.Information));
-
-            MyConsoleLoggerFactory = serviceCollection.BuildServiceProvider().GetService<ILoggerFactory>();
-        }
-
+        public HotelDbContext() { }
+       
         public HotelDbContext(DbContextOptions<HotelDbContext> options)
-            :base(options) { }
+            : base(options) { }
 
         public DbSet<ClientDL> Clients { get; set; }
         public DbSet<BookingDL> Bookings { get; set; }
@@ -37,9 +27,7 @@ namespace HotelDb.DataLayer.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder
-                .UseLoggerFactory(MyConsoleLoggerFactory)
-                .EnableSensitiveDataLogging(true);
+            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=ht_localdb;Trusted_Connection=True;");
         }
     }
 }

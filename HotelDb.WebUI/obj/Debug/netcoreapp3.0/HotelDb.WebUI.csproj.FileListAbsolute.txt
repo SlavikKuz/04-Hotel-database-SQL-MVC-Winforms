@@ -299,3 +299,4 @@ D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\HotelDb.WebUI.MvcApp
 d:\Repos\04 - HotelDB\HotelDb.WebUI\bin\Debug\netcoreapp3.0\HotelDb.Logic.dll
 d:\Repos\04 - HotelDB\HotelDb.WebUI\bin\Debug\netcoreapp3.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 d:\Repos\04 - HotelDB\HotelDb.WebUI\bin\Debug\netcoreapp3.0\HotelDb.Logic.pdb
+d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\ClientModel\ShowAll.cshtml.g.cs
