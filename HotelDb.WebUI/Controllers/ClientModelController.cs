@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
-using HotelDb.DataLayer.Context;
 using HotelDb.Logic;
 using HotelDb.Logic.Entities;
 using HotelDb.WebUI.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelDb.WebUI.Controllers
@@ -20,22 +17,31 @@ namespace HotelDb.WebUI.Controllers
             this.mapper = mapper;
         }
 
-        public ActionResult ShowAll()
+        public ActionResult Create()
         {
-            List<ClientModel> list = null;
+            return View();
+        }               
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(ClientModel client)
+        {
+            try
+            {
+                using (var database = new LogicLL())
+                    database.AddClient(mapper.Map<ClientLL>(client));
 
-            using (var database = new LogicLL())
-                list = mapper.Map<List<ClientModel>>(database.GetAllClients());
-
-            return View(list);
+                return RedirectToAction("ShowAll");
+            }
+            catch
+            {
+                return View();
+            }
         }
-
+        
         public ActionResult Search()
         {
-            List<ClientModel> list = new List<ClientModel>();
-            return View(list);
+            return View(new List<ClientModel>());
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Search(string searchString)
@@ -59,26 +65,14 @@ namespace HotelDb.WebUI.Controllers
             return View(output);
         }
 
-        public ActionResult Create()
+        public ActionResult ShowAll()
         {
-            return View();
-        }
+            List<ClientModel> list = null;
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(ClientModel client)
-        {
-            try
-            {
-                using (var database = new LogicLL())
-                    database.AddClient(mapper.Map<ClientLL>(client));
+            using (var database = new LogicLL())
+                list = mapper.Map<List<ClientModel>>(database.GetAllClients());
 
-                return RedirectToAction("ShowAll");
-            }
-            catch
-            {
-                return View();
-            }
+            return View(list);
         }
 
         public ActionResult Edit(int id)
@@ -93,7 +87,6 @@ namespace HotelDb.WebUI.Controllers
 
             return View(selectedClient);
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ClientModel client)
