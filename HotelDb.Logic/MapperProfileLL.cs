@@ -14,6 +14,12 @@ namespace HotelDb.DataLogic
             CreateMap<RoomDL, RoomLL>();
             CreateMap<DayDL, DayLL>();
             CreateMap<GuestDL, GuestLL>();
+
+            CreateMap<ClientLL, ClientDL>();
+            CreateMap<BookingLL, BookingDL>();
+            CreateMap<RoomLL, RoomDL>();
+            CreateMap<DayLL, DayDL>();
+            CreateMap<GuestLL, GuestDL>();
         }
     }
 

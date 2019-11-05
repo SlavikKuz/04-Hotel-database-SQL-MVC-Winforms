@@ -12,41 +12,42 @@
         <a asp-area="" asp-controller="Home" asp-action="Index" class="logo">A Small Hotel Solution</a>
         
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <ul class="topmenu">
+            <ul class="topmenu mx-auto">
                 <li>
                     <a class="submenu-link">Clients</a>
                     <ul class="submenu">
-                        <li><a asp-area="" asp-controller="ClientModel" asp-action="Add">Add Client</a></li>
+                        <li><a asp-area="" asp-controller="ClientModel" asp-action="ShowAll">Show All</a></li>
                         <li><a asp-area="" asp-controller="ClientModel" asp-action="Search">Search Client</a></li>
-                        <li><a asp-area="" asp-controller="ClientModel" asp-action="ShowAll">Show All Clients</a></li>
+                        <li><a asp-area="" asp-controller="ClientModel" asp-action="Create">Add Client</a></li>
                     </ul>
                 </li>
-
-
-
-            </ul>
-
-@*
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebApp</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                <li>
+                    <a class="submenu-link">Bookings</a>
+                    <ul class="submenu">
+                        <li><a asp-area="" asp-controller="BookingModel" asp-action="ShowAll">Show All</a></li>
+                        <li><a asp-area="" asp-controller="BookingModel" asp-action="Search">Search Booking</a></li>
+                        <li><a asp-area="" asp-controller="BookingModel" asp-action="Add">Add Booking</a></li>
                     </ul>
-                </div>
-            </div>
-*@
+                </li>
+                <li>
+                    <a class="submenu-link">Rooms</a>
+                    <ul class="submenu">
+                        <li><a asp-area="" asp-controller="RoomModel" asp-action="ShowAll">Show All</a></li>
+                        <li><a asp-area="" asp-controller="RoomModel" asp-action="ShowAvailable">Show Available</a></li>
+                        <li><a asp-area="" asp-controller="RoomModel" asp-action="Edit">Edit Room</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="submenu-link">Holidays</a>
+                    <ul class="submenu">
+                        <li><a asp-area="" asp-controller="DayModel" asp-action="ShowAll">Show All</a></li>
+                        <li><a asp-area="" asp-controller="RoomModel" asp-action="ShowAvailable">Add Holiday</a></li>
+                    </ul>
+                </li>
+            </ul>
         </nav>
     </header>
+  
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using HotelDb.DataLayer.Context;
 using HotelDb.Logic;
+using HotelDb.Logic.Entities;
 using HotelDb.WebUI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,20 +14,11 @@ namespace HotelDb.WebUI.Controllers
 {
     public class ClientModelController : Controller
     {
-        //private HotelDbContext database;
         private readonly IMapper mapper;
-
         public ClientModelController(IMapper mapper)
         {
             this.mapper = mapper;
         }
-
-        // GET: ClientModel
-        public ActionResult Index()
-        {
-            return View();
-        }
-
 
         public ActionResult ShowAll()
         {
@@ -35,31 +27,53 @@ namespace HotelDb.WebUI.Controllers
             using (var database = new LogicLL())
                 list = mapper.Map<List<ClientModel>>(database.GetAllClients());
 
-                return View(list);
+            return View(list);
         }
 
-        // GET: ClientModel/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Search()
         {
-            return View();
+            List<ClientModel> list = new List<ClientModel>();
+            return View(list);
         }
 
-        // GET: ClientModel/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Search(string searchString)
+        {
+            if (String.IsNullOrWhiteSpace(searchString))
+                return RedirectToAction("Search");
+
+            List<ClientModel> input = null;
+            List<ClientModel> output = null;
+
+            using (var database = new LogicLL())
+                input = mapper.Map<List<ClientModel>>(database.GetAllClients());
+
+            foreach (ClientModel client in input)
+                output = input.Where(x =>
+                                   (x.ClientFullName.Contains(searchString)) ||
+                                   (x.Address.Contains(searchString)) ||
+                                   (x.Email.Contains(searchString)) ||
+                                   (x.Notes.Contains(searchString))).ToList();
+
+            return View(output);
+        }
+
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ClientModel/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(ClientModel client)
         {
             try
             {
-                // TODO: Add insert logic here
+                using (var database = new LogicLL())
+                    database.AddClient(mapper.Map<ClientLL>(client));
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("ShowAll");
             }
             catch
             {
@@ -67,22 +81,29 @@ namespace HotelDb.WebUI.Controllers
             }
         }
 
-        // GET: ClientModel/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            List<ClientModel> clients = new List<ClientModel>();
+            ClientModel selectedClient = new ClientModel();
+
+            using (var database = new LogicLL())
+                clients = mapper.Map<List<ClientModel>>(database.GetAllClients());
+
+            selectedClient = clients.Where(x => x.Id == id).First();
+
+            return View(selectedClient);
         }
 
-        // POST: ClientModel/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(ClientModel client)
         {
             try
             {
-                // TODO: Add update logic here
+                using (var database = new LogicLL())
+                    database.UpdateClient(mapper.Map<ClientLL>(client));
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("ShowAll");
             }
             catch
             {
@@ -90,27 +111,5 @@ namespace HotelDb.WebUI.Controllers
             }
         }
 
-        // GET: ClientModel/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: ClientModel/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

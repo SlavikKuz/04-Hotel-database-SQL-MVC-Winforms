@@ -1,16 +1,46 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace HotelDb.WebUI.Models
-{ 
+{
     public class ClientModel
     {
-    public long Id { get; set; }
-    public string ClientFullName { get; set; }
-    public string Email { get; set; }
-    public string Tel { get; set; }
-    public string Address { get; set; }
-    public string Notes { get; set; }
-    //public List<BookingModel> BookingsHistory { get; set; }
-    public List<GuestModel> GuestsNames { get; set; } = new List<GuestModel>();
+        public long Id { get; set; }
+
+        [MaxLength(50)] //limit for EF create table
+        [Display(Name = "Client Name")] //for view, name
+        [StringLength(50, MinimumLength = 2)] //view view, check input
+        [Required] //required in creating a new client 
+        public string ClientFullName { get; set; }
+
+        [MaxLength(50)]
+        [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress)]
+        [StringLength(50, MinimumLength = 6)]
+        [Required]
+        public string Email { get; set; }
+
+        [MaxLength(50)]
+        [Display(Name = "Telephone")]
+        [DataType(DataType.PhoneNumber)]
+        [StringLength(50, MinimumLength = 6)]
+        [Required]
+        public string Tel { get; set; }
+
+        [MaxLength(100)]
+        [Display(Name = "Address")]
+        [Required]
+        [StringLength(100, MinimumLength = 12)]
+        public string Address { get; set; }
+
+        [MaxLength(250)]
+        [Display(Name = "Notes")]
+        [StringLength(250)]
+        public string Notes { get; set; }
+        
+        //public List<BookingModel> BookingsHistory { get; set; }
+
+        [Display(Name = "Guests")]
+        public List<GuestModel> GuestsNames { get; set; } = new List<GuestModel>();
     }
 }

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<HotelDb.WebUI.Models.ClientModel>
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<form asp-action="Search" method="post">
+    <div class="form-actions no-color input-group">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="SearchString" placeholder="Enter any valid information" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <input type="submit" value="Show" class="btn btn-light btn-sm" />
+            </div>
+        </div>
+    </div>
+</form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ClientFullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tel)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Notes)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ClientFullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Notes)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id=item.Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+
