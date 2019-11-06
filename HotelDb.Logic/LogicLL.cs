@@ -21,13 +21,26 @@ namespace HotelDb.Logic
                 result.Add(mapper.Map<ClientLL>(client));
             return result;
         }
+        public IEnumerable<BookingLL> GetAllBookings()
+        {
+            List<BookingLL> result = new List<BookingLL>();
+
+            foreach (BookingDL booking in DataBase.Bookings.ReadAll())
+                result.Add(mapper.Map<BookingLL>(booking));
+            return result;
+        }
 
         public void AddClient(ClientLL client)
         {
             DataBase.Clients.Create(mapper.Map<ClientDL>(client));
             DataBase.Save();
         }
- 
+        public void AddBooking(BookingLL booking)
+        {
+            DataBase.Bookings.Create(mapper.Map<BookingDL>(booking));
+            DataBase.Save();
+        }
+
         public void UpdateClient(ClientLL client)
         {
             DataBase.Clients.Update(mapper.Map<ClientDL>(client));

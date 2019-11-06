@@ -1,0 +1,96 @@
+﻿@model IEnumerable<HotelDb.WebUI.Models.BookingViewModel>
+
+@{
+    ViewData["Title"] = "ShowAll";
+}
+
+<h1>All Bookings</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client.ClientFullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.DayFrom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.DayTill)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.GuestsNames)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.WithKids)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.Info)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.BookedRooms)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.Holidays)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Booking.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.ClientFullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Booking.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Booking.DayFrom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Booking.DayTill)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Booking.GuestsNames)
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Booking.WithKids)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Booking.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Booking.Info)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Booking.BookedRooms)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Booking.Holidays)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

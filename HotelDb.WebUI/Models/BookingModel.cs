@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace HotelDb.WebUI.Models
 {
@@ -8,7 +9,11 @@ namespace HotelDb.WebUI.Models
         public long Id { get; set; }
         public ClientModel Client { get; set; }
         public DateTime OrderDate { get; set; }
+        
+        [DataType(DataType.Date)]
         public DateTime DayFrom { get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime DayTill { get; set; }
         public List<GuestModel> GuestsNames { get; set; } = new List<GuestModel>();
         public bool WithKids { get; set; }
@@ -20,6 +25,6 @@ namespace HotelDb.WebUI.Models
 
     public enum Status
     {
-        Comming, Ongoing, Cancelled
+        Confirmed, Fullfilled, Cancelled
     }
 }
