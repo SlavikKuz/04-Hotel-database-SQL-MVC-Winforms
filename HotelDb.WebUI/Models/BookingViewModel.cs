@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,10 +9,12 @@ namespace HotelDb.WebUI.Models
 {
     public class BookingViewModel
     {
-        public ClientModel Client { get; set; }
         public BookingModel Booking { get; set; }
-        public IEnumerable<GuestModel> Guests { get; set; }
-        public IEnumerable<DayModel> Holidays { get; set; }
-        public IEnumerable<RoomModel> Rooms { get; set; }
+        public ClientModel Client { get; set; }
+
+        public List<SelectListItem> Clients { get; set; } = new List<SelectListItem>();
+        
+        [Display(Name = "Client Name")]
+        public long ClientId { get; set; }
     }
 }

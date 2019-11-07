@@ -8,6 +8,7 @@ using HotelDb.Logic.Entities;
 using HotelDb.WebUI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HotelDb.WebUI.Controllers
 {
@@ -21,27 +22,54 @@ namespace HotelDb.WebUI.Controllers
         
         public ActionResult ShowAll()
         {
-            List<BookingModel> list = new List<BookingModel>();
+            List<BookingViewModel> bookingsView = new List<BookingViewModel>();
+            List<BookingModel> bookings = new List<BookingModel>();
+            List<ClientModel> clients = new List<ClientModel>();
 
             using (var database = new LogicLL())
-                list = mapper.Map<List<BookingModel>>(database.GetAllBookings());
+            {
+                bookings = mapper.Map<List<BookingModel>>(database.GetAllBookings());
+                clients = mapper.Map<List<ClientModel>>(database.GetAllClients());
+            }
 
-                return View(list);
+            foreach (var b in bookings)
+            {
+                bookingsView.Add(new BookingViewModel
+                {
+                    Booking = b,
+                    Client = clients.Where(x => x.Id == b.ClientId).First()
+                });
+            }
+            
+            return View(bookingsView);
         }
 
         public ActionResult Create()
         {
-            return View();
+            BookingViewModel bookingView = new BookingViewModel();
+
+            using (var database = new LogicLL())
+            {
+                bookingView.Clients = (mapper.Map<List<ClientModel>>(database.GetAllClients()))
+                    .Select(x => new SelectListItem { Text = x.ClientFullName, Value = x.Id.ToString() })
+                    .ToList();
+            }
+            return View(bookingView);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(BookingModel booking)
+        public ActionResult Create(BookingViewModel bookingPost)
         {
+            BookingModel bookingFull = new BookingModel();
+            bookingFull = bookingPost.Booking;
+            bookingFull.ClientId = bookingPost.ClientId;
+            bookingFull.OrderDate = DateTime.Now;
+            
             try
             {
                 using (var database = new LogicLL())
-                    database.AddBooking(mapper.Map<BookingLL>(booking));
+                    database.AddBooking(mapper.Map<BookingLL>(bookingPost));
 
                     return RedirectToAction(nameof(ShowAll));
             }

@@ -41,11 +41,13 @@ namespace HotelDb.Logic
             DataBase.Save();
         }
 
+
         public void UpdateClient(ClientLL client)
         {
             DataBase.Clients.Update(mapper.Map<ClientDL>(client));
             DataBase.Save();
         }       
+
         
         public void Dispose()
         {

@@ -6,8 +6,8 @@ namespace HotelDb.WebUI.Models
 {
     public class BookingModel
     {
-        public long Id { get; set; }
-        public ClientModel Client { get; set; }
+        public long BookingId { get; set; }
+        public long ClientId { get; set; }
         public DateTime OrderDate { get; set; }
         
         [DataType(DataType.Date)]
