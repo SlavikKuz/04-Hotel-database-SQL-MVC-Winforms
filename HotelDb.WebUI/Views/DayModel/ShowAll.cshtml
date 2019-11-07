@@ -1,0 +1,38 @@
+﻿@model IEnumerable<HotelDb.WebUI.Models.HolidayModel>
+
+@{
+    ViewData["Title"] = "ShowAll";
+}
+
+<p>
+    <a asp-action="Create">Add New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Holiday)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HolidayName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Holiday)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HolidayName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
