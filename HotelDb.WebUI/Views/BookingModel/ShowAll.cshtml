@@ -28,7 +28,7 @@
                 @Html.DisplayNameFor(model => model.Booking.DayTill)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Booking.GuestsNames)
+                @Html.DisplayNameFor(model => model.Guests)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Booking.WithKids)
@@ -40,10 +40,10 @@
                 @Html.DisplayNameFor(model => model.Booking.Info)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Booking.BookedRooms)
+                @Html.DisplayNameFor(model => model.Booking.RoomId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Booking.Holidays)
+                @Html.DisplayNameFor(model => model.Booking.Holiday)
             </th>
             <th></th>
         </tr>
@@ -67,7 +67,7 @@
                 @Html.DisplayFor(modelItem => item.Booking.DayTill)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Booking.GuestsNames)
+                @Html.DisplayFor(modelItem => item.Guests.Count())
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
             </td>
             <td>
@@ -80,10 +80,10 @@
                 @Html.DisplayFor(modelItem => item.Booking.Info)
             </td>
             <td>
-                @Html.DisplayNameFor(model => model.Booking.BookedRooms)
+                @Html.DisplayNameFor(model => model.Booking.RoomId)
             </td>
             <td>
-                @Html.DisplayNameFor(model => model.Booking.Holidays)
+                @Html.DisplayNameFor(model => model.Booking.Holiday)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

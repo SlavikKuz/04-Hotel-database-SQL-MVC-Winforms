@@ -5,7 +5,7 @@ namespace HotelDb.WebUI.Models
 {
     public class ClientModel
     {
-        public long Id { get; set; }
+        public long ClientId { get; set; }
 
         [MaxLength(50)] //limit for EF create table
         [Display(Name = "Client Name")] //for view, name
@@ -37,10 +37,5 @@ namespace HotelDb.WebUI.Models
         [Display(Name = "Notes")]
         [StringLength(250)]
         public string Notes { get; set; }
-        
-        //public List<BookingModel> BookingsHistory { get; set; }
-
-        [Display(Name = "Guests")]
-        public List<GuestModel> GuestsNames { get; set; } = new List<GuestModel>();
     }
 }

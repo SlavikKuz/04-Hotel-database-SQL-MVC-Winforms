@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using HotelDb.DataLayer.Entities;
 
 namespace HotelDb.DataLayer.Interfaces
 {

@@ -15,12 +15,12 @@ namespace HotelDb.WebUI.Models
 
         [DataType(DataType.Date)]
         public DateTime DayTill { get; set; }
-        public List<GuestModel> GuestsNames { get; set; } = new List<GuestModel>();
         public bool WithKids { get; set; }
+        public List<long> GuestId { get; set; }
         public Status Status { get; set; }
         public string Info { get; set; }
-        public List<RoomModel> BookedRooms { get; set; } = new List<RoomModel>();
-        public List<DayModel> Holidays { get; set; } = new List<DayModel>();
+        public List<long> RoomId { get; set; }
+        public List<DateTime> Holiday { get; set; }
     }
 
     public enum Status

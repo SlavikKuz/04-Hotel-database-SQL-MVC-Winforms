@@ -83,7 +83,7 @@ namespace HotelDb.WebUI.Controllers
             using (var database = new LogicLL())
                 clients = mapper.Map<List<ClientModel>>(database.GetAllClients());
 
-            selectedClient = clients.Where(x => x.Id == id).First();
+            selectedClient = clients.Where(x => x.ClientId == id).First();
 
             return View(selectedClient);
         }

@@ -25,11 +25,13 @@ namespace HotelDb.WebUI.Controllers
             List<BookingViewModel> bookingsView = new List<BookingViewModel>();
             List<BookingModel> bookings = new List<BookingModel>();
             List<ClientModel> clients = new List<ClientModel>();
+            List<GuestModel> guests = new List<GuestModel>();
 
             using (var database = new LogicLL())
             {
                 bookings = mapper.Map<List<BookingModel>>(database.GetAllBookings());
                 clients = mapper.Map<List<ClientModel>>(database.GetAllClients());
+                guests = mapper.Map<List<GuestModel>>(database.GetAllGuest());
             }
 
             foreach (var b in bookings)
@@ -37,7 +39,8 @@ namespace HotelDb.WebUI.Controllers
                 bookingsView.Add(new BookingViewModel
                 {
                     Booking = b,
-                    Client = clients.Where(x => x.Id == b.ClientId).First()
+                    Client = clients.Where(x => x.ClientId == b.ClientId).First()
+                    //Guests = guests.Where(x => x.BookingId == b.BookingId).ToList()
                 });
             }
             
@@ -51,7 +54,7 @@ namespace HotelDb.WebUI.Controllers
             using (var database = new LogicLL())
             {
                 bookingView.Clients = (mapper.Map<List<ClientModel>>(database.GetAllClients()))
-                    .Select(x => new SelectListItem { Text = x.ClientFullName, Value = x.Id.ToString() })
+                    .Select(x => new SelectListItem { Text = x.ClientFullName, Value = x.ClientId.ToString() })
                     .ToList();
             }
             return View(bookingView);

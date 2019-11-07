@@ -13,6 +13,7 @@ namespace HotelDb.WebUI.Models
         public ClientModel Client { get; set; }
 
         public List<SelectListItem> Clients { get; set; } = new List<SelectListItem>();
+        public List<GuestModel> Guests { get; set; }
         
         [Display(Name = "Client Name")]
         public long ClientId { get; set; }

@@ -13,13 +13,13 @@ namespace HotelDb.WebUI
             CreateMap<ClientLL, ClientModel>();
             CreateMap<BookingLL, BookingModel>();
             CreateMap<RoomLL, RoomModel>();
-            CreateMap<DayLL, DayModel>();
+            CreateMap<DayLL, HolidayModel>();
             CreateMap<GuestLL, GuestModel>();
 
             CreateMap<ClientModel, ClientLL>();
             CreateMap<BookingModel, BookingLL>();
             CreateMap<RoomModel, RoomLL>();
-            CreateMap<DayModel, DayLL>();
+            CreateMap<HolidayModel, DayLL>();
             CreateMap<GuestModel, GuestLL>();
         }
     }

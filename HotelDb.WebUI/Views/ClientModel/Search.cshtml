@@ -19,7 +19,7 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Id)
+                    @Html.DisplayNameFor(model => model.ClientId)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.ClientFullName)
@@ -44,7 +44,7 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Id)
+                        @Html.DisplayFor(modelItem => item.ClientId)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ClientFullName)
@@ -63,10 +63,10 @@
                     </td>
                     <td>
                         <span class="badge badge-light">
-                            @Html.ActionLink("Edit Client", "Edit", new { id = item.Id })
+                            @Html.ActionLink("Edit Client", "Edit", new { id = item.ClientId })
                         </span>
                         <span class="badge badge-light">
-                            @Html.ActionLink("Booking History", "History", new { id = item.Id })
+                            @Html.ActionLink("Booking History", "History", new { id = item.ClientId })
                         </span>
                     </td>
                 </tr>

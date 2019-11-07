@@ -30,6 +30,30 @@ namespace HotelDb.Logic
             return result;
         }
 
+        public IEnumerable<RoomLL> GetAllRooms()
+        {
+            List<RoomLL> result = new List<RoomLL>();
+
+            foreach (RoomDL room in DataBase.Rooms.ReadAll())
+                result.Add(mapper.Map<RoomLL>(room));
+            return result;
+        }
+
+        public IEnumerable<GuestLL> GetAllGuest()
+        {
+            List<GuestLL> result = new List<GuestLL>();
+            
+            foreach (GuestDL guest in DataBase.Guests.ReadAll())
+                result.Add(mapper.Map<GuestLL>(guest));
+            return result;
+        }
+
+        public void AddRoom(RoomLL room)
+        {
+            DataBase.Rooms.Create(mapper.Map<RoomDL>(room));
+            DataBase.Save();
+        }
+
         public void AddClient(ClientLL client)
         {
             DataBase.Clients.Create(mapper.Map<ClientDL>(client));
@@ -40,7 +64,6 @@ namespace HotelDb.Logic
             DataBase.Bookings.Create(mapper.Map<BookingDL>(booking));
             DataBase.Save();
         }
-
 
         public void UpdateClient(ClientLL client)
         {

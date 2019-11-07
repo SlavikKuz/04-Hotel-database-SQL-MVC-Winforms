@@ -2,10 +2,9 @@
 
 namespace HotelDb.WebUI.Models
 { 
-    public class DayModel
+    public class HolidayModel
     {
-        public int Id { get; set; }
-        public DateTime DayHoliday { get; set; }
+        public DateTime Holiday { get; set; }
         public string HolidayName { get; set; }
     }
 }

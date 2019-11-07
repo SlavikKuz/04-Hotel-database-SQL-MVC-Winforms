@@ -19,14 +19,14 @@ namespace HotelDb.DataLayer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("HotelDb.Domain.Models.BookingModel", b =>
+            modelBuilder.Entity("HotelDb.DataLayer.Entities.BookingDL", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long?>("ClientId")
+                    b.Property<long>("ClientId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DayFrom")
@@ -41,20 +41,18 @@ namespace HotelDb.DataLayer.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<bool>("WithKids")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientId");
-
                     b.ToTable("Bookings");
                 });
 
-            modelBuilder.Entity("HotelDb.Domain.Models.ClientModel", b =>
+            modelBuilder.Entity("HotelDb.DataLayer.Entities.ClientDL", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -81,14 +79,14 @@ namespace HotelDb.DataLayer.Migrations
                     b.ToTable("Clients");
                 });
 
-            modelBuilder.Entity("HotelDb.Domain.Models.DayModel", b =>
+            modelBuilder.Entity("HotelDb.DataLayer.Entities.DayDL", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long?>("BookingModelId")
+                    b.Property<long?>("BookingDLId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DayHoliday")
@@ -99,12 +97,12 @@ namespace HotelDb.DataLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BookingModelId");
+                    b.HasIndex("BookingDLId");
 
                     b.ToTable("Holidays");
                 });
 
-            modelBuilder.Entity("HotelDb.Domain.Models.GuestModel", b =>
+            modelBuilder.Entity("HotelDb.DataLayer.Entities.GuestDL", b =>
                 {
                     b.Property<long>("ClientId")
                         .HasColumnType("bigint");
@@ -119,7 +117,7 @@ namespace HotelDb.DataLayer.Migrations
                     b.ToTable("Guests");
                 });
 
-            modelBuilder.Entity("HotelDb.Domain.Models.RoomModel", b =>
+            modelBuilder.Entity("HotelDb.DataLayer.Entities.RoomDL", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -129,7 +127,7 @@ namespace HotelDb.DataLayer.Migrations
                     b.Property<string>("Active")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("BookingModelId")
+                    b.Property<long?>("BookingDLId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Floor")
@@ -146,45 +144,38 @@ namespace HotelDb.DataLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BookingModelId");
+                    b.HasIndex("BookingDLId");
 
                     b.ToTable("Rooms");
                 });
 
-            modelBuilder.Entity("HotelDb.Domain.Models.BookingModel", b =>
+            modelBuilder.Entity("HotelDb.DataLayer.Entities.DayDL", b =>
                 {
-                    b.HasOne("HotelDb.Domain.Models.ClientModel", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId");
-                });
-
-            modelBuilder.Entity("HotelDb.Domain.Models.DayModel", b =>
-                {
-                    b.HasOne("HotelDb.Domain.Models.BookingModel", null)
+                    b.HasOne("HotelDb.DataLayer.Entities.BookingDL", null)
                         .WithMany("Holidays")
-                        .HasForeignKey("BookingModelId");
+                        .HasForeignKey("BookingDLId");
                 });
 
-            modelBuilder.Entity("HotelDb.Domain.Models.GuestModel", b =>
+            modelBuilder.Entity("HotelDb.DataLayer.Entities.GuestDL", b =>
                 {
-                    b.HasOne("HotelDb.Domain.Models.BookingModel", "Booking")
-                        .WithMany("GuestsNames")
+                    b.HasOne("HotelDb.DataLayer.Entities.BookingDL", "Booking")
+                        .WithMany("GuestId")
                         .HasForeignKey("BookingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HotelDb.Domain.Models.ClientModel", "Client")
+                    b.HasOne("HotelDb.DataLayer.Entities.ClientDL", "Client")
                         .WithMany("GuestsNames")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("HotelDb.Domain.Models.RoomModel", b =>
+            modelBuilder.Entity("HotelDb.DataLayer.Entities.RoomDL", b =>
                 {
-                    b.HasOne("HotelDb.Domain.Models.BookingModel", null)
+                    b.HasOne("HotelDb.DataLayer.Entities.BookingDL", null)
                         .WithMany("BookedRooms")
-                        .HasForeignKey("BookingModelId");
+                        .HasForeignKey("BookingDLId");
                 });
 #pragma warning restore 612, 618
         }
