@@ -12,28 +12,76 @@ namespace HotelDb.DataLayer
     {
         private HotelDbContext DataBase { get; }
 
-        private ClientRepository clientsRepository;
-        private BookingRepository bookingsRepository;
+        private BookedRoomsListRepository bookedRoomListsRepository;
+        private BookingRepository bookingRepository;
+        private ClientRepository clientRepository;
+        private GuestsListRepository guestsListRepository;
+        private HolidayRepository holidayRepository;
+        private InvoiceRepository invoiceRepository;
+        private RoomPriceRepository roomPriceRepository;
         private RoomRepository roomsRepository;
-        private HolidaysRepository holidaysRepository;
-        private GuestsListRepository guestsRepository;
 
-        public IRepository<ClientDL> Clients
+        public IRepository<BookedRoomsListDL> BookedRoomsList
         {
             get
             {
-                if (clientsRepository == null)
-                    clientsRepository = new ClientRepository(DataBase);
-                return clientsRepository;
+                if (bookedRoomListsRepository == null)
+                    bookedRoomListsRepository = new BookedRoomsListRepository(DataBase);
+                return bookedRoomListsRepository;
             }
         }
         public IRepository<BookingDL> Bookings
         {
             get
             {
-                if (bookingsRepository == null)
-                    bookingsRepository = new BookingRepository(DataBase);
-                return bookingsRepository;
+                if (bookingRepository == null)
+                    bookingRepository = new BookingRepository(DataBase);
+                return bookingRepository;
+            }
+        }
+        public IRepository<ClientDL> Clients
+        {
+            get
+            {
+                if (clientRepository == null)
+                    clientRepository = new ClientRepository(DataBase);
+                return clientRepository;
+            }
+        }
+        public IRepository<GuestsListDL> GuestsList
+        {
+            get
+            {
+                if (guestsListRepository == null)
+                    guestsListRepository = new GuestsListRepository(DataBase);
+                return guestsListRepository;
+            }
+        }
+        public IRepository<HolidaysListDL> HolidaysList
+        {
+            get
+            {
+                if (holidayRepository == null)
+                    holidayRepository = new HolidayRepository(DataBase);
+                return holidayRepository;
+            }
+        }
+        public IRepository<InvoiceDL> Invoices
+        {
+            get
+            {
+                if (invoiceRepository == null)
+                    invoiceRepository = new InvoiceRepository(DataBase);
+                return invoiceRepository;
+            }
+        }
+        public IRepository<RoomPriceDL> RoomPrices
+        {
+            get
+            {
+                if (roomPriceRepository == null)
+                    roomPriceRepository = new RoomPriceRepository(DataBase);
+                return roomPriceRepository;
             }
         }
         public IRepository<RoomDL> Rooms
@@ -43,24 +91,6 @@ namespace HotelDb.DataLayer
                 if (roomsRepository == null)
                     roomsRepository = new RoomRepository(DataBase);
                 return roomsRepository;
-            }
-        }
-        public IRepository<HolidaysListDL> Days
-        {
-            get
-            {
-                if (holidaysRepository == null)
-                    holidaysRepository = new HolidaysRepository(DataBase);
-                return holidaysRepository;
-            }
-        }
-        public IRepository<GuestsListDL> Guests
-        {
-            get
-            {
-                if (guestsRepository == null)
-                    guestsRepository = new GuestsListRepository(DataBase);
-                return guestsRepository;
             }
         }
 

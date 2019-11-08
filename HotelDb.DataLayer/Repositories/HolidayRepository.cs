@@ -7,11 +7,11 @@ using System.Text;
 
 namespace HotelDb.DataLayer.Repositories
 {
-    public class HolidaysRepository : IRepository<HolidaysListDL>
+    public class HolidayRepository : IRepository<HolidaysListDL>
     {
         private HotelDbContext database; 
 
-        public HolidaysRepository(HotelDbContext context)
+        public HolidayRepository(HotelDbContext context)
         {
             database = context;
         }

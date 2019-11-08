@@ -22,12 +22,12 @@ namespace HotelDb.Logic
             return result;
         }
 
-        public IEnumerable<DayLL> GetAllHolidays()
+        public IEnumerable<HolidaysListLL> GetAllHolidays()
         {
-            List<DayLL> result = new List<DayLL>();
+            List<HolidaysListLL> result = new List<HolidaysListLL>();
 
-            foreach (HolidaysListDL day in DataBase.Days.ReadAll())
-                result.Add(mapper.Map<DayLL>(day));
+            foreach (HolidaysListDL day in DataBase.HolidaysList.ReadAll())
+                result.Add(mapper.Map<HolidaysListLL>(day));
             return result;
         }
 
@@ -49,12 +49,12 @@ namespace HotelDb.Logic
             return result;
         }
 
-        public IEnumerable<GuestLL> GetAllGuest()
+        public IEnumerable<GuestsListLL> GetAllGuest()
         {
-            List<GuestLL> result = new List<GuestLL>();
+            List<GuestsListLL> result = new List<GuestsListLL>();
             
-            foreach (GuestsListDL guest in DataBase.Guests.ReadAll())
-                result.Add(mapper.Map<GuestLL>(guest));
+            foreach (GuestsListDL guest in DataBase.GuestsList.ReadAll())
+                result.Add(mapper.Map<GuestsListLL>(guest));
             return result;
         }
 
@@ -64,9 +64,9 @@ namespace HotelDb.Logic
             DataBase.Save();
         }
 
-        public void AddHoliday(DayLL day)
+        public void AddHoliday(HolidaysListLL day)
         {
-            DataBase.Days.Create(mapper.Map<HolidaysListDL>(day));
+            DataBase.HolidaysList.Create(mapper.Map<HolidaysListDL>(day));
             DataBase.Save();
         }
 

@@ -9,17 +9,23 @@ namespace HotelDb.DataLogic
     {
         public MapperProfileLL()
         {
-            CreateMap<ClientDL, ClientLL>();
+            CreateMap<BookedRoomsListDL, BookedRoomsListLL>();
             CreateMap<BookingDL, BookingLL>();
+            CreateMap<ClientDL, ClientLL>();
+            CreateMap<GuestsListDL, GuestsListLL>();
+            CreateMap<HolidaysListDL, HolidaysListLL>();
+            CreateMap<InvoiceDL, InvoiceLL>();
             CreateMap<RoomDL, RoomLL>();
-            CreateMap<HolidaysListDL, DayLL>();
-            CreateMap<GuestsListDL, GuestLL>();
+            CreateMap<RoomPriceDL, RoomPriceLL>();
 
-            CreateMap<ClientLL, ClientDL>();
+            CreateMap<BookedRoomsListLL, BookedRoomsListDL>();
             CreateMap<BookingLL, BookingDL>();
+            CreateMap<ClientLL, ClientDL>();
+            CreateMap<GuestsListLL, GuestsListDL>();
+            CreateMap<HolidaysListLL, HolidaysListDL>();
+            CreateMap<InvoiceLL, InvoiceDL>();
             CreateMap<RoomLL, RoomDL>();
-            CreateMap<DayLL, HolidaysListDL>();
-            CreateMap<GuestLL, GuestsListDL>();
+            CreateMap<RoomPriceLL, RoomPriceDL>();
         }
     }
 
@@ -29,7 +35,6 @@ namespace HotelDb.DataLogic
         {
             get { return mapper.Value; }
         }
-
         public static IConfigurationProvider Configuration
         {
             get { return config.Value; }
