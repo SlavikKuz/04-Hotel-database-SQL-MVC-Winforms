@@ -7,7 +7,7 @@ using System.Text;
 
 namespace HotelDb.DataLayer.Repositories
 {
-    public class GuestRepository : IRepository<GuestDL>
+    public class GuestRepository : IRepository<GuestsListDL>
     {
         private HotelDbContext database;
 
@@ -16,33 +16,33 @@ namespace HotelDb.DataLayer.Repositories
             database = context;
         }
 
-        public void Create(GuestDL guest)
+        public void Create(GuestsListDL guest)
         {
-            database.Guests.Add(guest);
+            database.GuestsList.Add(guest);
         }
 
         public void Delete(int id)
         {
-            GuestDL guest = database.Guests.Find(id);
+            GuestsListDL guest = database.GuestsList.Find(id);
             if (guest != null)
             {
-                database.Guests.Remove(guest);
+                database.GuestsList.Remove(guest);
             }
         }
 
-        public GuestDL Read(int id)
+        public GuestsListDL Read(int id)
         {
-            return database.Guests.Find(id);
+            return database.GuestsList.Find(id);
         }
 
-        public IEnumerable<GuestDL> ReadAll()
+        public IEnumerable<GuestsListDL> ReadAll()
         {
-            return database.Guests;
+            return database.GuestsList;
         }
 
-        public void Update(GuestDL guest)
+        public void Update(GuestsListDL guest)
         {
-            database.Guests.Update(guest);
+            database.GuestsList.Update(guest);
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace HotelDb.DataLayer.Repositories
 {
-    public class DayRepository : IRepository<DayDL>
+    public class DayRepository : IRepository<HolidaysListDL>
     {
         private HotelDbContext database; 
 
@@ -16,33 +16,33 @@ namespace HotelDb.DataLayer.Repositories
             database = context;
         }
 
-        public void Create(DayDL day)
+        public void Create(HolidaysListDL day)
         {
-            database.Holidays.Add(day);
+            database.HolidaysList.Add(day);
         }
 
         public void Delete(int id)
         {
-            DayDL day = database.Holidays.Find(id);
+            HolidaysListDL day = database.HolidaysList.Find(id);
             if(day != null)
             {
-                database.Holidays.Remove(day);
+                database.HolidaysList.Remove(day);
             }
         }
 
-        public DayDL Read(int id)
+        public HolidaysListDL Read(int id)
         {
-            return database.Holidays.Find(id);
+            return database.HolidaysList.Find(id);
         }
 
-        public IEnumerable<DayDL> ReadAll()
+        public IEnumerable<HolidaysListDL> ReadAll()
         {
-            return database.Holidays;
+            return database.HolidaysList;
         }
 
-        public void Update(DayDL day)
+        public void Update(HolidaysListDL day)
         {
-            database.Holidays.Update(day);
+            database.HolidaysList.Update(day);
         }
     }
 }

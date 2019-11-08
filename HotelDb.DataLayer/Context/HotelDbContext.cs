@@ -12,16 +12,28 @@ namespace HotelDb.DataLayer.Context
         public HotelDbContext(DbContextOptions<HotelDbContext> options)
             : base(options) { }
 
-        public DbSet<ClientDL> Clients { get; set; }
+        public DbSet<BookedRoomsListDL> BookedRoomsList { get; set; }
         public DbSet<BookingDL> Bookings { get; set; }
+        public DbSet<ClientDL> Clients { get; set; }
+        public DbSet<GuestsListDL> GuestsList { get; set; }
+        public DbSet<HolidaysListDL> HolidaysList { get; set; }
+        public DbSet<InvoiceDL> Invoices { get; set; }
         public DbSet<RoomDL> Rooms { get; set; }
-        public DbSet<DayDL> Holidays { get; set; }
-        public DbSet<GuestDL> Guests { get; set; }
+        public DbSet<RoomPriceDL> RoomPrices { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<GuestDL>()
+            modelBuilder.Entity<GuestsListDL>()
                 .HasKey(x => new { x.ClientId, x.BookingId });
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<BookedRoomsListDL>()
+                .HasKey(x => new { x.BookingId, x.RoomId });
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<HolidaysListDL>()
+                .HasNoKey();
             base.OnModelCreating(modelBuilder);
         }
 

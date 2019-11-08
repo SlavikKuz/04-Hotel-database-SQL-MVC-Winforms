@@ -10,8 +10,8 @@ namespace HotelDb.DataLayer.Interfaces
         IRepository<ClientDL> Clients { get; }
         IRepository<BookingDL> Bookings { get; }
         IRepository<RoomDL> Rooms { get; }
-        IRepository<DayDL> Days { get; }
-        IRepository<GuestDL> Guests { get; }
+        IRepository<HolidaysListDL> Days { get; }
+        IRepository<GuestsListDL> Guests { get; }
         void Save();
     }
 }

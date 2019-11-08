@@ -1,25 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HotelDb.DataLayer.Entities
 {
     public class BookingDL
     {
-        public long Id { get; set; }
+        [Key]
+        public long BookingId { get; set; }
         public long ClientId { get; set; }
+        [Column(TypeName = "date")]
         public DateTime OrderDate { get; set; }
+        [Column(TypeName = "date")]
         public DateTime DayFrom { get; set; }
+        [Column(TypeName = "date")]
         public DateTime DayTill { get; set; }
-        public List<GuestDL> GuestId { get; set; }
         public bool WithKids { get; set; }
-        public Status Status { get; set; }
-        public string Info { get; set; }
-        public List<RoomDL> BookedRooms { get; set; } = new List<RoomDL>();
-        public List<DayDL> Holidays { get; set; } = new List<DayDL>();
+        public Status BookingStatus { get; set; }
+        [Column(TypeName = "nvarchar(50)")]
+        public string BookingInfo { get; set; }
+        public long InvoiceId { get; set; }
     }
 
     public enum Status
     {
-        Comming, Ongoing, Cancelled
+        Cofirmed, Cancelled
     }
 }

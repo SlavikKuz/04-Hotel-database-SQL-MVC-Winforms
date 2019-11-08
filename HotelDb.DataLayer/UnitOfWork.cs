@@ -45,7 +45,7 @@ namespace HotelDb.DataLayer
                 return roomsRepository;
             }
         }
-        public IRepository<DayDL> Days
+        public IRepository<HolidaysListDL> Days
         {
             get
             {
@@ -54,7 +54,7 @@ namespace HotelDb.DataLayer
                 return holidaysRepository;
             }
         }
-        public IRepository<GuestDL> Guests
+        public IRepository<GuestsListDL> Guests
         {
             get
             {

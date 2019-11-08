@@ -26,7 +26,7 @@ namespace HotelDb.Logic
         {
             List<DayLL> result = new List<DayLL>();
 
-            foreach (DayDL day in DataBase.Days.ReadAll())
+            foreach (HolidaysListDL day in DataBase.Days.ReadAll())
                 result.Add(mapper.Map<DayLL>(day));
             return result;
         }
@@ -53,7 +53,7 @@ namespace HotelDb.Logic
         {
             List<GuestLL> result = new List<GuestLL>();
             
-            foreach (GuestDL guest in DataBase.Guests.ReadAll())
+            foreach (GuestsListDL guest in DataBase.Guests.ReadAll())
                 result.Add(mapper.Map<GuestLL>(guest));
             return result;
         }
@@ -66,7 +66,7 @@ namespace HotelDb.Logic
 
         public void AddHoliday(DayLL day)
         {
-            DataBase.Days.Create(mapper.Map<DayDL>(day));
+            DataBase.Days.Create(mapper.Map<HolidaysListDL>(day));
             DataBase.Save();
         }
 
