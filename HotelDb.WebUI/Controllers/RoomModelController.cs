@@ -18,35 +18,41 @@ namespace HotelDb.WebUI.Controllers
         {
             this.mapper = mapper;
         }
-        // GET: Room
+
         public ActionResult ShowAll()
         {
             List<RoomModel> list = null;
 
             using (var database = new LogicLL())
-                list = mapper.Map<List<RoomModel>>(database.GetAllRooms());
+                list = mapper.Map<List<RoomModel>>(database.GetAllRooms())
+                    .OrderBy(i=>i.RoomNumber)
+                    .ToList();
 
             return View(list);
         }
 
-        // GET: Room/Details/5
-        public ActionResult Details(int id)
+        public ActionResult ShowAvailable()
         {
-            return View();
+            List<RoomModel> list = null;
+
+            using (var database = new LogicLL())
+                list = mapper.Map<List<RoomModel>>(database.GetAllRooms())
+                    .Where(i => i.Ready == true)
+                    .OrderBy(i => i.RoomNumber)
+                    .ToList();
+
+            return View(list);
         }
 
-        // GET: Room/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Room/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(RoomModel room)
-        {
-            
+        {          
             try
             {
                 using (var database = new LogicLL())
@@ -60,45 +66,28 @@ namespace HotelDb.WebUI.Controllers
             }
         }
 
-        // GET: Room/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            RoomModel room = new RoomModel();
+
+            using (var database = new LogicLL())
+                room = (mapper.Map<List<RoomModel>>(database.GetAllRooms()))
+                    .Where(i => i.RoomId == id)
+                    .First();
+
+                return View(room);
         }
 
-        // POST: Room/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(RoomModel room)
         {
             try
             {
-                // TODO: Add update logic here
+                using (var database = new LogicLL())
+                    database.UpdateRoom(mapper.Map<RoomLL>(room));
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Room/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Room/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
+                    return RedirectToAction("ShowAll");
             }
             catch
             {

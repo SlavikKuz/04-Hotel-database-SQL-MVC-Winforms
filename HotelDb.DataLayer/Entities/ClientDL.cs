@@ -12,7 +12,7 @@ namespace HotelDb.DataLayer.Entities
         public string FirstName { get; set; }
         [Column(TypeName = "nvarchar(20)")]
         public string LastName { get; set; }
-        [Column(TypeName = "nvarchar(20)")]
+        [Column(TypeName = "nvarchar(50)")]
         public string Address { get; set; }
         [Column(TypeName = "nvarchar(20)")]
         public string City { get; set; }

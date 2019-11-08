@@ -77,20 +77,19 @@ namespace HotelDb.WebUI.Controllers
 
         public ActionResult Edit(int id)
         {
-            List<ClientModel> clients = new List<ClientModel>();
-            ClientModel selectedClient = new ClientModel();
+            ClientModel client = new ClientModel();
 
             using (var database = new LogicLL())
-                clients = mapper.Map<List<ClientModel>>(database.GetAllClients());
+                client = (mapper.Map<List<ClientModel>>(database.GetAllClients()))
+                    .Where(x => x.ClientId == id)
+                    .First();
 
-            selectedClient = clients.Where(x => x.ClientId == id).First();
-
-            return View(selectedClient);
+            return View(client);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ClientModel client)
-        {
+        {          
             try
             {
                 using (var database = new LogicLL())

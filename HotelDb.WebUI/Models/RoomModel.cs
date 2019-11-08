@@ -1,20 +1,37 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace HotelDb.WebUI.Models
 {
     public class RoomModel
     {
         public long RoomId { get; set; }
-        public string RoomDescription { get; set; }
-        public int NumberBeds { get; set; }
-        public string Floor { get; set; }
-        public string Info  { get; set; }
-        public Status Active { get; set; }
 
-        public enum Status
-        {
-            //ready or not to accept guests, not - renowation, flood, etc
-            Confirmed, Fullfilled, Cancelled
-        }
+        [Display(Name = "Room Number")]
+        [StringLength(10, MinimumLength = 3)]
+        [Required]
+        public string RoomNumber { get; set; }
+
+        [Display(Name = "Beds")]
+        [Required]
+        public int NumberBeds { get; set; }
+        
+        [Display(Name = "Facilities")]
+        [StringLength(50, MinimumLength = 2)]
+        [Required]
+        public string Description { get; set; }
+
+        [Display(Name = "Floor")]
+        [StringLength(10, MinimumLength = 1)]
+        [Required]
+        public string Floor { get; set; }
+
+        [Display(Name = "Information")]
+        [StringLength(50, MinimumLength = 2)]
+        public string RoomInfo  { get; set; }
+        
+        [Display(Name = "Room is ready?")]
+        [Required]
+        public bool Ready { get; set; }
     }
 }

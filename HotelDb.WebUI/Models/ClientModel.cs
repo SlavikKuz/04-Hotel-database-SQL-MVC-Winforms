@@ -19,7 +19,7 @@ namespace HotelDb.WebUI.Models
         
         [Display(Name = "Address")]
         [Required]
-        [StringLength(20, MinimumLength = 12)]
+        [StringLength(50, MinimumLength = 12)]
         public string Address { get; set; }
 
         [Display(Name = "City")]

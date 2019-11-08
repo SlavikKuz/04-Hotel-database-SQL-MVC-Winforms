@@ -309,3 +309,5 @@ D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomMode
 D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomModel\ShowAll.cshtml.g.cs
 D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\DayModel\ShowAll.cshtml.g.cs
 D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\DayModel\Create.cshtml.g.cs
+D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomModel\ShowAvailable.cshtml.g.cs
+D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomModel\Edit.cshtml.g.cs

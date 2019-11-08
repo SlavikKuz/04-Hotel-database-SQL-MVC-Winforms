@@ -75,6 +75,7 @@ namespace HotelDb.Logic
             DataBase.Clients.Create(mapper.Map<ClientDL>(client));
             DataBase.Save();
         }
+
         public void AddBooking(BookingLL booking)
         {
             DataBase.Bookings.Create(mapper.Map<BookingDL>(booking));
@@ -85,9 +86,14 @@ namespace HotelDb.Logic
         {
             DataBase.Clients.Update(mapper.Map<ClientDL>(client));
             DataBase.Save();
-        }       
+        }
 
-        
+        public void UpdateRoom(RoomLL room)
+        {
+            DataBase.Rooms.Update(mapper.Map<RoomDL>(room));
+            DataBase.Save();
+        }
+
         public void Dispose()
         {
             DataBase.Dispose();
