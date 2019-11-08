@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HotelDb.DataLayer.Migrations
 {
-    public partial class initialCreate : Migration
+    public partial class initializeCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,11 +47,11 @@ namespace HotelDb.DataLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(20)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(20)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(50)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(20)", nullable: true),
                     Country = table.Column<string>(type: "nvarchar(20)", nullable: true),
                     Tel = table.Column<string>(type: "nvarchar(20)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(50)", nullable: true),
                     ClientInfo = table.Column<string>(type: "nvarchar(50)", nullable: true)
                 },
                 constraints: table =>
@@ -75,11 +75,14 @@ namespace HotelDb.DataLayer.Migrations
                 name: "HolidaysList",
                 columns: table => new
                 {
+                    HolidayId = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     HolidayDay = table.Column<DateTime>(type: "date", nullable: false),
                     HolidayName = table.Column<string>(type: "nvarchar(20)", nullable: true)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_HolidaysList", x => x.HolidayId);
                 });
 
             migrationBuilder.CreateTable(

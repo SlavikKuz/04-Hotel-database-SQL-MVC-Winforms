@@ -50,7 +50,9 @@
                 @Html.DisplayFor(modelItem => item.Ready)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.RoomId })
+                <span class="badge badge-light">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.RoomId })
+                </span>
             </td>
         </tr>
 }

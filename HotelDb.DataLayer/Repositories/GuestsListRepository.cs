@@ -21,7 +21,7 @@ namespace HotelDb.DataLayer.Repositories
             database.GuestsList.Add(guest);
         }
 
-        public void Delete(int id)
+        public void Delete(long id)
         {
             GuestsListDL guest = database.GuestsList.Find(id);
             if (guest != null)

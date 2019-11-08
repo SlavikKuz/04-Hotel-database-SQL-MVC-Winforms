@@ -76,7 +76,7 @@ namespace HotelDb.DataLayer.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(20)");
@@ -88,7 +88,7 @@ namespace HotelDb.DataLayer.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(20)");
@@ -119,11 +119,18 @@ namespace HotelDb.DataLayer.Migrations
 
             modelBuilder.Entity("HotelDb.DataLayer.Entities.HolidaysListDL", b =>
                 {
+                    b.Property<long>("HolidayId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<DateTime>("HolidayDay")
                         .HasColumnType("date");
 
                     b.Property<string>("HolidayName")
                         .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("HolidayId");
 
                     b.ToTable("HolidaysList");
                 });

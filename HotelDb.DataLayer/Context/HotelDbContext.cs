@@ -31,10 +31,6 @@ namespace HotelDb.DataLayer.Context
             modelBuilder.Entity<BookedRoomsListDL>()
                 .HasKey(x => new { x.BookingId, x.RoomId });
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<HolidaysListDL>()
-                .HasNoKey();
-            base.OnModelCreating(modelBuilder);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -21,10 +21,10 @@ namespace HotelDb.DataLayer.Repositories
             database.HolidaysList.Add(day);
         }
 
-        public void Delete(int id)
+        public void Delete(long holidayId)
         {
-            HolidaysListDL day = database.HolidaysList.Find(id);
-            if(day != null)
+            HolidaysListDL day = database.HolidaysList.Find(holidayId);
+            if (day != null)
             {
                 database.HolidaysList.Remove(day);
             }

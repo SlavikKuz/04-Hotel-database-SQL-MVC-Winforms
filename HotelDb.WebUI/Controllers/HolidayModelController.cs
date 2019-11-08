@@ -11,10 +11,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HotelDb.WebUI.Controllers
 {
-    public class DayModelController : Controller
+    public class HolidayModelController : Controller
     {
         private IMapper mapper;
-        public DayModelController(IMapper mapper)
+        public HolidayModelController(IMapper mapper)
         { this.mapper = mapper; }
 
         public ActionResult ShowAll()
@@ -43,30 +43,34 @@ namespace HotelDb.WebUI.Controllers
 
                 return RedirectToAction(nameof(ShowAll));
             }
-            catch
+            catch (Exception ex)
             {
                 return View();
             }
         }
 
-
-
-
-
-        public ActionResult Delete(int id)
+        public ActionResult Delete(long holidayId)
         {
-            return View();
+            HolidayModel holiday = new HolidayModel();
+
+            using (var database = new LogicLL())
+                holiday = (mapper.Map<List<HolidayModel>>(database.GetAllHolidays()))
+                    .Where(x => x.HolidayId == holidayId)
+                    .First();
+
+            return View(holiday);
         }
-        // POST: DayModel/Delete/5
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(HolidayModel holiday)
         {
             try
             {
-                // TODO: Add delete logic here
+                using (var database = new LogicLL())
+                    database.RemoveHoliday(holiday.HolidayId);
 
-                return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(ShowAll));
             }
             catch
             {

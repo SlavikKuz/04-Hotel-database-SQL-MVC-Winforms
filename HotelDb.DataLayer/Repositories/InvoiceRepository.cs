@@ -21,7 +21,7 @@ namespace HotelDb.DataLayer.Repositories
             database.Invoices.Add(invoice);
         }
 
-        public void Delete(int id)
+        public void Delete(long id)
         {
             InvoiceDL invoice = database.Invoices.Find(id);
             if (invoice != null)

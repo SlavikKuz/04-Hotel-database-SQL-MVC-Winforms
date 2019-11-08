@@ -7,7 +7,7 @@ namespace HotelDb.WebUI.Models
     {
         public long RoomId { get; set; }
 
-        [Display(Name = "Room Number")]
+        [Display(Name = "Room")]
         [StringLength(10, MinimumLength = 3)]
         [Required]
         public string RoomNumber { get; set; }

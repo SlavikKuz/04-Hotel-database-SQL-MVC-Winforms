@@ -4,14 +4,11 @@
     ViewData["Title"] = "ShowAll";
 }
 
-<p>
-    <a asp-action="Create">Add New</a>
-</p>
-<table class="table">
+<table class="table col-md-8 mx-auto">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Holiday)
+                @Html.DisplayNameFor(model => model.HolidayDay)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.HolidayName)
@@ -23,14 +20,15 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Holiday)
+                @Html.DisplayFor(modelItem => item.HolidayDay)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.HolidayName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                <span class="badge badge-light">
+                    @Html.ActionLink("Delete", "Delete", new { item.HolidayId })
+                </span>
             </td>
         </tr>
 }

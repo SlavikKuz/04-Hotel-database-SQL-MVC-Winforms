@@ -307,7 +307,8 @@ d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\BookingM
 d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\BookingModel\Create.cshtml.g.cs
 D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomModel\Create.cshtml.g.cs
 D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomModel\ShowAll.cshtml.g.cs
-D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\DayModel\ShowAll.cshtml.g.cs
-D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\DayModel\Create.cshtml.g.cs
 D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomModel\ShowAvailable.cshtml.g.cs
 D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomModel\Edit.cshtml.g.cs
+D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\HolidayModel\Create.cshtml.g.cs
+D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\HolidayModel\Delete.cshtml.g.cs
+D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\HolidayModel\ShowAll.cshtml.g.cs

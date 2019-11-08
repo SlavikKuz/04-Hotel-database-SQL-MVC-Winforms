@@ -21,7 +21,7 @@ namespace HotelDb.DataLayer.Repositories
             database.RoomPrices.Add(roomPrice);
         }
 
-        public void Delete(int id)
+        public void Delete(long id)
         {
             RoomPriceDL roomPrice = database.RoomPrices.Find(id);
             if (roomPrice != null)

@@ -64,6 +64,12 @@ namespace HotelDb.Logic
             DataBase.Save();
         }
 
+        public void RemoveHoliday(long holidaysDay)
+        {
+            DataBase.HolidaysList.Delete(holidaysDay);
+            DataBase.Save();
+        }
+
         public void AddHoliday(HolidaysListLL day)
         {
             DataBase.HolidaysList.Create(mapper.Map<HolidaysListDL>(day));

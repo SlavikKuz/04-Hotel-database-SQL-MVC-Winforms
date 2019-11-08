@@ -19,7 +19,7 @@ namespace HotelDb.DataLayer.Repositories
             database.Clients.Add(client);
         }
 
-        public void Delete(int id)
+        public void Delete(long id)
         {
             ClientDL client = database.Clients.Find(id);
             if (client != null)

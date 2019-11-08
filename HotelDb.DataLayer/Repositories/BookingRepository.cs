@@ -21,7 +21,7 @@ namespace HotelDb.DataLayer.Repositories
             database.Bookings.Add(booking);
         }
 
-        public void Delete(int id)
+        public void Delete(long id)
         {
             BookingDL booking = database.Bookings.Find(id);
             if (booking != null)
