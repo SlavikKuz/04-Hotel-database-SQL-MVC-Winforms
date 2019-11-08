@@ -15,8 +15,8 @@ namespace HotelDb.DataLayer
         private ClientRepository clientsRepository;
         private BookingRepository bookingsRepository;
         private RoomRepository roomsRepository;
-        private DayRepository holidaysRepository;
-        private GuestRepository guestsRepository;
+        private HolidaysRepository holidaysRepository;
+        private GuestsListRepository guestsRepository;
 
         public IRepository<ClientDL> Clients
         {
@@ -50,7 +50,7 @@ namespace HotelDb.DataLayer
             get
             {
                 if (holidaysRepository == null)
-                    holidaysRepository = new DayRepository(DataBase);
+                    holidaysRepository = new HolidaysRepository(DataBase);
                 return holidaysRepository;
             }
         }
@@ -59,7 +59,7 @@ namespace HotelDb.DataLayer
             get
             {
                 if (guestsRepository == null)
-                    guestsRepository = new GuestRepository(DataBase);
+                    guestsRepository = new GuestsListRepository(DataBase);
                 return guestsRepository;
             }
         }
