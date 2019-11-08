@@ -24,4 +24,8 @@
     <ProjectReference Include="..\HotelDb.Logic\HotelDb.Logic.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
 </Project>

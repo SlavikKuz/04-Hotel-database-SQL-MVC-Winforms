@@ -15,64 +15,57 @@
     </div>
 </form>
 
-    <table class="table">
-        <thead>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientFullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientFullAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientInfo)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.ClientId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ClientFullName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Tel)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Address)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Notes)
-                </th>
-                <th></th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientFullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientFullAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientInfo)
+                </td>
+                <td>
+                    <span class="badge badge-light">
+                        @Html.ActionLink("Edit Client", "Edit", new { id = item.ClientId })
+                    </span>
+                    <span class="badge badge-light">
+                        @Html.ActionLink("Booking History", "History", new { id = item.ClientId })
+                    </span>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ClientId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ClientFullName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Tel)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Address)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Notes)
-                    </td>
-                    <td>
-                        <span class="badge badge-light">
-                            @Html.ActionLink("Edit Client", "Edit", new { id = item.ClientId })
-                        </span>
-                        <span class="badge badge-light">
-                            @Html.ActionLink("Booking History", "History", new { id = item.ClientId })
-                        </span>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
 
 
 

@@ -7,35 +7,61 @@ namespace HotelDb.WebUI.Models
     {
         public long ClientId { get; set; }
 
-        [MaxLength(50)] //limit for EF create table
-        [Display(Name = "Client Name")] //for view, name
-        [StringLength(50, MinimumLength = 2)] //view view, check input
-        [Required] //required in creating a new client 
-        public string ClientFullName { get; set; }
+        [Display(Name = "First Name")]
+        [StringLength(20, MinimumLength = 2)]
+        [Required]
+        public string FirstName { get; set; }
+        
+        [Display(Name = "Last Name")]
+        [StringLength(20, MinimumLength = 2)]
+        [Required]
+        public string LastName { get; set; }
+        
+        [Display(Name = "Address")]
+        [Required]
+        [StringLength(20, MinimumLength = 12)]
+        public string Address { get; set; }
 
-        [MaxLength(50)]
+        [Display(Name = "City")]
+        [Required]
+        [StringLength(20, MinimumLength = 2)]
+        public string City { get; set; }
+        
+        [Display(Name = "Coutry")]
+        [Required]
+        [StringLength(20, MinimumLength = 2)]
+        public string Country { get; set; }
+
+        [Display(Name = "Telephone")]
+        [DataType(DataType.PhoneNumber)]
+        [StringLength(20, MinimumLength = 6)]
+        [Required]
+        public string Tel { get; set; }
+
         [Display(Name = "Email")]
         [DataType(DataType.EmailAddress)]
         [StringLength(50, MinimumLength = 6)]
         [Required]
         public string Email { get; set; }
 
-        [MaxLength(50)]
-        [Display(Name = "Telephone")]
-        [DataType(DataType.PhoneNumber)]
-        [StringLength(50, MinimumLength = 6)]
-        [Required]
-        public string Tel { get; set; }
-
-        [MaxLength(100)]
-        [Display(Name = "Address")]
-        [Required]
-        [StringLength(100, MinimumLength = 12)]
-        public string Address { get; set; }
-
-        [MaxLength(250)]
         [Display(Name = "Notes")]
-        [StringLength(250)]
-        public string Notes { get; set; }
+        [StringLength(50)]
+        public string ClientInfo { get; set; }
+
+
+
+        [Display(Name = "Client")]
+        public string ClientFullName
+        {
+            get { return FirstName.ToString() + " " + LastName.ToString(); }
+        }
+
+        [Display(Name = "Address")]
+        public string ClientFullAddress
+        {
+            get { return Address.ToString() + ", " 
+                    + City.ToString() + ", "
+                    + Country.ToString(); }
+        }
     }
 }

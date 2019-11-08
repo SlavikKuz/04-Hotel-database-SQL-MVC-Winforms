@@ -20,7 +20,7 @@ namespace HotelDb.DataLayer.Entities
         public string Country { get; set; }
         [Column(TypeName = "nvarchar(20)")]
         public string Tel { get; set; }
-        [Column(TypeName = "nvarchar(20)")]
+        [Column(TypeName = "nvarchar(50)")]
         public string Email { get; set; }
         [Column(TypeName = "nvarchar(50)")]
         public string ClientInfo { get; set; }
