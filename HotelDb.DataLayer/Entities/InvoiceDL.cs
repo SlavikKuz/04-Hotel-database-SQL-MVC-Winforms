@@ -12,6 +12,7 @@ namespace HotelDb.DataLayer.Entities
         public long InvoiceId { get; set; }
         public long ClientId { get; set; }
         public long BookingId { get; set; }
+        
         [Column(TypeName = "decimal(4,2)")]
         public decimal TotalPrice { get; set; }
     }

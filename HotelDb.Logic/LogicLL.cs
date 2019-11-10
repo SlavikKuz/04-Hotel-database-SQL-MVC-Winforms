@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using HotelDb.DataLayer;
 using HotelDb.DataLayer.Entities;
+using HotelDb.DataLayer.Interfaces;
 using HotelDb.DataLogic;
 using HotelDb.Logic.Entities;
 using System;
@@ -67,6 +68,16 @@ namespace HotelDb.Logic
             return result;
         }
 
+        public IEnumerable<InvoiceLL> GetAllInvoices()
+        {
+            List<InvoiceLL> result = new List<InvoiceLL>();
+
+            foreach (InvoiceDL invoice in DataBase.Invoices.ReadAll())
+                result.Add(mapper.Map<InvoiceLL>(invoice));
+            return result;
+        }
+
+
         public void AddRoom(RoomLL room)
         {
             DataBase.Rooms.Create(mapper.Map<RoomDL>(room));
@@ -96,6 +107,15 @@ namespace HotelDb.Logic
             DataBase.Bookings.Create(mapper.Map<BookingDL>(booking));
             DataBase.Save();
         }
+
+        public void AddInvoice(InvoiceLL invoice)
+        {
+            DataBase.Invoices.Create(mapper.Map<InvoiceDL>(invoice));
+            DataBase.Save();
+        }
+
+
+
 
         public void UpdateClient(ClientLL client)
         {

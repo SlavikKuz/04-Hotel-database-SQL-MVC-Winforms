@@ -11,6 +11,8 @@ namespace HotelDb.WebUI
         public MapperProfileUI()
         {
             CreateMap<RoomPriceLL, RoomPriceModel>();
+            CreateMap<InvoiceLL, InvoiceModel>();
+            CreateMap<InvoiceModel, InvoiceLL>();
 
             CreateMap<ClientLL, ClientModel>();
             CreateMap<BookingLL, BookingModel>();

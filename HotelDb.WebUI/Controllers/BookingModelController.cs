@@ -81,6 +81,7 @@ namespace HotelDb.WebUI.Controllers
             List<ClientModel> allGuests;
             List<HolidayModel> allHolidays;
             List<RoomPriceModel> allRoomPrices;
+            List<InvoiceModel> allInvoices;
 
             using (var database = new LogicLL())
             {
@@ -94,6 +95,8 @@ namespace HotelDb.WebUI.Controllers
                 allHolidays = mapper.Map<List<HolidayModel>>(database.GetAllHolidays());
 
                 allRoomPrices = mapper.Map<List<RoomPriceModel>>(database.GetAllRoomPrices());
+
+                allInvoices = mapper.Map<List<InvoiceModel>>(database.GetAllInvoices());
             }
 
             bookingPost.SelectClient = allClients
@@ -143,19 +146,34 @@ namespace HotelDb.WebUI.Controllers
                         }
                     }
 
-                    bookingPost.Invoice.Price = totalPrice;
+                    bookingPost.Invoice.TotalPrice = totalPrice;
                     break;
 
                 case "Save":
                     {
                         try
                         {
+                            //save roomList, return Id
+                            //save guestList,return Id
+                            //save booking                           
+                            InvoiceModel invoice = new InvoiceModel()
+                            {
+                                BookingId = 404,
+                                ClientId = bookingPost.Booking.ClientId,
+                                TotalPrice = bookingPost.Invoice.TotalPrice
+                            };
+
                             using (var database = new LogicLL())
-                                database.AddBooking(mapper.Map<BookingLL>(bookingPost));
+                            {
+                                database.AddInvoice(mapper.Map<InvoiceLL>(invoice));
+                                invoice = (mapper.Map<List<InvoiceModel>>(database.GetAllInvoices())).Last();
+                            }
+
+                            InvoiceModel nesw = invoice;
 
                             return RedirectToAction(nameof(ShowAll));
                         }
-                        catch
+                        catch (Exception ex)
                         {
                             return View();
                         }

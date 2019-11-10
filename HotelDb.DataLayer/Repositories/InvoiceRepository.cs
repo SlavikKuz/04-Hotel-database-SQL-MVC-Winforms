@@ -1,6 +1,7 @@
 ﻿using HotelDb.DataLayer.Context;
 using HotelDb.DataLayer.Entities;
 using HotelDb.DataLayer.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -44,5 +45,6 @@ namespace HotelDb.DataLayer.Repositories
         {
             database.Invoices.Update(invoice);
         }
+
     }
 }

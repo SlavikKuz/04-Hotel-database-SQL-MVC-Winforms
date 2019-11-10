@@ -27,5 +27,7 @@ namespace HotelDb.WebUI.Models
 
         [Display(Name = "Selected Rooms")]
         public List<string> SelectedGuests { get; set; } = new List<string>();
+
+        public decimal Price { get; set; }
     }
 }

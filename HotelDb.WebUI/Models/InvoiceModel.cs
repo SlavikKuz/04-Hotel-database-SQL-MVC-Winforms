@@ -15,6 +15,6 @@ namespace HotelDb.WebUI.Models
         public long BookingId { get; set; }
 
         [Display(Name="Price")]
-        public decimal Price { get; set; }
+        public decimal TotalPrice { get; set; }
     }
 }

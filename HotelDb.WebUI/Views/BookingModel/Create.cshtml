@@ -47,10 +47,13 @@
                 </div>
             </div>
 
-
             @if (Model.Booking.BookedRoomsId != null)
                 for (var i = 0; i < Model.Booking.BookedRoomsId.Count; i++)
                     @Html.HiddenFor(model => Model.Booking.BookedRoomsId[i])
+
+
+
+
 
             @if (Model.Booking.GuestListId != null)
                 for (var i = 0; i < Model.Booking.GuestListId.Count; i++)
@@ -88,16 +91,16 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Invoice.Price" class="control-label"></label>
+                <label asp-for="Invoice.TotalPrice" class="control-label"></label>
                 <div class="form-control">
-                @Model.Invoice.Price    
+                    @Model.Invoice.TotalPrice
                 </div>
             </div>
+            <input type="hidden" id="Invoice.TotalPrice" name="Invoice.TotalPrice" value="@Model.Invoice.TotalPrice" />
 
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" name="bookingButton" value="Save" class="btn btn-primary" />
                 <input type="submit" name="bookingButton" value="AddInvoice" class="btn btn-primary" />
-
             </div>
         </form>
     </div>
