@@ -19,7 +19,7 @@ namespace HotelDb.WebUI.Controllers
         {
             this.mapper = mapper;
         }
-        
+
         public ActionResult ShowAll()
         {
             List<BookingViewModel> bookingsView = new List<BookingViewModel>();
@@ -38,12 +38,12 @@ namespace HotelDb.WebUI.Controllers
             {
                 bookingsView.Add(new BookingViewModel
                 {
-                    Booking = b,
-                    Client = clients.Where(x => x.ClientId == b.ClientId).First()
+                    Booking = b
+                    //Client = clients.Where(x => x.ClientId == b.ClientId).First()
                     //Guests = guests.Where(x => x.BookingId == b.BookingId).ToList()
                 });
             }
-            
+
             return View(bookingsView);
         }
 
@@ -53,7 +53,18 @@ namespace HotelDb.WebUI.Controllers
 
             using (var database = new LogicLL())
             {
-                bookingView.Clients = (mapper.Map<List<ClientModel>>(database.GetAllClients()))
+                bookingView.SelectClient = (mapper.Map<List<ClientModel>>(database.GetAllClients()))
+                    .Select(x => new SelectListItem { Text = x.ClientFullName, Value = x.ClientId.ToString() })
+                    .ToList();
+
+                bookingView.SelectRoom = (mapper.Map<List<RoomModel>>
+                    (
+                        database.GetAllRooms()).Where(x => x.Ready == true)
+                    )
+                    .Select(x => new SelectListItem { Text = x.RoomNumber, Value = x.RoomId.ToString() })
+                    .ToList();
+
+                bookingView.SelectGuest = (mapper.Map<List<ClientModel>>(database.GetAllClients()))
                     .Select(x => new SelectListItem { Text = x.ClientFullName, Value = x.ClientId.ToString() })
                     .ToList();
             }
@@ -62,24 +73,76 @@ namespace HotelDb.WebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(BookingViewModel bookingPost)
+        public ActionResult Create(string bookingButton, BookingViewModel bookingPost)
         {
-            BookingModel bookingFull = new BookingModel();
-            bookingFull = bookingPost.Booking;
-            bookingFull.ClientId = bookingPost.ClientId;
-            bookingFull.OrderDate = DateTime.Now;
-            
-            try
-            {
-                using (var database = new LogicLL())
-                    database.AddBooking(mapper.Map<BookingLL>(bookingPost));
 
-                    return RedirectToAction(nameof(ShowAll));
-            }
-            catch
+            List<ClientModel> allClients;
+            List<RoomModel> allRooms;
+            List<ClientModel> allGuests;
+
+            using (var database = new LogicLL())
             {
-                return View();
+                allClients = mapper.Map<List<ClientModel>>(database.GetAllClients());
+
+                allRooms = (mapper.Map<List<RoomModel>>(database.GetAllRooms()))
+                    .Where(x => x.Ready == true).ToList();
+
+                allGuests = mapper.Map<List<ClientModel>>(database.GetAllClients());
             }
+
+            bookingPost.SelectClient = allClients
+                    .Select(x => new SelectListItem { Text = x.ClientFullName, Value = x.ClientId.ToString() })
+                    .ToList();
+
+            bookingPost.SelectRoom = allRooms
+                    .Select(x => new SelectListItem { Text = x.RoomNumber, Value = x.RoomId.ToString() })
+                    .ToList();
+
+            bookingPost.SelectGuest = allGuests
+                    .Select(x => new SelectListItem { Text = x.ClientFullName, Value = x.ClientId.ToString() })
+                    .ToList();
+
+            switch (bookingButton)
+            {
+                case "AddRoom":
+                    bookingPost.Booking.BookedRoomsId.Add(bookingPost.RoomId);
+                    break;
+
+                case "AddGuest":
+                    bookingPost.Booking.GuestListId.Add(bookingPost.GuestId);
+                    break;
+
+                case "Save":
+                    {
+                        try
+                        {
+                            using (var database = new LogicLL())
+                                database.AddBooking(mapper.Map<BookingLL>(bookingPost));
+
+                            return RedirectToAction(nameof(ShowAll));
+                        }
+                        catch
+                        {
+                            return View();
+                        }
+                    }
+            }
+
+            foreach (var room in bookingPost.Booking.BookedRoomsId)
+                bookingPost.SelectedRooms.Add(
+                   allRooms.Where(x => x.RoomId == room)
+                    .Select(x => x.RoomNumber)
+                    .First()
+                    .ToString());
+
+            foreach (var guest in bookingPost.Booking.GuestListId)
+                bookingPost.SelectedGuests.Add(
+                   allGuests.Where(x => x.ClientId == guest)
+                    .Select(x => x.ClientFullName)
+                    .First()
+                    .ToString());
+
+            return View(bookingPost);
         }
 
 

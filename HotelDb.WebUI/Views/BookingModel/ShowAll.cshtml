@@ -16,7 +16,7 @@
                 @Html.DisplayNameFor(model => model.Booking.BookingId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Client.ClientFullName)
+                @Html.DisplayNameFor(model => model.Booking.BookingId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Booking.OrderDate)
@@ -28,9 +28,6 @@
                 @Html.DisplayNameFor(model => model.Booking.DayTill)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Guests)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Booking.WithKids)
             </th>
             <th>
@@ -38,9 +35,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Booking.Info)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking.RoomId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Booking.Holiday)
@@ -55,7 +49,7 @@
                 @Html.DisplayFor(modelItem => item.Booking.BookingId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Client.ClientFullName)
+                @Html.DisplayFor(modelItem => item.Booking.BookingId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Booking.OrderDate)
@@ -67,10 +61,6 @@
                 @Html.DisplayFor(modelItem => item.Booking.DayTill)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Guests.Count())
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Booking.WithKids)
             </td>
             <td>
@@ -78,9 +68,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Booking.Info)
-            </td>
-            <td>
-                @Html.DisplayNameFor(model => model.Booking.RoomId)
             </td>
             <td>
                 @Html.DisplayNameFor(model => model.Booking.Holiday)

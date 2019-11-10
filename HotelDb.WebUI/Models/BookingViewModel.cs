@@ -9,13 +9,22 @@ namespace HotelDb.WebUI.Models
 {
     public class BookingViewModel
     {
-        public BookingModel Booking { get; set; }
-        public ClientModel Client { get; set; }
+        public BookingModel Booking { get; set; } = new BookingModel();
 
-        public List<SelectListItem> Clients { get; set; } = new List<SelectListItem>();
-        public List<GuestModel> Guests { get; set; }
+        public List<SelectListItem> SelectClient { get; set; } = new List<SelectListItem>();
+        public List<SelectListItem> SelectRoom { get; set; } = new List<SelectListItem>();
+        public List<SelectListItem> SelectGuest { get; set; } = new List<SelectListItem>();
+
+        [Display(Name = "Room")]
+        public long RoomId { get; set; }
         
-        [Display(Name = "Client Name")]
-        public long ClientId { get; set; }
+        [Display(Name = "Guests")]
+        public long GuestId { get; set; }
+
+        [Display(Name = "Selected Rooms")]
+        public List<string> SelectedRooms { get; set; } = new List<string>();
+
+        [Display(Name = "Selected Rooms")]
+        public List<string> SelectedGuests { get; set; } = new List<string>();
     }
 }

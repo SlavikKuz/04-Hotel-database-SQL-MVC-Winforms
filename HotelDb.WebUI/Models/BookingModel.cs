@@ -7,19 +7,32 @@ namespace HotelDb.WebUI.Models
     public class BookingModel
     {
         public long BookingId { get; set; }
-        public long ClientId { get; set; }
-        public DateTime OrderDate { get; set; }
         
-        [DataType(DataType.Date)]
-        public DateTime DayFrom { get; set; }
+        [Display(Name = "Client Name")]
+        public long ClientId { get; set; }
+        
+        public DateTime OrderDate { get; set; } = DateTime.Now;
 
+        [Display(Name = "From")]
         [DataType(DataType.Date)]
-        public DateTime DayTill { get; set; }
+        public DateTime DayFrom { get; set; } = DateTime.Now;
+
+        [Display(Name = "Till")]
+        [DataType(DataType.Date)]
+        public DateTime DayTill { get; set; } = DateTime.Now;
+        
         public bool WithKids { get; set; }
-        public List<long> GuestId { get; set; }
+
+        public List<long> GuestListId { get; set; } = new List<long>();
+        
         public Status Status { get; set; }
+        
+        [Display(Name = "Additional Information")]
         public string Info { get; set; }
-        public List<long> RoomId { get; set; }
+        
+        [Display(Name = "Booking Rooms")]
+        public List<long> BookedRoomsId { get; set; } = new List<long>();
+        
         public List<DateTime> Holiday { get; set; }
     }
 

@@ -16,7 +16,7 @@ namespace HotelDb.WebUI.Controllers
         {
             this.mapper = mapper;
         }
-               
+
         public ActionResult ShowAll()
         {
             List<ClientModel> list = null;
@@ -28,8 +28,8 @@ namespace HotelDb.WebUI.Controllers
         public ActionResult Create()
         {
             return View();
-        }               
-        
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(ClientModel client)
@@ -46,7 +46,7 @@ namespace HotelDb.WebUI.Controllers
                 return View();
             }
         }
- 
+
         public ActionResult Search()
         {
             return View(new List<ClientModel>());
@@ -66,8 +66,11 @@ namespace HotelDb.WebUI.Controllers
 
             foreach (ClientModel client in input)
                 output = input.Where(x =>
-                                   (x.ClientFullName.Contains(searchString)) ||
-                                   (x.ClientFullAddress.Contains(searchString)) ||
+                                   (x.FirstName.Contains(searchString)) ||
+                                   (x.LastName.Contains(searchString)) ||
+                                   (x.Address.Contains(searchString)) ||
+                                   (x.City.Contains(searchString)) ||
+                                   (x.Country.Contains(searchString)) ||
                                    (x.Email.Contains(searchString)) ||
                                    (x.Tel.Contains(searchString)) ||
                                    (x.ClientInfo.Contains(searchString))).ToList();
@@ -89,7 +92,7 @@ namespace HotelDb.WebUI.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ClientModel client)
-        {          
+        {
             try
             {
                 using (var database = new LogicLL())

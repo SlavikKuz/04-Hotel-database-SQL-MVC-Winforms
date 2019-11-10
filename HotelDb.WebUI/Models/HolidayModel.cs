@@ -7,11 +7,11 @@ namespace HotelDb.WebUI.Models
     {
         public long HolidayId { get; set; }
         [DataType(DataType.Date)]
-        [Display(Name = "Holiday Date")]
+        [Display(Name = "Date")]
         [Required]
         public DateTime HolidayDay { get; set; }
 
-        [Display(Name = "Holiday Name")]
+        [Display(Name = "Holiday")]
         [Required]
         public string HolidayName { get; set; }
 
