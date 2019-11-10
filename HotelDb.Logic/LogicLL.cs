@@ -58,6 +58,15 @@ namespace HotelDb.Logic
             return result;
         }
 
+        public IEnumerable<RoomPriceLL> GetAllRoomPrices()
+        {
+            List<RoomPriceLL> result = new List<RoomPriceLL>();
+
+            foreach (RoomPriceDL room in DataBase.RoomPrices.ReadAll())
+                result.Add(mapper.Map<RoomPriceLL>(room));
+            return result;
+        }
+
         public void AddRoom(RoomLL room)
         {
             DataBase.Rooms.Create(mapper.Map<RoomDL>(room));
@@ -104,6 +113,7 @@ namespace HotelDb.Logic
         {
             DataBase.Dispose();
         }
+
 
     }
 }

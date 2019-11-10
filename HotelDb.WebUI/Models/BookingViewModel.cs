@@ -10,6 +10,7 @@ namespace HotelDb.WebUI.Models
     public class BookingViewModel
     {
         public BookingModel Booking { get; set; } = new BookingModel();
+        public InvoiceModel Invoice { get; set; } = new InvoiceModel();
 
         public List<SelectListItem> SelectClient { get; set; } = new List<SelectListItem>();
         public List<SelectListItem> SelectRoom { get; set; } = new List<SelectListItem>();

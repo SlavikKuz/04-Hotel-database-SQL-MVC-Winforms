@@ -79,6 +79,8 @@ namespace HotelDb.WebUI.Controllers
             List<ClientModel> allClients;
             List<RoomModel> allRooms;
             List<ClientModel> allGuests;
+            List<HolidayModel> allHolidays;
+            List<RoomPriceModel> allRoomPrices;
 
             using (var database = new LogicLL())
             {
@@ -88,6 +90,10 @@ namespace HotelDb.WebUI.Controllers
                     .Where(x => x.Ready == true).ToList();
 
                 allGuests = mapper.Map<List<ClientModel>>(database.GetAllClients());
+
+                allHolidays = mapper.Map<List<HolidayModel>>(database.GetAllHolidays());
+
+                allRoomPrices = mapper.Map<List<RoomPriceModel>>(database.GetAllRoomPrices());
             }
 
             bookingPost.SelectClient = allClients
@@ -110,6 +116,34 @@ namespace HotelDb.WebUI.Controllers
 
                 case "AddGuest":
                     bookingPost.Booking.GuestListId.Add(bookingPost.GuestId);
+                    break;
+
+                case "AddInvoice":
+                    decimal totalPrice = 0;
+
+                    //fix for list of rooms
+                    RoomPriceModel roomPrice = allRoomPrices.Where(x => x.RoomId == bookingPost.RoomId).First();
+
+                    for (DateTime day = bookingPost.Booking.DayFrom; day <= bookingPost.Booking.DayTill; day = day.AddDays(1))
+                    {
+                        if ((allHolidays.Select(x => x.HolidayDay))
+                            .Where(x => x == day).Count() > 0)
+                        {
+                            totalPrice += roomPrice.HolidayPrice;
+                        }
+                        else if ((day.DayOfWeek == DayOfWeek.Friday) || 
+                                 (day.DayOfWeek == DayOfWeek.Saturday) || 
+                                 (day.DayOfWeek == DayOfWeek.Sunday ))
+                        {
+                            totalPrice += roomPrice.WeekendPrice;
+                        }
+                        else
+                        {
+                            totalPrice += roomPrice.AveragePrice;
+                        }
+                    }
+
+                    bookingPost.Invoice.Price = totalPrice;
                     break;
 
                 case "Save":

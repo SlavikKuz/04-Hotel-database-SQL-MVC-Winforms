@@ -27,38 +27,6 @@
                 <input asp-for="Booking.DayTill" class="form-control" />
                 <span asp-validation-for="Booking.DayTill" class="text-danger"></span>
             </div>
-            @*
-        <div class="form-group">
-            <label asp-for="Guests" class="control-label"></label>
-
-            @if (Model.Guests.Count == null)
-            {
-                <input asp-for="Guests" class="form-control" />
-                <span class="badge badge-light">
-                    @Html.ActionLink("Add Guest", "Edit", new { })
-                </span>
-                <span asp-validation-for="Guests" class="text-danger"></span>
-            }
-
-            else
-            {
-                <span class="form-control">@Model.Guests.Count guests</span>
-            }
-        </div>
-            *@
-
-            @*@if (Model.SelectClients != null)
-         {
-             for (var i = 1; i <= Model.SelectClients.Count; i++)
-             {
-             @Html.HiddenFor(model => Model.SelectClients, new SelectListItem()
-        {
-            Value = Model.SelectClients.Where(x => x.Value == i.ToString()).First().Value,
-            Text = Model.SelectClients.Where(x => x.Value == i.ToString()).First().Text
-        })
-
-             }
-         }*@
 
             <div class="form-actions no-color input-group">
                 <div class="input-group mb-3">
@@ -120,7 +88,16 @@
             </div>
 
             <div class="form-group">
+                <label asp-for="Invoice.Price" class="control-label"></label>
+                <div class="form-control">
+                @Model.Invoice.Price    
+                </div>
+            </div>
+
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" name="bookingButton" value="AddInvoice" class="btn btn-primary" />
+
             </div>
         </form>
     </div>

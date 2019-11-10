@@ -33,7 +33,7 @@ namespace HotelDb.WebUI.Models
         [Display(Name = "Booking Rooms")]
         public List<long> BookedRoomsId { get; set; } = new List<long>();
         
-        public List<DateTime> Holiday { get; set; }
+        public long InvoiceId { get; set; }
     }
 
     public enum Status
