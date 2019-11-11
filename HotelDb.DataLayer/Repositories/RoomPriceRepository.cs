@@ -18,31 +18,31 @@ namespace HotelDb.DataLayer.Repositories
 
         public void Create(RoomPriceDL roomPrice)
         {
-            database.RoomPrices.Add(roomPrice);
+            database.RoomPrice.Add(roomPrice);
         }
 
         public void Delete(long id)
         {
-            RoomPriceDL roomPrice = database.RoomPrices.Find(id);
+            RoomPriceDL roomPrice = database.RoomPrice.Find(id);
             if (roomPrice != null)
             {
-                database.RoomPrices.Remove(roomPrice);
+                database.RoomPrice.Remove(roomPrice);
             }
         }
 
         public RoomPriceDL Read(int id)
         {
-            return database.RoomPrices.Find(id);
+            return database.RoomPrice.Find(id);
         }
 
         public IEnumerable<RoomPriceDL> ReadAll()
         {
-            return database.RoomPrices;
+            return database.RoomPrice;
         }
 
         public void Update(RoomPriceDL roomPrice)
         {
-            database.RoomPrices.Update(roomPrice);
+            database.RoomPrice.Update(roomPrice);
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Globalization;
 
 namespace HotelDb.DataLayer.Entities
 { 
-    public class HolidaysListDL
+    public class HolidayListDL
     {
         [Key]
         public long HolidayId { get; set; }

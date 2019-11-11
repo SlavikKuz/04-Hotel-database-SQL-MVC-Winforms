@@ -8,7 +8,7 @@ namespace HotelDb.DataLayer.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "BookedRoomsList",
+                name: "RoomList",
                 columns: table => new
                 {
                     BookingId = table.Column<long>(nullable: false),
@@ -60,7 +60,7 @@ namespace HotelDb.DataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GuestsList",
+                name: "GuestList",
                 columns: table => new
                 {
                     BookingId = table.Column<long>(nullable: false),
@@ -72,7 +72,7 @@ namespace HotelDb.DataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "HolidaysList",
+                name: "HolidayList",
                 columns: table => new
                 {
                     HolidayId = table.Column<long>(nullable: false)
@@ -101,7 +101,7 @@ namespace HotelDb.DataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RoomPrices",
+                name: "RoomPrice",
                 columns: table => new
                 {
                     RoomId = table.Column<long>(nullable: false)
@@ -137,7 +137,7 @@ namespace HotelDb.DataLayer.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "BookedRoomsList");
+                name: "RoomList");
 
             migrationBuilder.DropTable(
                 name: "Bookings");
@@ -146,16 +146,16 @@ namespace HotelDb.DataLayer.Migrations
                 name: "Clients");
 
             migrationBuilder.DropTable(
-                name: "GuestsList");
+                name: "GuestList");
 
             migrationBuilder.DropTable(
-                name: "HolidaysList");
+                name: "HolidayList");
 
             migrationBuilder.DropTable(
                 name: "Invoices");
 
             migrationBuilder.DropTable(
-                name: "RoomPrices");
+                name: "RoomPrice");
 
             migrationBuilder.DropTable(
                 name: "Rooms");

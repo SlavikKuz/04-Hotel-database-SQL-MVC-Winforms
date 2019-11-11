@@ -21,16 +21,12 @@ namespace HotelDb.WebUI.Models
         [DataType(DataType.Date)]
         public DateTime DayTill { get; set; } = DateTime.Now;
         
-        public bool WithKids { get; set; }
-
-        public long GuestListId { get; set; }    
+        public bool WithKids { get; set; } 
         
         public Status Status { get; set; }
         
         [Display(Name = "Additional Information")]
         public string Info { get; set; }
-        
-        public long RoomListId { get; set; }
         
         public long InvoiceId { get; set; }
     }

@@ -39,7 +39,7 @@ namespace HotelDb.WebUI.Controllers
             try
             {
                 using (var database = new LogicLL())
-                    database.AddHoliday(mapper.Map<HolidaysListLL>(dayHoliday));
+                    database.AddHoliday(mapper.Map<HolidayListLL>(dayHoliday));
 
                 return RedirectToAction(nameof(ShowAll));
             }

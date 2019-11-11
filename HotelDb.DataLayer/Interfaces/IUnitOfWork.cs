@@ -7,14 +7,14 @@ namespace HotelDb.DataLayer.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        IRepository<BookedRoomsListDL> BookedRoomsList { get; }
+        IRepository<RoomListDL> RoomList { get; }
         IRepository<BookingDL> Bookings { get; }
         IRepository<ClientDL> Clients { get; }
-        IRepository<GuestsListDL> GuestsList { get; }
-        IRepository<HolidaysListDL> HolidaysList { get; }
+        IRepository<GuestListDL> GuestList { get; }
+        IRepository<HolidayListDL> HolidayList { get; }
         IRepository<InvoiceDL> Invoices { get; }
         IRepository<RoomDL> Rooms { get; }
-        IRepository<RoomPriceDL> RoomPrices { get; }
+        IRepository<RoomPriceDL> RoomPrice { get; }
         void Save();
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelDb.DataLayer.Entities
 {
-    public class BookedRoomsListDL
+    public class RoomListDL
     {
         public long BookingId { get; set; }
         public long RoomId { get; set; }

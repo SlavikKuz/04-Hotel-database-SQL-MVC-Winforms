@@ -10,11 +10,11 @@ namespace HotelDb.DataLayer.Entities
     {
         [Key]
         public long RoomId { get; set; }
-        [Column(TypeName = "decimal(4,2)")]
+        [Column(TypeName = "decimal(6,2)")]
         public decimal AveragePrice { get; set; }
-        [Column(TypeName = "decimal(4,2)")]
+        [Column(TypeName = "decimal(6,2)")]
         public decimal WeekendPrice { get; set; }
-        [Column(TypeName = "decimal(4,2)")]
+        [Column(TypeName = "decimal(6,2)")]
         public decimal HolidayPrice { get; set; }
     }
 }

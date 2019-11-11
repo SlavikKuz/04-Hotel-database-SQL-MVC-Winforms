@@ -5,11 +5,11 @@ using System.Collections.Generic;
 
 namespace HotelDb.DataLayer.Repositories
 {
-    public class ClientRepository : IRepository<ClientDL>
+    public class ClientsRepository : IRepository<ClientDL>
     {
         private HotelDbContext database;
 
-        public ClientRepository(HotelDbContext context)
+        public ClientsRepository(HotelDbContext context)
         {
             database = context;
         }

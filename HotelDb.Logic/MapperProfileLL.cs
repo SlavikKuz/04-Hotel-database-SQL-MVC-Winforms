@@ -9,23 +9,23 @@ namespace HotelDb.DataLogic
     {
         public MapperProfileLL()
         {
-            CreateMap<BookedRoomsListDL, BookedRoomsListLL>();
             CreateMap<BookingDL, BookingLL>();
             CreateMap<ClientDL, ClientLL>();
-            CreateMap<GuestsListDL, GuestsListLL>();
-            CreateMap<HolidaysListDL, HolidaysListLL>();
+            CreateMap<GuestListDL, GuestListLL>();
+            CreateMap<HolidayListDL, HolidayListLL>();
             CreateMap<InvoiceDL, InvoiceLL>();
             CreateMap<RoomDL, RoomLL>();
-            CreateMap<RoomPriceDL, RoomPriceLL>();
+            CreateMap<RoomPriceDL, RoomPriceLL>();            
+            CreateMap<RoomListDL, RoomsListLL>();
 
-            CreateMap<BookedRoomsListLL, BookedRoomsListDL>();
             CreateMap<BookingLL, BookingDL>();
             CreateMap<ClientLL, ClientDL>();
-            CreateMap<GuestsListLL, GuestsListDL>();
-            CreateMap<HolidaysListLL, HolidaysListDL>();
+            CreateMap<GuestListLL, GuestListDL>();
+            CreateMap<HolidayListLL, HolidayListDL>();            
             CreateMap<InvoiceLL, InvoiceDL>();
             CreateMap<RoomLL, RoomDL>();
             CreateMap<RoomPriceLL, RoomPriceDL>();
+            CreateMap<RoomsListLL, RoomListDL>();
         }
     }
 

@@ -25,13 +25,13 @@ namespace HotelDb.WebUI.Controllers
             List<BookingViewModel> bookingsView = new List<BookingViewModel>();
             List<BookingModel> bookings = new List<BookingModel>();
             List<ClientModel> clients = new List<ClientModel>();
-            List<GuestModel> guests = new List<GuestModel>();
+            //List<GuestModel> guests = new List<GuestModel>();
 
             using (var database = new LogicLL())
             {
                 bookings = mapper.Map<List<BookingModel>>(database.GetAllBookings());
                 clients = mapper.Map<List<ClientModel>>(database.GetAllClients());
-                guests = mapper.Map<List<GuestModel>>(database.GetAllGuest());
+            //    guests = mapper.Map<List<GuestModel>>(database.GetAllGuest());
             }
 
             foreach (var b in bookings)
@@ -116,6 +116,7 @@ namespace HotelDb.WebUI.Controllers
                 case "AddRoom":
                     bookingPost.RoomList.Add( new RoomListModel()
                     { RoomId = bookingPost.RoomId });
+                    bookingPost.Invoice.TotalPrice = 0;
                     break;
 
                 case "AddGuest":
@@ -124,27 +125,31 @@ namespace HotelDb.WebUI.Controllers
                     break;
 
                 case "AddInvoice":
+
+                    RoomPriceModel roomPrice;
                     decimal totalPrice = 0;
 
-                    //fix for list of rooms
-                    RoomPriceModel roomPrice = allRoomPrices.Where(x => x.RoomId == bookingPost.RoomId).First();
-
-                    for (DateTime day = bookingPost.Booking.DayFrom; day <= bookingPost.Booking.DayTill; day = day.AddDays(1))
+                    foreach(var room in bookingPost.RoomList)
                     {
-                        if ((allHolidays.Select(x => x.HolidayDay))
-                            .Where(x => x == day).Count() > 0)
+                        roomPrice = allRoomPrices.Where(x => x.RoomId == room.RoomId).First();
+
+                        for (DateTime day = bookingPost.Booking.DayFrom; day <= bookingPost.Booking.DayTill; day = day.AddDays(1))
                         {
-                            totalPrice += roomPrice.HolidayPrice;
-                        }
-                        else if ((day.DayOfWeek == DayOfWeek.Friday) || 
-                                 (day.DayOfWeek == DayOfWeek.Saturday) || 
-                                 (day.DayOfWeek == DayOfWeek.Sunday ))
-                        {
-                            totalPrice += roomPrice.WeekendPrice;
-                        }
-                        else
-                        {
-                            totalPrice += roomPrice.AveragePrice;
+                            if ((allHolidays.Select(x => x.HolidayDay))
+                                .Where(x => x == day).Count() > 0)
+                            {
+                                totalPrice += roomPrice.HolidayPrice;
+                            }
+                            else if ((day.DayOfWeek == DayOfWeek.Friday) ||
+                                     (day.DayOfWeek == DayOfWeek.Saturday) ||
+                                     (day.DayOfWeek == DayOfWeek.Sunday))
+                            {
+                                totalPrice += roomPrice.WeekendPrice;
+                            }
+                            else
+                            {
+                                totalPrice += roomPrice.AveragePrice;
+                            }
                         }
                     }
 
@@ -155,51 +160,65 @@ namespace HotelDb.WebUI.Controllers
                     {
                         try
                         {
-                            //save roomList, return Id
-                            //save guestList,return Id
-                            //save booking
-
+                            long bookingId;
+                            long invoiceId;
+                                                    
                             BookingModel booking = new BookingModel()
                             {
-                                //bookingId =
+                                //bookingId
                                 ClientId = bookingPost.Booking.ClientId,
                                 OrderDate = bookingPost.Booking.OrderDate,
                                 DayFrom = bookingPost.Booking.DayFrom,
                                 DayTill = bookingPost.Booking.DayTill,
                                 WithKids = bookingPost.Booking.WithKids,
-                                //List<long> GuestListId
                                 Status = bookingPost.Booking.Status,
                                 Info = bookingPost.Booking.Info
-                                //List<long> BookedRoomsId
                                 //InvoiceId
                             };
 
+                            BookingModel bookingUpdated;
+
                             InvoiceModel invoice = new InvoiceModel()
                             {
-                                BookingId = 404,
+                                //InvoiceId
                                 ClientId = bookingPost.Booking.ClientId,
+                                //BookingId
                                 TotalPrice = bookingPost.Invoice.TotalPrice
                             };
+
+                            List<RoomListModel> roomList = bookingPost.RoomList;
+                            List<GuestListModel> guestList = bookingPost.GuestList;
                             
                             using (var database = new LogicLL())
                             {
-                                //save booking
-                                //get bookingId
-                                //save others
-                                //updade booking record
-
                                 database.AddBooking(mapper.Map<BookingLL>(booking));
-                                bookingPost.Booking.BookingId = 
+                                bookingId = 
                                     (mapper.Map<List<BookingModel>>(database.GetAllBookings())).Last().BookingId;
-
+                                bookingPost.Booking.BookingId = bookingId;
+                                bookingPost.Invoice.BookingId = bookingId;
+                                invoice.BookingId = bookingId;
 
                                 database.AddInvoice(mapper.Map<InvoiceLL>(invoice));
-                                bookingPost.Invoice.InvoiceId = 
+                                invoiceId =
                                     (mapper.Map<List<InvoiceModel>>(database.GetAllInvoices())).Last().InvoiceId;
+                                bookingPost.Booking.InvoiceId = invoiceId;
+                                bookingPost.Invoice.InvoiceId = invoiceId;
 
+                                foreach(var room in roomList)
+                                {
+                                    room.BookingId = bookingId;
+                                    database.AddRoomList(mapper.Map<RoomsListLL>(room));
+                                }
+
+                                foreach(var guest in guestList)
+                                {
+                                    guest.BookingId = bookingId;
+                                    database.AddGuestList(mapper.Map<GuestListLL>(guest));
+                                }
                             }
 
-                            InvoiceModel nesw = invoice;
+                            using (var database = new LogicLL())
+                                database.UpdateBooking(mapper.Map<BookingLL>(bookingPost.Booking));
 
                             return RedirectToAction(nameof(ShowAll));
                         }

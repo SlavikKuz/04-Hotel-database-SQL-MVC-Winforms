@@ -8,11 +8,11 @@ using System.Text;
 
 namespace HotelDb.DataLayer.Repositories
 {
-    public class InvoiceRepository:IRepository<InvoiceDL>
+    public class InvoicesRepository:IRepository<InvoiceDL>
     {
         private HotelDbContext database;
 
-        public InvoiceRepository(HotelDbContext context)
+        public InvoicesRepository(HotelDbContext context)
         {
             database = context;
         }

@@ -29,7 +29,7 @@ namespace HotelDb.DataLayer.Migrations
 
                     b.HasKey("BookingId", "RoomId");
 
-                    b.ToTable("BookedRoomsList");
+                    b.ToTable("RoomList");
                 });
 
             modelBuilder.Entity("HotelDb.DataLayer.Entities.BookingDL", b =>
@@ -114,7 +114,7 @@ namespace HotelDb.DataLayer.Migrations
 
                     b.HasKey("ClientId", "BookingId");
 
-                    b.ToTable("GuestsList");
+                    b.ToTable("GuestList");
                 });
 
             modelBuilder.Entity("HotelDb.DataLayer.Entities.HolidaysListDL", b =>
@@ -132,7 +132,7 @@ namespace HotelDb.DataLayer.Migrations
 
                     b.HasKey("HolidayId");
 
-                    b.ToTable("HolidaysList");
+                    b.ToTable("HolidayList");
                 });
 
             modelBuilder.Entity("HotelDb.DataLayer.Entities.InvoiceDL", b =>
@@ -204,7 +204,7 @@ namespace HotelDb.DataLayer.Migrations
 
                     b.HasKey("RoomId");
 
-                    b.ToTable("RoomPrices");
+                    b.ToTable("RoomPrice");
                 });
 #pragma warning restore 612, 618
         }

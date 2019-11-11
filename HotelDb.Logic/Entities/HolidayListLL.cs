@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HotelDb.Logic.Entities
 { 
-    public class HolidaysListLL
+    public class HolidayListLL
     {
         public long HolidayId { get; set; }
         [DataType(DataType.Date)]

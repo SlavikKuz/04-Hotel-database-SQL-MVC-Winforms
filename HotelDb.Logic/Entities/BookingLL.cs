@@ -18,18 +18,14 @@ namespace HotelDb.Logic.Entities
         
         public bool WithKids { get; set; }
 
-        public List<long> GuestListId { get; set; }
-
-        public Status BookingStatus { get; set; }
+        public Status Status { get; set; }
 
         public string Info { get; set; }
-
-        public List<long> BookedRoomsId { get; set; }
 
         public long InvoiceId { get; set; }
     }
     public enum Status
     {
-        Cofirmed, Cancelled
+        Confirmed, Fullfilled, Cancelled
     }
 }
