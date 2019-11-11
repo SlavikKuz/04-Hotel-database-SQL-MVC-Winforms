@@ -7,6 +7,7 @@ namespace HotelDb.Logic.Entities
     public class BookingLL
     {
         public long BookingId { get; set; }
+        
         public long ClientId { get; set; }
 
         public DateTime OrderDate { get; set; }
@@ -14,10 +15,17 @@ namespace HotelDb.Logic.Entities
         public DateTime DayFrom { get; set; }
 
         public DateTime DayTill { get; set; }
+        
         public bool WithKids { get; set; }
+
+        public List<long> GuestListId { get; set; }
+
         public Status BookingStatus { get; set; }
 
-        public string BookingInfo { get; set; }
+        public string Info { get; set; }
+
+        public List<long> BookedRoomsId { get; set; }
+
         public long InvoiceId { get; set; }
     }
     public enum Status

@@ -12,22 +12,20 @@ namespace HotelDb.WebUI.Models
         public BookingModel Booking { get; set; } = new BookingModel();
         public InvoiceModel Invoice { get; set; } = new InvoiceModel();
 
-        public List<SelectListItem> SelectClient { get; set; } = new List<SelectListItem>();
-        public List<SelectListItem> SelectRoom { get; set; } = new List<SelectListItem>();
-        public List<SelectListItem> SelectGuest { get; set; } = new List<SelectListItem>();
+        public List<SelectListItem> SelectListClient { get; set; } = new List<SelectListItem>();        
 
-        [Display(Name = "Room")]
-        public long RoomId { get; set; }
-        
-        [Display(Name = "Guests")]
+        [Display(Name = "Invited Guests:")]
+        public List<GuestListModel> GuestList { get; set; } = new List<GuestListModel>();
+        public List<SelectListItem> SelectListGuest { get; set; } = new List<SelectListItem>();
+        public List<string> ShowSelectedGuests { get; set; } = new List<string>();
+        [Display(Name = "Add Guest:")]
         public long GuestId { get; set; }
 
-        [Display(Name = "Selected Rooms")]
-        public List<string> SelectedRooms { get; set; } = new List<string>();
-
-        [Display(Name = "Selected Rooms")]
-        public List<string> SelectedGuests { get; set; } = new List<string>();
-
-        public decimal Price { get; set; }
+        [Display(Name = "Selected Rooms:")]
+        public List<RoomListModel> RoomList { get; set; } = new List<RoomListModel>();
+        public List<SelectListItem> SelectListRoom { get; set; } = new List<SelectListItem>();
+        public List<string> ShowSelectedRooms { get; set; } = new List<string>();
+        [Display(Name = "Add Room:")]
+        public long RoomId { get; set; }
     }
 }

@@ -53,18 +53,18 @@ namespace HotelDb.WebUI.Controllers
 
             using (var database = new LogicLL())
             {
-                bookingView.SelectClient = (mapper.Map<List<ClientModel>>(database.GetAllClients()))
+                bookingView.SelectListClient = (mapper.Map<List<ClientModel>>(database.GetAllClients()))
                     .Select(x => new SelectListItem { Text = x.ClientFullName, Value = x.ClientId.ToString() })
                     .ToList();
 
-                bookingView.SelectRoom = (mapper.Map<List<RoomModel>>
+                bookingView.SelectListRoom = (mapper.Map<List<RoomModel>>
                     (
                         database.GetAllRooms()).Where(x => x.Ready == true)
                     )
                     .Select(x => new SelectListItem { Text = x.RoomNumber, Value = x.RoomId.ToString() })
                     .ToList();
 
-                bookingView.SelectGuest = (mapper.Map<List<ClientModel>>(database.GetAllClients()))
+                bookingView.SelectListGuest = (mapper.Map<List<ClientModel>>(database.GetAllClients()))
                     .Select(x => new SelectListItem { Text = x.ClientFullName, Value = x.ClientId.ToString() })
                     .ToList();
             }
@@ -99,26 +99,28 @@ namespace HotelDb.WebUI.Controllers
                 allInvoices = mapper.Map<List<InvoiceModel>>(database.GetAllInvoices());
             }
 
-            bookingPost.SelectClient = allClients
+            bookingPost.SelectListClient = allClients
                     .Select(x => new SelectListItem { Text = x.ClientFullName, Value = x.ClientId.ToString() })
                     .ToList();
 
-            bookingPost.SelectRoom = allRooms
+            bookingPost.SelectListRoom = allRooms
                     .Select(x => new SelectListItem { Text = x.RoomNumber, Value = x.RoomId.ToString() })
                     .ToList();
 
-            bookingPost.SelectGuest = allGuests
+            bookingPost.SelectListGuest = allGuests
                     .Select(x => new SelectListItem { Text = x.ClientFullName, Value = x.ClientId.ToString() })
                     .ToList();
 
             switch (bookingButton)
             {
                 case "AddRoom":
-                    bookingPost.Booking.BookedRoomsId.Add(bookingPost.RoomId);
+                    bookingPost.RoomList.Add( new RoomListModel()
+                    { RoomId = bookingPost.RoomId });
                     break;
 
                 case "AddGuest":
-                    bookingPost.Booking.GuestListId.Add(bookingPost.GuestId);
+                    bookingPost.GuestList.Add( new GuestListModel() 
+                    { ClientId = bookingPost.GuestId });
                     break;
 
                 case "AddInvoice":
@@ -155,18 +157,46 @@ namespace HotelDb.WebUI.Controllers
                         {
                             //save roomList, return Id
                             //save guestList,return Id
-                            //save booking                           
+                            //save booking
+
+                            BookingModel booking = new BookingModel()
+                            {
+                                //bookingId =
+                                ClientId = bookingPost.Booking.ClientId,
+                                OrderDate = bookingPost.Booking.OrderDate,
+                                DayFrom = bookingPost.Booking.DayFrom,
+                                DayTill = bookingPost.Booking.DayTill,
+                                WithKids = bookingPost.Booking.WithKids,
+                                //List<long> GuestListId
+                                Status = bookingPost.Booking.Status,
+                                Info = bookingPost.Booking.Info
+                                //List<long> BookedRoomsId
+                                //InvoiceId
+                            };
+
                             InvoiceModel invoice = new InvoiceModel()
                             {
                                 BookingId = 404,
                                 ClientId = bookingPost.Booking.ClientId,
                                 TotalPrice = bookingPost.Invoice.TotalPrice
                             };
-
+                            
                             using (var database = new LogicLL())
                             {
+                                //save booking
+                                //get bookingId
+                                //save others
+                                //updade booking record
+
+                                database.AddBooking(mapper.Map<BookingLL>(booking));
+                                bookingPost.Booking.BookingId = 
+                                    (mapper.Map<List<BookingModel>>(database.GetAllBookings())).Last().BookingId;
+
+
                                 database.AddInvoice(mapper.Map<InvoiceLL>(invoice));
-                                invoice = (mapper.Map<List<InvoiceModel>>(database.GetAllInvoices())).Last();
+                                bookingPost.Invoice.InvoiceId = 
+                                    (mapper.Map<List<InvoiceModel>>(database.GetAllInvoices())).Last().InvoiceId;
+
                             }
 
                             InvoiceModel nesw = invoice;
@@ -180,16 +210,16 @@ namespace HotelDb.WebUI.Controllers
                     }
             }
 
-            foreach (var room in bookingPost.Booking.BookedRoomsId)
-                bookingPost.SelectedRooms.Add(
-                   allRooms.Where(x => x.RoomId == room)
+            foreach (var room in bookingPost.RoomList)
+                bookingPost.ShowSelectedRooms.Add(
+                   allRooms.Where(x => x.RoomId == room.RoomId)
                     .Select(x => x.RoomNumber)
                     .First()
                     .ToString());
 
-            foreach (var guest in bookingPost.Booking.GuestListId)
-                bookingPost.SelectedGuests.Add(
-                   allGuests.Where(x => x.ClientId == guest)
+            foreach (var guest in bookingPost.GuestList)
+                bookingPost.ShowSelectedGuests.Add(
+                   allGuests.Where(x => x.ClientId == guest.ClientId)
                     .Select(x => x.ClientFullName)
                     .First()
                     .ToString());

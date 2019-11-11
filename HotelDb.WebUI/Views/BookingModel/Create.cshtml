@@ -10,11 +10,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Booking.ClientId" class="control-label"></label>
-                <select asp-for="Booking.ClientId" asp-items="Model.SelectClient" class="form-control"></select>
+                <select asp-for="Booking.ClientId" asp-items="Model.SelectListClient" class="form-control"></select>
                 <span class="badge badge-light">
                     @Html.ActionLink("Add New Client", "Create", new { })
                 </span>
-                <span asp-validation-for="SelectClient" class="text-danger"></span>
+                <span asp-validation-for="SelectListClient" class="text-danger"></span>
             </div>
 
             <div class="form-group">
@@ -28,56 +28,51 @@
                 <span asp-validation-for="Booking.DayTill" class="text-danger"></span>
             </div>
 
+
             <div class="form-actions no-color input-group">
                 <div class="input-group mb-3">
                     <label asp-for="GuestId" class="control-label"></label>
-                    <select asp-for="GuestId" asp-items="Model.SelectGuest" class="form-control"></select>
-                    <span asp-validation-for="SelectGuest" class="text-danger"></span>
+                    <select asp-for="GuestId" asp-items="Model.SelectListGuest" class="form-control"></select>
+                    <span asp-validation-for="GuestId" class="text-danger"></span>
                     <div class="input-group-append">
                         <input type="submit" name="bookingButton" value="AddGuest" class="btn btn-light btn-sm" />
                     </div>
                 </div>
             </div>
-
             <div class="form-group">
-                @Html.DisplayNameFor(model => model.Booking.GuestListId)
+                @Html.DisplayNameFor(model => model.GuestList)
                 <div class="form-control">
-                    @foreach (var item in Model.SelectedGuests)
-                        @(item.ToString() + " ")
+                    @foreach (var item in Model.ShowSelectedGuests)
+                        @(item + ", ")
                 </div>
             </div>
+            @if (Model.GuestList != null)
+                for (var i = 0; i < Model.GuestList.Count; i++)
+                    @Html.HiddenFor(model => Model.GuestList[i].ClientId)
 
-            @if (Model.Booking.BookedRoomsId != null)
-                for (var i = 0; i < Model.Booking.BookedRoomsId.Count; i++)
-                    @Html.HiddenFor(model => Model.Booking.BookedRoomsId[i])
-
-
-
-
-
-            @if (Model.Booking.GuestListId != null)
-                for (var i = 0; i < Model.Booking.GuestListId.Count; i++)
-                    @Html.HiddenFor(model => Model.Booking.GuestListId[i])
 
             <div class="form-actions no-color input-group">
                 <div class="input-group mb-3">
                     <label asp-for="RoomId" class="control-label"></label>
-                    <select asp-for="RoomId" asp-items="Model.SelectRoom" class="form-control"></select>
-                    <span asp-validation-for="SelectRoom" class="text-danger"></span>
+                    <select asp-for="RoomId" asp-items="Model.SelectListRoom" class="form-control"></select>
+                    <span asp-validation-for="RoomId" class="text-danger"></span>
                     <div class="input-group-append">
                         <input type="submit" name="bookingButton" value="AddRoom" class="btn btn-light btn-sm" />
                     </div>
                 </div>
             </div>
-
             <div class="form-group">
-                @Html.DisplayNameFor(model => model.Booking.BookedRoomsId)
+                @Html.DisplayNameFor(model => model.RoomList)
                 <div class="form-control">
-                    @foreach (var item in Model.SelectedRooms)
-                        @(item.ToString() + " ")
+                    @foreach (var item in Model.ShowSelectedRooms)
+                        @(item.ToString() + ", ")
                 </div>
             </div>
-
+            @if (Model.RoomList != null)
+                for (var i = 0; i < Model.RoomList.Count; i++)
+                    @Html.HiddenFor(model => Model.RoomList[i].RoomId)
+            
+            
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Booking.WithKids" />

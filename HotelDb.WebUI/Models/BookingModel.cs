@@ -23,15 +23,14 @@ namespace HotelDb.WebUI.Models
         
         public bool WithKids { get; set; }
 
-        public List<long> GuestListId { get; set; } = new List<long>();
+        public long GuestListId { get; set; }    
         
         public Status Status { get; set; }
         
         [Display(Name = "Additional Information")]
         public string Info { get; set; }
         
-        [Display(Name = "Booking Rooms")]
-        public List<long> BookedRoomsId { get; set; } = new List<long>();
+        public long RoomListId { get; set; }
         
         public long InvoiceId { get; set; }
     }
