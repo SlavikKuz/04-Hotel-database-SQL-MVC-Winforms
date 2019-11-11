@@ -4,11 +4,6 @@
     ViewData["Title"] = "ShowAll";
 }
 
-<h1>All Bookings</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -16,7 +11,7 @@
                 @Html.DisplayNameFor(model => model.Booking.BookingId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Booking.BookingId)
+                @Html.DisplayNameFor(model => model.Client.ClientFullName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Booking.OrderDate)
@@ -31,13 +26,13 @@
                 @Html.DisplayNameFor(model => model.Booking.WithKids)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Booking.Status)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Booking.Info)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Booking.InvoiceId)
+                @Html.DisplayNameFor(model => model.Invoice.TotalPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.Status)
             </th>
             <th></th>
         </tr>
@@ -49,7 +44,7 @@
                 @Html.DisplayFor(modelItem => item.Booking.BookingId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Booking.BookingId)
+                @Html.DisplayFor(modelItem => item.Client.ClientFullName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Booking.OrderDate)
@@ -64,18 +59,16 @@
                 @Html.DisplayFor(modelItem => item.Booking.WithKids)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Booking.Status)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Booking.Info)
             </td>
             <td>
-                @Html.DisplayNameFor(model => model.Booking.InvoiceId)
+                @Html.DisplayFor(modelItem => item.Invoice.TotalPrice)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.DisplayFor(modelItem => item.Booking.Status)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=item.Booking.BookingId }) 
             </td>
         </tr>
 }

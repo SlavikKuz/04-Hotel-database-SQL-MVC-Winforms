@@ -19,10 +19,10 @@ namespace HotelDb.WebUI.Controllers
 
         public ActionResult ShowAll()
         {
-            List<HolidayModel> holidays = new List<HolidayModel>();
+            List<HolidayListModel> holidays = new List<HolidayListModel>();
 
             using (var database = new LogicLL())
-                holidays = mapper.Map<List<HolidayModel>>(database.GetAllHolidays());
+                holidays = mapper.Map<List<HolidayListModel>>(database.GetAllHolidayList());
            
             return View(holidays);
         }
@@ -34,7 +34,7 @@ namespace HotelDb.WebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(HolidayModel dayHoliday)
+        public ActionResult Create(HolidayListModel dayHoliday)
         {
             try
             {
@@ -51,10 +51,10 @@ namespace HotelDb.WebUI.Controllers
 
         public ActionResult Delete(long holidayId)
         {
-            HolidayModel holiday = new HolidayModel();
+            HolidayListModel holiday = new HolidayListModel();
 
             using (var database = new LogicLL())
-                holiday = (mapper.Map<List<HolidayModel>>(database.GetAllHolidays()))
+                holiday = (mapper.Map<List<HolidayListModel>>(database.GetAllHolidayList()))
                     .Where(x => x.HolidayId == holidayId)
                     .First();
 
@@ -63,7 +63,7 @@ namespace HotelDb.WebUI.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(HolidayModel holiday)
+        public ActionResult Delete(HolidayListModel holiday)
         {
             try
             {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HotelDb.Logic.Entities
 {
-    public class RoomsListLL
+    public class RoomListLL
     {
         public long BookingId { get; set; }
         public long RoomId { get; set; }

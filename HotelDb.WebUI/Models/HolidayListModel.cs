@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HotelDb.WebUI.Models
 { 
-    public class HolidayModel
+    public class HolidayListModel
     {
         public long HolidayId { get; set; }
         [DataType(DataType.Date)]

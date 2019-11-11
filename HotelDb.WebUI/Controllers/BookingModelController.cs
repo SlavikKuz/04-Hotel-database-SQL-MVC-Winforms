@@ -23,24 +23,43 @@ namespace HotelDb.WebUI.Controllers
         public ActionResult ShowAll()
         {
             List<BookingViewModel> bookingsView = new List<BookingViewModel>();
-            List<BookingModel> bookings = new List<BookingModel>();
-            List<ClientModel> clients = new List<ClientModel>();
-            //List<GuestModel> guests = new List<GuestModel>();
+            List<BookingModel> allBookings = new List<BookingModel>();
+            List<ClientModel> allClients = new List<ClientModel>();
+            List<GuestListModel> allGuestList = new List<GuestListModel>();
+            List<HolidayListModel> allHolidays = new List<HolidayListModel>();
+            List<InvoiceModel> allInvoices = new List<InvoiceModel>();
+            List<RoomListModel> allRoomList = new List<RoomListModel>();
+            List<RoomModel> allRooms = new List<RoomModel>();
+            List<RoomPriceModel> allRoomPrice = new List<RoomPriceModel>();
 
             using (var database = new LogicLL())
             {
-                bookings = mapper.Map<List<BookingModel>>(database.GetAllBookings());
-                clients = mapper.Map<List<ClientModel>>(database.GetAllClients());
-            //    guests = mapper.Map<List<GuestModel>>(database.GetAllGuest());
+                allBookings = mapper.Map<List<BookingModel>>(database.GetAllBookings());
+                allClients = mapper.Map<List<ClientModel>>(database.GetAllClients());
+                allGuestList = mapper.Map<List<GuestListModel>>(database.GetAllGuestList());
+                allHolidays = mapper.Map<List<HolidayListModel>>(database.GetAllHolidayList());
+                allInvoices = mapper.Map<List<InvoiceModel>>(database.GetAllInvoices());
+                allRoomList = mapper.Map<List<RoomListModel>>(database.GetAllRoomList());
+                allRooms = mapper.Map<List<RoomModel>>(database.GetAllRooms());
+                allRoomPrice = mapper.Map<List<RoomPriceModel>>(database.GetAllRoomPrice());
             }
 
-            foreach (var b in bookings)
+            foreach (var b in allBookings)
             {
                 bookingsView.Add(new BookingViewModel
                 {
-                    Booking = b
-                    //Client = clients.Where(x => x.ClientId == b.ClientId).First()
-                    //Guests = guests.Where(x => x.BookingId == b.BookingId).ToList()
+                    Booking = b,
+                    Client = allClients.Where(x => x.ClientId == b.ClientId).First(),
+                    Invoice = allInvoices.Where(x => x.BookingId == b.BookingId).First(),
+                    SelectListClient = null,
+                    GuestList = null,
+                    SelectListGuest = null,
+                    ShowSelectedGuests = null,
+                    GuestId = 0,
+                    RoomList = null,
+                    SelectListRoom = null,
+                    ShowSelectedRooms = null,
+                    RoomId = 0
                 });
             }
 
@@ -79,7 +98,7 @@ namespace HotelDb.WebUI.Controllers
             List<ClientModel> allClients;
             List<RoomModel> allRooms;
             List<ClientModel> allGuests;
-            List<HolidayModel> allHolidays;
+            List<HolidayListModel> allHolidays;
             List<RoomPriceModel> allRoomPrices;
             List<InvoiceModel> allInvoices;
 
@@ -92,9 +111,9 @@ namespace HotelDb.WebUI.Controllers
 
                 allGuests = mapper.Map<List<ClientModel>>(database.GetAllClients());
 
-                allHolidays = mapper.Map<List<HolidayModel>>(database.GetAllHolidays());
+                allHolidays = mapper.Map<List<HolidayListModel>>(database.GetAllHolidayList());
 
-                allRoomPrices = mapper.Map<List<RoomPriceModel>>(database.GetAllRoomPrices());
+                allRoomPrices = mapper.Map<List<RoomPriceModel>>(database.GetAllRoomPrice());
 
                 allInvoices = mapper.Map<List<InvoiceModel>>(database.GetAllInvoices());
             }
@@ -207,7 +226,7 @@ namespace HotelDb.WebUI.Controllers
                                 foreach(var room in roomList)
                                 {
                                     room.BookingId = bookingId;
-                                    database.AddRoomList(mapper.Map<RoomsListLL>(room));
+                                    database.AddRoomList(mapper.Map<RoomListLL>(room));
                                 }
 
                                 foreach(var guest in guestList)

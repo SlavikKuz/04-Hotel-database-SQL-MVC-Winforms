@@ -14,6 +14,15 @@ namespace HotelDb.Logic
         private UnitOfWork DataBase { get; } = new UnitOfWork();
         private IMapper mapper = ObjectMapper.Mapper;
 
+         public IEnumerable<BookingLL> GetAllBookings()
+        {
+            List<BookingLL> result = new List<BookingLL>();
+
+            foreach (BookingDL booking in DataBase.Bookings.ReadAll())
+                result.Add(mapper.Map<BookingLL>(booking));
+            return result;
+        }       
+        
         public IEnumerable<ClientLL> GetAllClients()
         {
             List<ClientLL> result = new List<ClientLL>();
@@ -21,23 +30,41 @@ namespace HotelDb.Logic
             foreach (ClientDL client in DataBase.Clients.ReadAll())
                 result.Add(mapper.Map<ClientLL>(client));
             return result;
-        }
-
-        public IEnumerable<HolidayListLL> GetAllHolidays()
+        }        
+        
+        public IEnumerable<GuestListLL> GetAllGuestList()
+        {
+            List<GuestListLL> result = new List<GuestListLL>();
+            
+            foreach (GuestListDL guest in DataBase.GuestList.ReadAll())
+                result.Add(mapper.Map<GuestListLL>(guest));
+            return result;
+        }        
+        
+        public IEnumerable<HolidayListLL> GetAllHolidayList()
         {
             List<HolidayListLL> result = new List<HolidayListLL>();
 
             foreach (HolidayListDL day in DataBase.HolidayList.ReadAll())
                 result.Add(mapper.Map<HolidayListLL>(day));
             return result;
+        }  
+        
+        public IEnumerable<InvoiceLL> GetAllInvoices()
+        {
+            List<InvoiceLL> result = new List<InvoiceLL>();
+
+            foreach (InvoiceDL invoice in DataBase.Invoices.ReadAll())
+                result.Add(mapper.Map<InvoiceLL>(invoice));
+            return result;
         }
 
-        public IEnumerable<BookingLL> GetAllBookings()
+        public IEnumerable<RoomListLL> GetAllRoomList()
         {
-            List<BookingLL> result = new List<BookingLL>();
+            List<RoomListLL> result = new List<RoomListLL>();
 
-            foreach (BookingDL booking in DataBase.Bookings.ReadAll())
-                result.Add(mapper.Map<BookingLL>(booking));
+            foreach (RoomListDL roomList in DataBase.RoomList.ReadAll())
+                result.Add(mapper.Map<RoomListLL>(roomList));
             return result;
         }
 
@@ -50,16 +77,7 @@ namespace HotelDb.Logic
             return result;
         }
 
-        public IEnumerable<GuestListLL> GetAllGuest()
-        {
-            List<GuestListLL> result = new List<GuestListLL>();
-            
-            foreach (GuestListDL guest in DataBase.GuestList.ReadAll())
-                result.Add(mapper.Map<GuestListLL>(guest));
-            return result;
-        }
-
-        public IEnumerable<RoomPriceLL> GetAllRoomPrices()
+        public IEnumerable<RoomPriceLL> GetAllRoomPrice()
         {
             List<RoomPriceLL> result = new List<RoomPriceLL>();
 
@@ -68,14 +86,6 @@ namespace HotelDb.Logic
             return result;
         }
 
-        public IEnumerable<InvoiceLL> GetAllInvoices()
-        {
-            List<InvoiceLL> result = new List<InvoiceLL>();
-
-            foreach (InvoiceDL invoice in DataBase.Invoices.ReadAll())
-                result.Add(mapper.Map<InvoiceLL>(invoice));
-            return result;
-        }
 
 
         public void AddRoom(RoomLL room)
@@ -114,7 +124,7 @@ namespace HotelDb.Logic
             DataBase.Save();
         }
 
-        public void AddRoomList(RoomsListLL roomList)
+        public void AddRoomList(RoomListLL roomList)
         {
             DataBase.RoomList.Create(mapper.Map<RoomListDL>(roomList));
             DataBase.Save();

@@ -11,6 +11,7 @@ namespace HotelDb.WebUI.Models
     {
         public BookingModel Booking { get; set; } = new BookingModel();
         public InvoiceModel Invoice { get; set; } = new InvoiceModel();
+        public ClientModel Client { get; set; } = new ClientModel();
 
         public List<SelectListItem> SelectListClient { get; set; } = new List<SelectListItem>();        
 
