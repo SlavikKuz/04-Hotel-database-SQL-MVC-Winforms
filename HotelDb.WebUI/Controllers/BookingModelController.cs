@@ -143,7 +143,7 @@ namespace HotelDb.WebUI.Controllers
                     { ClientId = bookingPost.GuestId });
                     break;
 
-                case "AddInvoice":
+                case "Invoice":
 
                     RoomPriceModel roomPrice;
                     decimal totalPrice = 0;

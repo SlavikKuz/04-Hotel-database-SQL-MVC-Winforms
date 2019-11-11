@@ -11,7 +11,7 @@ namespace HotelDb.WebUI.Models
         [StringLength(20, MinimumLength = 2)]
         [Required]
         public string FirstName { get; set; }
-        
+
         [Display(Name = "Last Name")]
         [StringLength(20, MinimumLength = 2)]
         [Required]
