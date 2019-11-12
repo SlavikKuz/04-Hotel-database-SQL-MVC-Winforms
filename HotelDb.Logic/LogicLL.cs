@@ -142,6 +142,12 @@ namespace HotelDb.Logic
             DataBase.Save();
         }
 
+        public void UpdateRoomList(RoomPriceLL roomPrice)
+        {
+            DataBase.RoomPrice.Update(mapper.Map<RoomPriceDL>(roomPrice));
+            DataBase.Save();
+        }
+
         public void UpdateClient(ClientLL client)
         {
             DataBase.Clients.Update(mapper.Map<ClientDL>(client));

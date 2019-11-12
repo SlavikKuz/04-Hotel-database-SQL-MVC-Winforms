@@ -12,11 +12,11 @@ namespace HotelDb.DataLayer.Entities
         public long RoomPriceId { get; set; }
         [Column(TypeName = "nvarchar(10)")]
         public string RoomNumber { get; set; }
-        [Column(TypeName = "decimal(6,2)")]
+        [Column(TypeName = "decimal(5,0)")]
         public decimal AveragePrice { get; set; }
-        [Column(TypeName = "decimal(6,2)")]
+        [Column(TypeName = "decimal(5,0)")]
         public decimal WeekendPrice { get; set; }
-        [Column(TypeName = "decimal(6,2)")]
+        [Column(TypeName = "decimal(5,0)")]
         public decimal HolidayPrice { get; set; }
     }
 }

@@ -1,0 +1,40 @@
+﻿@model HotelDb.WebUI.Models.RoomPriceModel
+
+@{
+    ViewData["Title"] = "EditPrice";
+}
+
+<div class="row">
+    <div class="col-md-4 mx-auto">
+        <form asp-action="EditPrice">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+                <input asp-for="RoomPriceId" hidden />
+                <input asp-for="RoomNumber" hidden />
+
+            <div class="form-group">
+                <label asp-for="AveragePrice" class="control-label"></label>
+                <input asp-for="AveragePrice" class="form-control" />
+                <span asp-validation-for="AveragePrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WeekendPrice" class="control-label"></label>
+                <input asp-for="WeekendPrice" class="form-control" />
+                <span asp-validation-for="WeekendPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HolidayPrice" class="control-label"></label>
+                <input asp-for="HolidayPrice" class="form-control" />
+                <span asp-validation-for="HolidayPrice" class="text-danger"></span>
+            </div>
+            <div class="form-row">
+                <input type="submit" value="Save" class="btn btn-danger mx-auto" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

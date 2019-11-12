@@ -119,5 +119,49 @@ namespace HotelDb.WebUI.Controllers
                 return View();
             }
         }
+
+        public ActionResult ShowPrice(string roomNumber)
+        {
+            RoomPriceModel roomPrice;
+
+            using (var database = new LogicLL())
+                roomPrice = (mapper.Map<List<RoomPriceModel>>(database.GetAllRoomPrice()))
+                            .Where(x => x.RoomNumber.Contains(roomNumber))
+                            .First();      
+
+            return View(roomPrice);
+        }
+
+
+        public ActionResult EditPrice(int id)
+        {
+            RoomPriceModel roomPrice;
+
+            using (var database = new LogicLL())
+                roomPrice = (mapper.Map<List<RoomPriceModel>>(database.GetAllRoomPrice()))
+                            .Where(x => x.RoomPriceId == id)
+                            .First();
+
+            return View(roomPrice);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditPrice(RoomPriceModel roomList)
+        {
+            try
+            {
+                using (var database = new LogicLL())
+                    database.UpdateRoomList(mapper.Map<RoomPriceLL>(roomList));
+
+                return RedirectToAction("ShowAll");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        
+
     }
 }
