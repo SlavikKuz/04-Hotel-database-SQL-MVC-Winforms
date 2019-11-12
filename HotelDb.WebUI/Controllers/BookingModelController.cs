@@ -147,10 +147,12 @@ namespace HotelDb.WebUI.Controllers
 
                     RoomPriceModel roomPrice;
                     decimal totalPrice = 0;
+                    string bookedRoomNumber;
 
                     foreach(var room in bookingPost.RoomList)
                     {
-                        roomPrice = allRoomPrices.Where(x => x.RoomId == room.RoomId).First();
+                        bookedRoomNumber = allRooms.Where(x => x.RoomId == room.RoomId).Select(x => x.RoomNumber).First();
+                        roomPrice = allRoomPrices.Where(x => x.RoomNumber == bookedRoomNumber).First();
 
                         for (DateTime day = bookingPost.Booking.DayFrom; day <= bookingPost.Booking.DayTill; day = day.AddDays(1))
                         {
@@ -265,48 +267,91 @@ namespace HotelDb.WebUI.Controllers
             return View(bookingPost);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-        // GET: BookingModel
-        public ActionResult Index()
+        public ActionResult Search()
         {
-            return View();
+            return View(new List<BookingViewModel>());
         }
 
-        // GET: BookingModel/Details/5
-        public ActionResult Details(int id)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Search(string searchString)
         {
-            return View();
+            List<BookingViewModel> input = new List<BookingViewModel>();
+            List<BookingViewModel> output = null;
+
+            List<BookingModel> allBookings = new List<BookingModel>();
+            List<ClientModel> allClients = new List<ClientModel>();
+            List<GuestListModel> allGuestList = new List<GuestListModel>();
+            List<HolidayListModel> allHolidays = new List<HolidayListModel>();
+            List<InvoiceModel> allInvoices = new List<InvoiceModel>();
+            List<RoomListModel> allRoomList = new List<RoomListModel>();
+            List<RoomModel> allRooms = new List<RoomModel>();
+            List<RoomPriceModel> allRoomPrice = new List<RoomPriceModel>();
+
+            using (var database = new LogicLL())
+            {
+                allBookings = mapper.Map<List<BookingModel>>(database.GetAllBookings());
+                allClients = mapper.Map<List<ClientModel>>(database.GetAllClients());
+                allGuestList = mapper.Map<List<GuestListModel>>(database.GetAllGuestList());
+                allHolidays = mapper.Map<List<HolidayListModel>>(database.GetAllHolidayList());
+                allInvoices = mapper.Map<List<InvoiceModel>>(database.GetAllInvoices());
+                allRoomList = mapper.Map<List<RoomListModel>>(database.GetAllRoomList());
+                allRooms = mapper.Map<List<RoomModel>>(database.GetAllRooms());
+                allRoomPrice = mapper.Map<List<RoomPriceModel>>(database.GetAllRoomPrice());
+            }
+
+            foreach (var b in allBookings)
+            {
+                input.Add(new BookingViewModel
+                {
+                    Booking = b,
+                    Client = allClients.Where(x => x.ClientId == b.ClientId).First(),
+                    Invoice = allInvoices.Where(x => x.BookingId == b.BookingId).First(),
+                    SelectListClient = null,
+                    GuestList = null,
+                    SelectListGuest = null,
+                    ShowSelectedGuests = null,
+                    GuestId = 0,
+                    RoomList = null,
+                    SelectListRoom = null,
+                    ShowSelectedRooms = null,
+                    RoomId = 0
+                });
+            }
+
+            foreach (var b in input)
+                output = input.Where(x =>
+                                   (x.Client.FirstName.Contains(searchString)) ||
+                                   (x.Client.LastName.Contains(searchString)) ||
+                                   (x.Client.Email.Contains(searchString)) ||
+                                   (x.Client.Tel.Contains(searchString))).ToList();
+
+            return View(output);
+
         }
 
-
-
-        // GET: BookingModel/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            BookingModel booking = new BookingModel();
+
+            using (var database = new LogicLL())
+                booking = (mapper.Map<List<BookingModel>>(database.GetAllBookings()))
+                    .Where(x => x.BookingId == id)
+                    .First();
+
+            return View(booking);
         }
 
-        // POST: BookingModel/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, BookingModel booking)
         {
             try
             {
-                // TODO: Add update logic here
+                using (var database = new LogicLL())
+                    database.UpdateBooking(mapper.Map<BookingLL>(booking));
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("ShowAll");
             }
             catch
             {
@@ -314,27 +359,5 @@ namespace HotelDb.WebUI.Controllers
             }
         }
 
-        // GET: BookingModel/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: BookingModel/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

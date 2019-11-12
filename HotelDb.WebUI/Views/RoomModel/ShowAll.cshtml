@@ -28,33 +28,37 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoomNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberBeds)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Floor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoomInfo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ready)
-            </td>
-            <td>
-                <span class="badge badge-light">
-                    @Html.ActionLink("Edit", "Edit", new { id = item.RoomId })
-                </span>
-            </td>
-        </tr>
-}
-    </tbody>
 </table>
+<div style="height: 600px; overflow-y: scroll; overflow-x:hidden">
+    <table class="table">
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoomNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumberBeds)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Floor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoomInfo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ready)
+                    </td>
+                    <td>
+                        <span class="badge badge-light">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.RoomId })
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

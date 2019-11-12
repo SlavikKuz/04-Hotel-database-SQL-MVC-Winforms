@@ -1,0 +1,39 @@
+﻿@model HotelDb.WebUI.Models.InvoiceModel
+
+@{
+    ViewData["Title"] = "Invoice";
+}
+
+
+
+<div class="col-md-4 mx-auto">
+    <h1>Invoice</h1>
+    <hr />
+    <dl class="row">
+        <dt class = "col-md-6">
+            @Html.DisplayNameFor(model => model.InvoiceId)
+        </dt>
+        <dd class = "col-md-6">
+            @Html.DisplayFor(model => model.InvoiceId)
+        </dd>
+        <dt class = "col-md-6">
+            @Html.DisplayNameFor(model => model.ClientId)
+        </dt>
+        <dd class = "col-md-6">
+            @Html.DisplayFor(model => model.ClientId)
+        </dd>
+        <dt class = "col-md-6">
+            @Html.DisplayNameFor(model => model.BookingId)
+        </dt>
+        <dd class = "col-md-6">
+            @Html.DisplayFor(model => model.BookingId)
+        </dd>
+        <dt class = "col-md-6">
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+        <dd class = "col-md-6">
+            @Html.DisplayFor(model => model.TotalPrice)
+        </dd>
+    </dl>
+</div>
+

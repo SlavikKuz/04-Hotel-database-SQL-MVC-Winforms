@@ -16,21 +16,25 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.HolidayDay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HolidayName)
-            </td>
-            <td>
-                <span class="badge badge-light">
-                    @Html.ActionLink("Delete", "Delete", new { item.HolidayId })
-                </span>
-            </td>
-        </tr>
-}
-    </tbody>
 </table>
+<div style="height: 600px; overflow-y: scroll; overflow-x:hidden">
+    <table class="table col-md-6 mx-auto">
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HolidayDay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HolidayName)
+                    </td>
+                    <td>
+                        <span class="badge badge-light">
+                            @Html.ActionLink("Delete", "Delete", new { item.HolidayId })
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

@@ -4,73 +4,84 @@
     ViewData["Title"] = "ShowAll";
 }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking.BookingId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Client.ClientFullName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking.OrderDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking.DayFrom)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking.DayTill)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking.WithKids)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking.Info)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Invoice.TotalPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking.Status)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Booking.BookingId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Client.ClientFullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Booking.OrderDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Booking.DayFrom)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Booking.DayTill)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Booking.WithKids)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Booking.Info)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Invoice.TotalPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Booking.Status)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {  id=item.Booking.BookingId }) 
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Booking.BookingId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Client.ClientFullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Booking.OrderDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Booking.DayFrom)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Booking.DayTill)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Booking.WithKids)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Invoice.TotalPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Booking.Status)
+                </th>
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Booking.Info)
+                </th>
+            </tr>
+        </thead>
+        </table>
+        <div style="height: 600px; overflow-y: scroll; overflow-x:hidden">
+            <table class="table">
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Booking.BookingId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Client.ClientFullName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Booking.OrderDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Booking.DayFrom)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Booking.DayTill)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Booking.WithKids)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Invoice.TotalPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Booking.Status)
+                            </td>
+                            <td>
+                                <span class="badge badge-light">
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Booking.BookingId })
+                                </span>
+                                <span class="badge badge-light">
+                                    @Html.ActionLink("Invoice", "Invoice", "ClientModel", new { id = item.Booking.BookingId })
+                                </span>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Booking.Info)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>

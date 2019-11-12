@@ -33,39 +33,44 @@
             <th>
                 @Html.DisplayNameFor(model => model.ClientInfo)
             </th>
+            <th>
+            </th>
         </tr>
     </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ClientFullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ClientFullAddress)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Tel)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ClientInfo)
-                </td>
-                <td>
-                    <span class="badge badge-light">
-                        @Html.ActionLink("Edit Client", "Edit", new { id = item.ClientId })
-                    </span>
-                    <span class="badge badge-light">
-                        @Html.ActionLink("Booking History", "History", new { id = item.ClientId })
-                    </span>
-                </td>
-            </tr>
-        }
-    </tbody>
 </table>
+<div style="height: 600px; overflow-y: scroll; overflow-x:hidden">
+    <table class="table">
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ClientFullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ClientFullAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ClientInfo)
+                    </td>
+                    <td>
+                        <span class="badge badge-light">
+                            @Html.ActionLink("Edit Client", "Edit", new { id = item.ClientId })
+                        </span>
+                        <span class="badge badge-light">
+                            @Html.ActionLink("Booking History", "History", new { id = item.ClientId })
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
 
 

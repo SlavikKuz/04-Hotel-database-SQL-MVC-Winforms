@@ -312,3 +312,8 @@ D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomMode
 D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\HolidayModel\Create.cshtml.g.cs
 D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\HolidayModel\Delete.cshtml.g.cs
 D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\HolidayModel\ShowAll.cshtml.g.cs
+d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\BookingModel\Search.cshtml.g.cs
+d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\BookingModel\Edit.cshtml.g.cs
+d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\ClientModel\History.cshtml.g.cs
+d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\ClientModel\Invoice.cshtml.g.cs
+d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomModel\Price.cshtml.g.cs

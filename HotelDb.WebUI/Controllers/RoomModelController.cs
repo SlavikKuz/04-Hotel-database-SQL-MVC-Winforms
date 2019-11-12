@@ -58,7 +58,7 @@ namespace HotelDb.WebUI.Controllers
                 using (var database = new LogicLL())
                     database.AddRoom(mapper.Map<RoomLL>(room));
 
-                    return RedirectToAction("ShowAll");
+                    return RedirectToAction("Price", new { @roomNumber = room.RoomNumber });
             }
             catch (Exception ex)
             {
@@ -90,6 +90,31 @@ namespace HotelDb.WebUI.Controllers
                     return RedirectToAction("ShowAll");
             }
             catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult Price(string roomNumber)
+        {
+            RoomPriceModel roomPrice = new RoomPriceModel()
+            { RoomNumber = roomNumber };
+
+            return View(roomPrice);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PriceSave(RoomPriceModel roomPrice)
+        {
+            try
+            {
+                using (var database = new LogicLL())
+                    database.AddRoomPrice(mapper.Map<RoomPriceLL>(roomPrice));
+
+                return RedirectToAction("ShowAvailable");
+            }
+            catch (Exception ex)
             {
                 return View();
             }

@@ -1,0 +1,58 @@
+﻿@model HotelDb.WebUI.Models.BookingModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row">
+    <div class="col-md-4 mx-auto">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="BookingId" hidden />
+            <input asp-for="ClientId" hidden />
+            <input asp-for="OrderDate" hidden />
+            <input asp-for="InvoiceId" hidden />
+
+
+            <div class="form-group">
+                <label asp-for="DayFrom" class="control-label"></label>
+                <input asp-for="DayFrom" class="form-control" />
+                <span asp-validation-for="DayFrom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DayTill" class="control-label"></label>
+                <input asp-for="DayTill" class="form-control" />
+                <span asp-validation-for="DayTill" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="WithKids" /> @Html.DisplayNameFor(model => model.WithKids)
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select class="form-control" id="Status" name="Status">
+                    <option>Confirmed</option>
+                    <option>Fullfilled</option>
+                    <option>Cancelled</option>
+                </select>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Info" class="control-label"></label>
+                <input asp-for="Info" class="form-control" />
+                <span asp-validation-for="Info" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary mx-auto" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,47 @@
+﻿@model HotelDb.WebUI.Models.ClientViewModel
+
+@{
+    ViewData["Title"] = "History";
+}
+
+<table class="table col-md-6 mx-auto">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Client.ClientFullName)
+            </th>
+            <th>
+                Order Date
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Invoice No
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var b in Model.Bookings)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Client.ClientFullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => b.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => b.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => b.InvoiceId)
+            </td>
+            <td>
+                @Html.ActionLink("Show Invoice", "Invoice", new { id=b.InvoiceId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

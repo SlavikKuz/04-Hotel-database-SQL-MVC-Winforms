@@ -106,5 +106,36 @@ namespace HotelDb.WebUI.Controllers
             }
         }
 
+        public ActionResult History(int id)
+        {
+            ClientViewModel clientView = new ClientViewModel();
+
+            using (var database = new LogicLL())
+            {
+                clientView.Client = (mapper.Map<List<ClientModel>>(database.GetAllClients()))
+                    .Where(x => x.ClientId == id)
+                    .First();
+
+                clientView.Bookings = (mapper.Map<List<BookingModel>>(database.GetAllBookings()))
+                    .Where(x => x.ClientId == id).ToList();
+
+                clientView.Invoices = (mapper.Map<List<InvoiceModel>>(database.GetAllInvoices()))
+                    .Where(x => x.ClientId == id).ToList();
+            }
+
+            return View(clientView);
+        }
+
+        public ActionResult Invoice(int id)
+        {
+            InvoiceModel invoice = new InvoiceModel();
+
+            using (var database = new LogicLL())
+                invoice = (mapper.Map<List<InvoiceModel>>(database.GetAllInvoices()))
+                    .Where(x => x.BookingId == id)
+                    .First();
+
+            return View(invoice);
+        }
     }
 }
