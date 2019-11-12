@@ -10,8 +10,7 @@ namespace HotelDb.DataLayer.Entities
     {
         [Key]
         public long RoomPriceId { get; set; }
-        [Column(TypeName = "nvarchar(10)")]
-        public string RoomNumber { get; set; }
+
         [Column(TypeName = "decimal(5,0)")]
         public decimal AveragePrice { get; set; }
         [Column(TypeName = "decimal(5,0)")]

@@ -15,7 +15,6 @@ namespace HotelDb.WebUI.Models
         [Required]
         public string HolidayName { get; set; }
 
-
         // DateTimeFormatInfo dtfi = CultureInfo.CreateSpecificCulture("nb-NO").DateTimeFormat;
         // return HolidayDay.Date.ToString("d", dtfi);           
 

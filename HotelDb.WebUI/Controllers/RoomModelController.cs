@@ -95,13 +95,13 @@ namespace HotelDb.WebUI.Controllers
             }
         }
 
-        public ActionResult Price(string roomNumber)
-        {
-            RoomPriceModel roomPrice = new RoomPriceModel()
-            { RoomNumber = roomNumber };
+        //public ActionResult Price(string roomNumber)
+        //{
+        //    RoomPriceModel roomPrice = new RoomPriceModel()
+        //    { RoomNumber = roomNumber };
 
-            return View(roomPrice);
-        }
+        //    return View(roomPrice);
+        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -120,17 +120,17 @@ namespace HotelDb.WebUI.Controllers
             }
         }
 
-        public ActionResult ShowPrice(string roomNumber)
-        {
-            RoomPriceModel roomPrice;
+        //public ActionResult ShowPrice(string roomNumber)
+        //{
+        //    RoomPriceModel roomPrice;
 
-            using (var database = new LogicLL())
-                roomPrice = (mapper.Map<List<RoomPriceModel>>(database.GetAllRoomPrice()))
-                            .Where(x => x.RoomNumber.Contains(roomNumber))
-                            .First();      
+        //    using (var database = new LogicLL())
+        //        roomPrice = (mapper.Map<List<RoomPriceModel>>(database.GetAllRoomPrice()))
+        //                    .Where(x => x.RoomNumber.Contains(roomNumber))
+        //                    .First();
 
-            return View(roomPrice);
-        }
+        //    return View(roomPrice);
+        //}
 
 
         public ActionResult EditPrice(int id)

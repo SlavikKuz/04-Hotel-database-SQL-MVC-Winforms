@@ -21,6 +21,10 @@ namespace HotelDb.DataLayer
         private RoomsRepository roomsRepository;
         private RoomListRepository roomListRepository;
 
+        public UnitOfWork()
+        {
+            DataBase = new HotelDbContext();
+        }
 
         public IRepository<BookingDL> Bookings
         {
@@ -85,7 +89,6 @@ namespace HotelDb.DataLayer
                 return roomsRepository;
             }
         }
-
         public IRepository<RoomListDL> RoomList
         {
             get
@@ -94,11 +97,6 @@ namespace HotelDb.DataLayer
                     roomListRepository = new RoomListRepository(DataBase);
                 return roomListRepository;
             }
-        }
-
-        public UnitOfWork()
-        {
-            DataBase = new HotelDbContext();
         }
 
         public void Save()

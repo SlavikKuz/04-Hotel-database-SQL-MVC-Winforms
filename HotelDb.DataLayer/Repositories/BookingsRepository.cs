@@ -21,15 +21,6 @@ namespace HotelDb.DataLayer.Repositories
             database.Bookings.Add(booking);
         }
 
-        public void Delete(long id)
-        {
-            BookingDL booking = database.Bookings.Find(id);
-            if (booking != null)
-            {
-                database.Bookings.Remove(booking);
-            }
-        }
-
         public BookingDL Read(int id)
         {
             return database.Bookings.Find(id);
@@ -43,6 +34,15 @@ namespace HotelDb.DataLayer.Repositories
         public void Update(BookingDL booking)
         {
             database.Bookings.Update(booking);
+        }
+
+        public void Delete(long id)
+        {
+            BookingDL booking = database.Bookings.Find(id);
+            if (booking != null)
+            {
+                database.Bookings.Remove(booking);
+            }
         }
     }
 }

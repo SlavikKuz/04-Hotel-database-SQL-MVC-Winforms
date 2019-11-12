@@ -22,15 +22,6 @@ namespace HotelDb.DataLayer.Repositories
             database.Invoices.Add(invoice);
         }
 
-        public void Delete(long id)
-        {
-            InvoiceDL invoice = database.Invoices.Find(id);
-            if (invoice != null)
-            {
-                database.Invoices.Remove(invoice);
-            }
-        }
-
         public InvoiceDL Read(int id)
         {
             return database.Invoices.Find(id);
@@ -44,6 +35,15 @@ namespace HotelDb.DataLayer.Repositories
         public void Update(InvoiceDL invoice)
         {
             database.Invoices.Update(invoice);
+        }
+
+        public void Delete(long id)
+        {
+            InvoiceDL invoice = database.Invoices.Find(id);
+            if (invoice != null)
+            {
+                database.Invoices.Remove(invoice);
+            }
         }
 
     }

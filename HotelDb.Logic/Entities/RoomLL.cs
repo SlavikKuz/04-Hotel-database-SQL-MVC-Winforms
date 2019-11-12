@@ -15,5 +15,6 @@ namespace HotelDb.Logic.Entities
 
         public string RoomInfo { get; set; }
         public bool Ready { get; set; }
+        public long RoomPriceId { get; set; }
     }
 }

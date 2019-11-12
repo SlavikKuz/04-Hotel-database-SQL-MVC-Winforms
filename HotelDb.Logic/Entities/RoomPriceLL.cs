@@ -8,8 +8,6 @@ namespace HotelDb.Logic.Entities
     {
         public long RoomPriceId { get; set; }
 
-        public string RoomNumber { get; set; }
-
         public decimal AveragePrice { get; set; }
 
         public decimal WeekendPrice { get; set; }

@@ -18,5 +18,6 @@ namespace HotelDb.DataLayer.Entities
         [Column(TypeName = "nvarchar(50)")]
         public string RoomInfo  { get; set; }
         public bool Ready { get; set; }
+        public long RoomPriceId { get; set; }
     }
 }

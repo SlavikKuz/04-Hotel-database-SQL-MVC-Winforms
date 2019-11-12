@@ -35,6 +35,7 @@ namespace HotelDb.DataLogic
         {
             get { return mapper.Value; }
         }
+
         public static IConfigurationProvider Configuration
         {
             get { return config.Value; }

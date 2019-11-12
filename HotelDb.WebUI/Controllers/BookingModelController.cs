@@ -147,13 +147,15 @@ namespace HotelDb.WebUI.Controllers
 
                     RoomPriceModel roomPrice;
                     decimal totalPrice = 0;
-                    string bookedRoomNumber;
 
-                    foreach(var room in bookingPost.RoomList)
+                    foreach (var room in bookingPost.RoomList)
                     {
-                        bookedRoomNumber = allRooms.Where(x => x.RoomId == room.RoomId).Select(x => x.RoomNumber).First();
-                        roomPrice = allRoomPrices.Where(x => x.RoomNumber == bookedRoomNumber).First();
-
+                        roomPrice = (allRoomPrices.Where(x => x.RoomPriceId ==
+                                        (
+                                            (allRooms.Where(x => x.RoomId == room.RoomId))
+                                            .Select(x => x.RoomPriceId).First()
+                                        ))).First();
+                   
                         for (DateTime day = bookingPost.Booking.DayFrom; day <= bookingPost.Booking.DayTill; day = day.AddDays(1))
                         {
                             if ((allHolidays.Select(x => x.HolidayDay))

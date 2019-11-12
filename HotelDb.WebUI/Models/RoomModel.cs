@@ -33,5 +33,7 @@ namespace HotelDb.WebUI.Models
         [Display(Name = "Room is ready?")]
         [Required]
         public bool Ready { get; set; }
+
+        public long RoomPriceId { get; set; }
     }
 }
