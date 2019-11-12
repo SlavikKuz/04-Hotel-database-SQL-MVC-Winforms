@@ -36,7 +36,7 @@
 
 
         <div class="form-row">
-            <label asp-for="Booking.ClientId" class="form-control-plaintext"></label>
+            <label class="form-control-plaintext">Guest Name</label>
             <div class="input-group mb-2 col-md-9">
                 <select asp-for="GuestId" asp-items="Model.SelectListGuest" class="form-control"></select>
                 <span asp-validation-for="GuestId" class="text-danger"></span>
