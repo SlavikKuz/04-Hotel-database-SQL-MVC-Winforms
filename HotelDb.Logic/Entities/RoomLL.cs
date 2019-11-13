@@ -4,7 +4,7 @@ namespace HotelDb.Logic.Entities
 {
     public class RoomLL
     {
-        public long RoomId { get; set; }
+        public Guid Id { get; set; }
 
         public string RoomNumber { get; set; }
         public int NumberBeds { get; set; }
@@ -15,6 +15,7 @@ namespace HotelDb.Logic.Entities
 
         public string RoomInfo { get; set; }
         public bool Ready { get; set; }
-        public long RoomPriceId { get; set; }
+
+        public RoomPriceLL RoomPrice { get; set; }
     }
 }

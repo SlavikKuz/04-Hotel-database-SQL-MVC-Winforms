@@ -305,10 +305,6 @@ d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\ClientMo
 d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\ClientModel\Edit.cshtml.g.cs
 d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\BookingModel\ShowAll.cshtml.g.cs
 d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\BookingModel\Create.cshtml.g.cs
-D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomModel\Create.cshtml.g.cs
-D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomModel\ShowAll.cshtml.g.cs
-D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomModel\ShowAvailable.cshtml.g.cs
-D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomModel\Edit.cshtml.g.cs
 D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\HolidayModel\Create.cshtml.g.cs
 D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\HolidayModel\Delete.cshtml.g.cs
 D:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\HolidayModel\ShowAll.cshtml.g.cs
@@ -316,6 +312,10 @@ d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\BookingM
 d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\BookingModel\Edit.cshtml.g.cs
 d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\ClientModel\History.cshtml.g.cs
 d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\ClientModel\Invoice.cshtml.g.cs
-d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomModel\Price.cshtml.g.cs
-d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomModel\ShowPrice.cshtml.g.cs
 d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomModel\EditPrice.cshtml.g.cs
+d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomModel\ShowAllPage.cshtml.g.cs
+d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomModel\ShowAvailablePage.cshtml.g.cs
+d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomModel\CreatePage.cshtml.g.cs
+d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomModel\PricePage.cshtml.g.cs
+d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomModel\EditPage.cshtml.g.cs
+d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\RoomModel\ShowPricePage.cshtml.g.cs

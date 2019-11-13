@@ -1,0 +1,43 @@
+﻿@model HotelDb.WebUI.Models.RoomModel
+
+@{
+    ViewData["Title"] = "ShowPrice";
+}
+
+
+<div class="col-md-4 mx-auto">
+    <form>
+        <dl class="row">
+            <dt class="col-md-6">
+                @Html.DisplayNameFor(model => model.RoomNumber)
+            </dt>
+            <dd class="col-md-6">
+                @Html.DisplayFor(model => model.RoomNumber)
+            </dd>
+            <dt class="col-md-6">
+                @Html.DisplayNameFor(model => model.RoomPrice.AveragePrice)
+            </dt>
+            <dd class="col-md-6">
+                @Html.DisplayFor(model => model.RoomPrice.AveragePrice)
+            </dd>
+            <dt class="col-md-6">
+                @Html.DisplayNameFor(model => model.RoomPrice.WeekendPrice)
+            </dt>
+            <dd class="col-md-6">
+                @Html.DisplayFor(model => model.RoomPrice.WeekendPrice)
+            </dd>
+            <dt class="col-md-6">
+                @Html.DisplayNameFor(model => model.RoomPrice.HolidayPrice)
+            </dt>
+            <dd class="col-md-6">
+                @Html.DisplayFor(model => model.RoomPrice.HolidayPrice)
+            </dd>
+        </dl>
+        <div>
+            <span class="badge badge-light mx-auto">
+                @Html.ActionLink("Edit", "EditPrice", new { id = Model.Id })
+            </span>
+        </div>
+    </form>
+</div>
+

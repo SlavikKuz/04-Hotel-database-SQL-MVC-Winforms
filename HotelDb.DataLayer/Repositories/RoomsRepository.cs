@@ -33,10 +33,16 @@ namespace HotelDb.DataLayer.Repositories
 
         public void Update(RoomDL room)
         {
-            database.Rooms.Update(room);
+            database.Rooms.Attach(room);
+            database.Entry(room).Property(x => x.RoomNumber).IsModified = true;
+            database.Entry(room).Property(x => x.NumberBeds).IsModified = true;
+            database.Entry(room).Property(x => x.Description).IsModified = true;
+            database.Entry(room).Property(x => x.Floor).IsModified = true;
+            database.Entry(room).Property(x => x.RoomInfo).IsModified = true;
+            database.Entry(room).Property(x => x.Ready).IsModified = true;
         }
 
-        public void Delete(long id)
+        public void Delete(Guid id)
         {
             RoomDL room = database.Rooms.Find(id);
             if (room != null)

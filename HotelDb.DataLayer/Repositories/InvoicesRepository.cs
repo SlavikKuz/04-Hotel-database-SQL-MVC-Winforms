@@ -37,7 +37,7 @@ namespace HotelDb.DataLayer.Repositories
             database.Invoices.Update(invoice);
         }
 
-        public void Delete(long id)
+        public void Delete(Guid id)
         {
             InvoiceDL invoice = database.Invoices.Find(id);
             if (invoice != null)

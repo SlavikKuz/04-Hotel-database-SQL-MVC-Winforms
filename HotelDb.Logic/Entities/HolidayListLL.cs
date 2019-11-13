@@ -6,9 +6,10 @@ namespace HotelDb.Logic.Entities
 { 
     public class HolidayListLL
     {
-        public long HolidayId { get; set; }
-        [DataType(DataType.Date)]
+        public Guid Id { get; set; }
+
         public DateTime HolidayDay { get; set; }
+
         public string HolidayName { get; set; }
     }
 }

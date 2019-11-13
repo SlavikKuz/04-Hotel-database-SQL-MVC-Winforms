@@ -3,13 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>A Small Hotel Database</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     <header>
-        <a asp-area="" asp-controller="Home" asp-action="Index" class="logo">A Small Hotel Solution</a>
+        <a asp-area="" asp-controller="Home" asp-action="Index" class="logo text-decoration-none">Small Hotel Solutions Inc.</a>
         
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <ul class="topmenu mx-auto">
@@ -32,9 +31,9 @@
                 <li>
                     <a class="submenu-link">Rooms</a>
                     <ul class="submenu">
-                        <li><a asp-area="" asp-controller="RoomModel" asp-action="ShowAll">Show All</a></li>
-                        <li><a asp-area="" asp-controller="RoomModel" asp-action="ShowAvailable">Show Available</a></li>
-                        <li><a asp-area="" asp-controller="RoomModel" asp-action="Create">Create Room</a></li>
+                        <li><a asp-area="" asp-controller="RoomModel" asp-action="ShowAllPage">Show All</a></li>
+                        <li><a asp-area="" asp-controller="RoomModel" asp-action="ShowAvailablePage">Show Available</a></li>
+                        <li><a asp-area="" asp-controller="RoomModel" asp-action="CreatePage">Create Room</a></li>
                     </ul>
                 </li>
                 <li>

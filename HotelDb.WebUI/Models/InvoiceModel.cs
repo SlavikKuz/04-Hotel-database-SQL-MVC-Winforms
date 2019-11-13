@@ -8,11 +8,7 @@ namespace HotelDb.WebUI.Models
 {
     public class InvoiceModel
     {
-        public long InvoiceId { get; set; }
-
-        public long ClientId { get; set; }
-
-        public long BookingId { get; set; }
+        public Guid Id { get; set; }
 
         [Display(Name="Price")]
         public decimal TotalPrice { get; set; }

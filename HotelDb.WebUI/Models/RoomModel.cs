@@ -5,7 +5,7 @@ namespace HotelDb.WebUI.Models
 {
     public class RoomModel
     {
-        public long RoomId { get; set; }
+        public Guid Id { get; set; }
 
         [Display(Name = "Room")]
         [StringLength(10, MinimumLength = 3)]
@@ -34,6 +34,7 @@ namespace HotelDb.WebUI.Models
         [Required]
         public bool Ready { get; set; }
 
-        public long RoomPriceId { get; set; }
+        public RoomPriceModel RoomPrice { get; set; } 
+            = new RoomPriceModel();
     }
 }

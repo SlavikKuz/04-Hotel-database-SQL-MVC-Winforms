@@ -6,7 +6,7 @@ namespace HotelDb.Logic.Entities
 {
     public class RoomPriceLL
     {
-        public long RoomPriceId { get; set; }
+        public Guid Id { get; set; }
 
         public decimal AveragePrice { get; set; }
 

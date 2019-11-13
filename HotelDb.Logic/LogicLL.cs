@@ -33,14 +33,14 @@ namespace HotelDb.Logic
             return result;
         }        
         
-        public IEnumerable<GuestListLL> GetAllGuestList()
-        {
-            List<GuestListLL> result = new List<GuestListLL>();
+        //public IEnumerable<GuestListLL> GetAllGuestList()
+        //{
+        //    List<GuestListLL> result = new List<GuestListLL>();
             
-            foreach (GuestListDL guest in DataBase.GuestList.ReadAll())
-                result.Add(mapper.Map<GuestListLL>(guest));
-            return result;
-        }        
+        //    foreach (GuestListDL guest in DataBase.GuestList.ReadAll())
+        //        result.Add(mapper.Map<GuestListLL>(guest));
+        //    return result;
+        //}        
         
         public IEnumerable<HolidayListLL> GetAllHolidayList()
         {
@@ -60,14 +60,14 @@ namespace HotelDb.Logic
             return result;
         }
 
-        public IEnumerable<RoomListLL> GetAllRoomList()
-        {
-            List<RoomListLL> result = new List<RoomListLL>();
+        //public IEnumerable<RoomListLL> GetAllRoomList()
+        //{
+        //    List<RoomListLL> result = new List<RoomListLL>();
 
-            foreach (RoomListDL roomList in DataBase.RoomList.ReadAll())
-                result.Add(mapper.Map<RoomListLL>(roomList));
-            return result;
-        }
+        //    foreach (RoomListDL roomList in DataBase.RoomList.ReadAll())
+        //        result.Add(mapper.Map<RoomListLL>(roomList));
+        //    return result;
+        //}
 
         public IEnumerable<RoomLL> GetAllRooms()
         {
@@ -101,11 +101,11 @@ namespace HotelDb.Logic
             DataBase.Save();
         }
 
-        public void AddGuestList(GuestListLL guestList)
-        {
-            DataBase.GuestList.Create(mapper.Map<GuestListDL>(guestList));
-            DataBase.Save();
-        }
+        //public void AddGuestList(GuestListLL guestList)
+        //{
+        //    DataBase.GuestList.Create(mapper.Map<GuestListDL>(guestList));
+        //    DataBase.Save();
+        //}
 
         public void AddHoliday(HolidayListLL day)
         {
@@ -119,11 +119,11 @@ namespace HotelDb.Logic
             DataBase.Save();
         }
 
-        public void AddRoomList(RoomListLL roomList)
-        {
-            DataBase.RoomList.Create(mapper.Map<RoomListDL>(roomList));
-            DataBase.Save();
-        }
+        //public void AddRoomList(RoomListLL roomList)
+        //{
+        //    DataBase.RoomList.Create(mapper.Map<RoomListDL>(roomList));
+        //    DataBase.Save();
+        //}
 
         public void AddRoom(RoomLL room)
         {
@@ -162,12 +162,18 @@ namespace HotelDb.Logic
             DataBase.Rooms.Update(mapper.Map<RoomDL>(room));
             DataBase.Save();
         }
-        
 
-
-        public void RemoveHoliday(long holidaysDay)
+        public void UpdateRoomPrice(RoomPriceLL roomPrice)
         {
-            DataBase.HolidayList.Delete(holidaysDay);
+            DataBase.RoomPrice.Update(mapper.Map<RoomPriceDL>(roomPrice));
+            DataBase.Save();
+        }
+    
+
+
+        public void RemoveHoliday(Guid id)
+        {
+            DataBase.HolidayList.Delete(id);
             DataBase.Save();
         }
         

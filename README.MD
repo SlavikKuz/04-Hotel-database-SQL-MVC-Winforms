@@ -4,7 +4,19 @@ This is a Web App for a hypothetical small hotel where I can test some ideas in 
 
 Keywords: C#, SQL, ASP.net Core, MVC, VS2019, SSMS18, Azure 
 
-## 1. Database design
+## 1. Database and entities design
+
+Rules:
+- Client entity, may have many bookings, GuidId
+- Booking entity, tied up to the client, may have more than one room, invited guests list (client entities), invoice, GuidId
+- Room entity, tied up to the booking, always have room price, GuidId
+- RoomPrice entity, tied up to the room. Contains different prices for day/holiday.  GuidId
+- Invoice entity, tied up to the booking. Calculates total price for room/list booked rooms according the price on the day. GuidId
+- Guest entity, tied to the booking. Guest is Client.
+- Holiday entity, simple list of holidays to lookup in. GuidId.  
+
+
+
 Database must store information about client, booking, dates, and available rooms. It is possible to store also some additional informanion as comments, or notes for clients' special needs or requests.
 
 ![DB diagram](https://github.com/SlavikKuz/04-Simple-Small-Hotel-Database/raw/master/Readme/DBdiagram.PNG?raw=true "DB diagram")
