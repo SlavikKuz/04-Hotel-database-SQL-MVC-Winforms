@@ -9,7 +9,8 @@ namespace HotelDb.DataLayer.Entities
     public class RoomPriceDL
     {
         [Key]
-        public long RoomPriceId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
 
         [Column(TypeName = "decimal(5,0)")]
         public decimal AveragePrice { get; set; }

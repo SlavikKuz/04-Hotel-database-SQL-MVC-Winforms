@@ -17,22 +17,13 @@ namespace HotelDb.WebUI.Controllers
             this.mapper = mapper;
         }
 
-        public ActionResult ShowAll()
-        {
-            List<ClientModel> list = null;
-            using (var database = new LogicLL())
-                list = mapper.Map<List<ClientModel>>(database.GetAllClients());
-            return View(list);
-        }
-
-        public ActionResult Create()
+        public ActionResult Create() //CreatePage
         {
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ClientModel client)
+        public ActionResult Create(ClientModel client) //CreateClient
         {
             try
             {
@@ -47,25 +38,23 @@ namespace HotelDb.WebUI.Controllers
             }
         }
 
-        public ActionResult Search()
+        public ActionResult Search() //SearchPage
         {
             return View(new List<ClientModel>());
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Search(string searchString)
+        public ActionResult Search(string searchString) //SearchClient
         {
             if (String.IsNullOrWhiteSpace(searchString))
                 return RedirectToAction("Search");
 
-            List<ClientModel> input = null;
-            List<ClientModel> output = null;
+            List<ClientModel> output;
 
             using (var database = new LogicLL())
-                input = mapper.Map<List<ClientModel>>(database.GetAllClients());
+                output = mapper.Map<List<ClientModel>>(database.GetAllClients());
 
-            foreach (ClientModel client in input)
-                output = input.Where(x =>
+                output.Where(x =>
                                    (x.FirstName.Contains(searchString)) ||
                                    (x.LastName.Contains(searchString)) ||
                                    (x.Address.Contains(searchString)) ||
@@ -78,20 +67,30 @@ namespace HotelDb.WebUI.Controllers
             return View(output);
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult ShowAll() //ShowAllPage
         {
-            ClientModel client = new ClientModel();
+            List<ClientModel> list;
+            
+            using (var database = new LogicLL())
+                list = mapper.Map<List<ClientModel>>(database.GetAllClients());
+            
+            return View(list);
+        }
+
+        public ActionResult Edit(Guid id) //EditPage
+        {
+            ClientModel client;
 
             using (var database = new LogicLL())
                 client = (mapper.Map<List<ClientModel>>(database.GetAllClients()))
-                    .Where(x => x.ClientId == id)
+                    .Where(x => x.Id == id)
                     .First();
 
             return View(client);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ClientModel client)
+        public ActionResult Edit(ClientModel client) //SaveClient
         {
             try
             {
@@ -106,33 +105,27 @@ namespace HotelDb.WebUI.Controllers
             }
         }
 
-        public ActionResult History(int id)
+        public ActionResult History(Guid id) //HistoryClient
         {
-            ClientViewModel clientView = new ClientViewModel();
+            List<BookingModel> bookingHistory = new List<BookingModel>();
 
             using (var database = new LogicLL())
             {
-                clientView.Client = (mapper.Map<List<ClientModel>>(database.GetAllClients()))
-                    .Where(x => x.ClientId == id)
-                    .First();
-
-                clientView.Bookings = (mapper.Map<List<BookingModel>>(database.GetAllBookings()))
-                    .Where(x => x.ClientId == id).ToList();
-
-                clientView.Invoices = (mapper.Map<List<InvoiceModel>>(database.GetAllInvoices()))
-                    .Where(x => x.ClientId == id).ToList();
+                bookingHistory = (mapper.Map<List<BookingModel>>(database.GetAllBookings()))
+                    .Where(x => x.Client.Id == id).ToList();
             }
 
-            return View(clientView);
+            return View(bookingHistory);
         }
 
-        public ActionResult Invoice(int id)
+        public ActionResult Invoice(Guid id)//InvoiceClient
         {
-            InvoiceModel invoice = new InvoiceModel();
+            InvoiceModel invoice;
 
             using (var database = new LogicLL())
-                invoice = (mapper.Map<List<InvoiceModel>>(database.GetAllInvoices()))
-                    .Where(x => x.BookingId == id)
+                invoice = (mapper.Map<List<BookingModel>>(database.GetAllBookings()))
+                    .Where(x => x.Id == id)
+                    .Select(x => x.Invoice)
                     .First();
 
             return View(invoice);

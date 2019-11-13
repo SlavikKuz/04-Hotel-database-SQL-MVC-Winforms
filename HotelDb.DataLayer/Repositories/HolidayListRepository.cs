@@ -36,9 +36,9 @@ namespace HotelDb.DataLayer.Repositories
             database.HolidayList.Update(day);
         }
 
-        public void Delete(long holidayId)
+        public void Delete(Guid id)
         {
-            HolidayListDL day = database.HolidayList.Find(holidayId);
+            HolidayListDL day = database.HolidayList.Find(id);
             if (day != null)
             {
                 database.HolidayList.Remove(day);

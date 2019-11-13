@@ -44,15 +44,15 @@ namespace HotelDb.DataLayer
                 return clientsRepository;
             }
         }
-        public IRepository<GuestListDL> GuestList
-        {
-            get
-            {
-                if (guestListRepository == null)
-                    guestListRepository = new GuestListRepository(DataBase);
-                return guestListRepository;
-            }
-        }
+        //public IRepository<GuestListDL> GuestList
+        //{
+        //    get
+        //    {
+        //        if (guestListRepository == null)
+        //            guestListRepository = new GuestListRepository(DataBase);
+        //        return guestListRepository;
+        //    }
+        //}
         public IRepository<HolidayListDL> HolidayList
         {
             get
@@ -89,15 +89,15 @@ namespace HotelDb.DataLayer
                 return roomsRepository;
             }
         }
-        public IRepository<RoomListDL> RoomList
-        {
-            get
-            {
-                if (roomListRepository == null)
-                    roomListRepository = new RoomListRepository(DataBase);
-                return roomListRepository;
-            }
-        }
+        //public IRepository<RoomListDL> RoomList
+        //{
+        //    get
+        //    {
+        //        if (roomListRepository == null)
+        //            roomListRepository = new RoomListRepository(DataBase);
+        //        return roomListRepository;
+        //    }
+        //}
 
         public void Save()
         {

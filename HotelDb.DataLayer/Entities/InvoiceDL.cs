@@ -9,11 +9,10 @@ namespace HotelDb.DataLayer.Entities
     public class InvoiceDL
     {
         [Key]
-        public long InvoiceId { get; set; }
-        public long ClientId { get; set; }
-        public long BookingId { get; set; }
-        
-        [Column(TypeName = "decimal(5,0)")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
+
+        [Column(TypeName = "decimal(6,0)")]
         public decimal TotalPrice { get; set; }
     }
 }

@@ -15,31 +15,22 @@ namespace HotelDb.WebUI.Controllers
     {
         private IMapper mapper;
         public HolidayModelController(IMapper mapper)
-        { this.mapper = mapper; }
-
-        public ActionResult ShowAll()
-        {
-            List<HolidayListModel> holidays = new List<HolidayListModel>();
-
-            using (var database = new LogicLL())
-                holidays = mapper.Map<List<HolidayListModel>>(database.GetAllHolidayList());
-           
-            return View(holidays);
+        { 
+            this.mapper = mapper; 
         }
 
-        public ActionResult Create()
+        public ActionResult Create() //CreatePage
         {
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(HolidayListModel dayHoliday)
+        public ActionResult Create(HolidayListModel holiday) //CreateHoliday
         {
             try
             {
                 using (var database = new LogicLL())
-                    database.AddHoliday(mapper.Map<HolidayListLL>(dayHoliday));
+                    database.AddHoliday(mapper.Map<HolidayListLL>(holiday));
 
                 return RedirectToAction(nameof(ShowAll));
             }
@@ -49,26 +40,35 @@ namespace HotelDb.WebUI.Controllers
             }
         }
 
-        public ActionResult Delete(long holidayId)
+        public ActionResult ShowAll()
         {
-            HolidayListModel holiday = new HolidayListModel();
+            List<HolidayListModel> holidays;
+
+            using (var database = new LogicLL())
+                holidays = mapper.Map<List<HolidayListModel>>(database.GetAllHolidayList());
+           
+            return View(holidays);
+        }
+
+        public ActionResult Delete(Guid id) //DeletePage
+        {
+            HolidayListModel holiday;
 
             using (var database = new LogicLL())
                 holiday = (mapper.Map<List<HolidayListModel>>(database.GetAllHolidayList()))
-                    .Where(x => x.HolidayId == holidayId)
+                    .Where(x => x.Id == id)
                     .First();
 
             return View(holiday);
-        }
-        
+        }       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(HolidayListModel holiday)
+        public ActionResult Delete(HolidayListModel holiday) //DeletePage
         {
             try
             {
                 using (var database = new LogicLL())
-                    database.RemoveHoliday(holiday.HolidayId);
+                    database.RemoveHoliday(holiday.Id);
 
                     return RedirectToAction(nameof(ShowAll));
             }

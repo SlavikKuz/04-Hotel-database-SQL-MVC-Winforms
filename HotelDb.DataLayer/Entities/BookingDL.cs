@@ -8,27 +8,27 @@ namespace HotelDb.DataLayer.Entities
     public class BookingDL
     {
         [Key]
-        public long BookingId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
         
-        public long ClientId { get; set; }
-        
+        public ClientDL Client { get; set; }
+        public InvoiceDL Invoice { get; set; }
+        public List<RoomDL> RoomList { get; set; }
+        public List<ClientDL> GuestList { get; set; }
+
         [Column(TypeName = "date")]
-        public DateTime OrderDate { get; set; }
-        
+        public DateTime OrderDate { get; set; }        
         [Column(TypeName = "date")]
-        public DateTime DayFrom { get; set; }
-        
+        public DateTime DayFrom { get; set; }        
         [Column(TypeName = "date")]
         public DateTime DayTill { get; set; }
         
         public bool WithKids { get; set; }
-
-        public Status Status { get; set; }
-        
-        [Column(TypeName = "nvarchar(50)")]
+       
+        [Column(TypeName = "nvarchar(100)")]
         public string Info { get; set; }
-
-        public long InvoiceId { get; set; }
+        
+        public Status Status { get; set; }
     }
 
     public enum Status

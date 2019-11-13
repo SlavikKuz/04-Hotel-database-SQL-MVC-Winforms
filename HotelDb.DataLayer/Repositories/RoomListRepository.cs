@@ -7,7 +7,7 @@ using System.Text;
 
 namespace HotelDb.DataLayer.Repositories
 {
-    public class RoomListRepository:IRepository<RoomListDL>
+    public class RoomListRepository/*:IRepository<RoomListDL>*/
     {
         private HotelDbContext database;
 
@@ -18,31 +18,31 @@ namespace HotelDb.DataLayer.Repositories
 
         public void Create(RoomListDL bookingRoomList)
         {
-            database.RoomList.Add(bookingRoomList);
+            //database.RoomList.Add(bookingRoomList);
         }
 
-        public RoomListDL Read(int id)
-        {
-            return database.RoomList.Find(id);
-        }
+        //public RoomListDL Read(int id)
+        //{
+        //    return database.RoomList.Find(id);
+        //}
 
-        public IEnumerable<RoomListDL> ReadAll()
-        {
-            return database.RoomList;
-        }
+        //public IEnumerable<RoomListDL> ReadAll()
+        //{
+        //    return database.RoomList;
+        //}
 
-        public void Update(RoomListDL booking)
-        {
-            database.RoomList.Update(booking);
-        }
+        //public void Update(RoomListDL booking)
+        //{
+        //    database.RoomList.Update(booking);
+        //}
 
-        public void Delete(long id)
-        {
-            RoomListDL bookingRoomList = database.RoomList.Find(id);
-            if (bookingRoomList != null)
-            {
-                database.RoomList.Remove(bookingRoomList);
-            }
-        }
+        //public void Delete(Guid id)
+        //{
+        //    RoomListDL bookingRoomList = database.RoomList.Find(id);
+        //    if (bookingRoomList != null)
+        //    {
+        //        database.RoomList.Remove(bookingRoomList);
+        //    }
+        //}
     }
 }

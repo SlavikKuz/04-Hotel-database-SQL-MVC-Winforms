@@ -7,7 +7,7 @@ namespace HotelDb.WebUI.Models
 {
     public class RoomPriceModel
     {
-        public long RoomPriceId { get; set; }
+        public Guid Id { get; set; }
 
         [Display(Name = "Average Price:")]
         public decimal AveragePrice { get; set; }

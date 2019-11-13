@@ -2,6 +2,7 @@
 using HotelDb.DataLayer.Interfaces;
 using HotelDb.DataLayer.Context;
 using System.Collections.Generic;
+using System;
 
 namespace HotelDb.DataLayer.Repositories
 {
@@ -34,7 +35,7 @@ namespace HotelDb.DataLayer.Repositories
             database.Clients.Update(client);
         }
 
-        public void Delete(long id)
+        public void Delete(Guid id)
         {
             ClientDL client = database.Clients.Find(id);
             if (client != null)

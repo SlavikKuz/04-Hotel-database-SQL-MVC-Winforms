@@ -10,6 +10,6 @@ namespace HotelDb.DataLayer.Interfaces
         IEnumerable<T> ReadAll();
         T Read(int id);
         void Update(T item);
-        void Delete(long id);
+        void Delete(Guid id);
     }
 }
