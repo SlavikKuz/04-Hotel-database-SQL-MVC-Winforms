@@ -34,6 +34,7 @@ namespace HotelDb.WebUI.Models
         [Required]
         public bool Ready { get; set; }
 
-        public RoomPriceModel RoomPrice { get; set; }
+        public RoomPriceModel RoomPrice { get; set; } 
+            = new RoomPriceModel();
     }
 }

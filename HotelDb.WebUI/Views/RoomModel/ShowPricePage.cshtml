@@ -1,4 +1,4 @@
-﻿@model HotelDb.WebUI.Models.RoomPriceModel
+﻿@model HotelDb.WebUI.Models.RoomModel
 
 @{
     ViewData["Title"] = "ShowPrice";
@@ -9,28 +9,28 @@
     <form>
         <dl class="row">
             <dt class="col-md-6">
-                Room number
+                @Html.DisplayNameFor(model => model.RoomNumber)
             </dt>
             <dd class="col-md-6">
-                missing
+                @Html.DisplayFor(model => model.RoomNumber)
             </dd>
             <dt class="col-md-6">
-                @Html.DisplayNameFor(model => model.AveragePrice)
+                @Html.DisplayNameFor(model => model.RoomPrice.AveragePrice)
             </dt>
             <dd class="col-md-6">
-                @Html.DisplayFor(model => model.AveragePrice)
+                @Html.DisplayFor(model => model.RoomPrice.AveragePrice)
             </dd>
             <dt class="col-md-6">
-                @Html.DisplayNameFor(model => model.WeekendPrice)
+                @Html.DisplayNameFor(model => model.RoomPrice.WeekendPrice)
             </dt>
             <dd class="col-md-6">
-                @Html.DisplayFor(model => model.WeekendPrice)
+                @Html.DisplayFor(model => model.RoomPrice.WeekendPrice)
             </dd>
             <dt class="col-md-6">
-                @Html.DisplayNameFor(model => model.HolidayPrice)
+                @Html.DisplayNameFor(model => model.RoomPrice.HolidayPrice)
             </dt>
             <dd class="col-md-6">
-                @Html.DisplayFor(model => model.HolidayPrice)
+                @Html.DisplayFor(model => model.RoomPrice.HolidayPrice)
             </dd>
         </dl>
         <div>

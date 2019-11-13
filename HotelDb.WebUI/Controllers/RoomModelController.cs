@@ -19,27 +19,23 @@ namespace HotelDb.WebUI.Controllers
             this.mapper = mapper;
         }
 
-        public ActionResult Create()//CreatePage
+        public ActionResult CreatePage()
         {
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(RoomModel room)//CreateRoom
+        public ActionResult CreateRoom(RoomModel room)
         {          
             try
             {
-                RoomPriceModel roomPrice = new RoomPriceModel();
-
                 using (var database = new LogicLL())
                 {
-                    database.AddRoom(mapper.Map<RoomLL>(room));
-                    database.AddRoomPrice(mapper.Map<RoomPriceLL>(roomPrice));
-                    
-                    roomPrice = mapper.Map<List<RoomPriceModel>>(database.GetAllRoomPrice())
+                    database.AddRoom(mapper.Map<RoomLL>(room));                                                         
+                    room = mapper.Map<List<RoomModel>>(database.GetAllRooms())
                         .ToList().Last();
                 }
-                return RedirectToAction("Price", roomPrice); //PricePage
+                return RedirectToAction("Price", room.RoomPrice); //PricePage
             }
             catch (Exception ex)
             {
@@ -47,20 +43,20 @@ namespace HotelDb.WebUI.Controllers
             }
         }
 
-        public ActionResult Price(RoomPriceModel roomPrice) //PricePage
+        public ActionResult PricePage(RoomPriceModel roomPrice)
         {
             return View(roomPrice);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PriceSave(RoomPriceModel roomPrice) //SavePrice
+        public ActionResult SavePrice(RoomPriceModel roomPrice)
         {
             try
             {
                 using (var database = new LogicLL())
                     database.UpdateRoomPrice(mapper.Map<RoomPriceLL>(roomPrice));
 
-                return RedirectToAction("ShowAvailable");
+                return RedirectToAction("ShowAvailablePage");
             }
             catch (Exception ex)
             {
@@ -68,7 +64,7 @@ namespace HotelDb.WebUI.Controllers
             }
         }
 
-        public ActionResult ShowAll() //ShowAllPage
+        public ActionResult ShowAllPage()
         {
             List<RoomModel> list;
 
@@ -79,7 +75,7 @@ namespace HotelDb.WebUI.Controllers
 
             return View(list);
         }
-        public ActionResult ShowAvailable() //ShowAvailablePage
+        public ActionResult ShowAvailablePage()
         {
             List<RoomModel> list;
 
@@ -92,7 +88,7 @@ namespace HotelDb.WebUI.Controllers
             return View(list);
         }
 
-        public ActionResult Edit(Guid id) //EditPage
+        public ActionResult EditPage(Guid id)
         {
             RoomModel room;
 
@@ -105,14 +101,15 @@ namespace HotelDb.WebUI.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(RoomModel room) //EditRoom
+        public ActionResult EditRoom(RoomModel room)
         {
             try
             {
                 using (var database = new LogicLL())
+
                     database.UpdateRoom(mapper.Map<RoomLL>(room));
 
-                    return RedirectToAction("ShowAll");
+                    return RedirectToAction("ShowAllPage");
             }
             catch
             {
@@ -120,20 +117,24 @@ namespace HotelDb.WebUI.Controllers
             }
         }
 
-        
-        // ????
-        public ActionResult ShowPrice(Guid id) //ShowPricePage
+        public ActionResult ShowPricePage(Guid id)
         {
+            Guid roomPriceId;
             RoomPriceModel roomPrice;
+            RoomModel room;
 
             using (var database = new LogicLL())
-                roomPrice = (mapper.Map<List<RoomPriceModel>>(database.GetAllRoomPrice()))
-                            .Where(x => x.Id == id)
-                            .First();
+            { 
+                room = (mapper.Map<List<RoomModel>>(database.GetAllRooms()))
+                            .Where(x => x.Id == id).First();
+
+
+            
+            roomPrice = room.RoomPrice;
 
             return View(roomPrice);
         }
-        // ????
+
         public ActionResult EditPrice(Guid id)
         {
             RoomPriceModel roomPrice;

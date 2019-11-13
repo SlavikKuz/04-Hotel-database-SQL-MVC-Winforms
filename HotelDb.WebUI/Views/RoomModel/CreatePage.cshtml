@@ -1,33 +1,33 @@
 ﻿@model HotelDb.WebUI.Models.RoomModel
 
-@{
-    ViewData["Title"] = "Edit";
-}
-
 <div class="row">
     <div class="col-md-4 mx-auto">
-        <form asp-action="Edit">
+        <form asp-action="CreateRoom">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                @Html.HiddenFor(Model => Model.Id)
+
             <div class="form-group">
                 <label asp-for="RoomNumber" class="control-label"></label>
                 <input asp-for="RoomNumber" class="form-control" />
                 <span asp-validation-for="RoomNumber" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="NumberBeds" class="control-label"></label>
-                <input asp-for="NumberBeds" class="form-control" />
-                <span asp-validation-for="NumberBeds" class="text-danger"></span>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="NumberBeds" class="control-label"></label>
+                    <input asp-for="NumberBeds" class="form-control" />
+                    <span asp-validation-for="NumberBeds" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Floor" class="control-label"></label>
+                    <input asp-for="Floor" class="form-control" />
+                    <span asp-validation-for="Floor" class="text-danger"></span>
+                </div>
             </div>
+
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Floor" class="control-label"></label>
-                <input asp-for="Floor" class="form-control" />
-                <span asp-validation-for="Floor" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RoomInfo" class="control-label"></label>
@@ -36,12 +36,12 @@
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Ready" /> @Html.DisplayNameFor(model => model.Ready)
+                    <input class="form-check-input" asp-for="Ready" />
+                    @Html.DisplayNameFor(model => model.Ready)
                 </label>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-                <a asp-action="ShowAll">Back to List</a>
+            <div class="form-row">
+                    <input type="submit" value="Create" class="btn btn-danger mx-auto" />
             </div>
         </form>
     </div>

@@ -1,14 +1,11 @@
 ﻿@model HotelDb.WebUI.Models.RoomPriceModel
 
-
-@{
-    ViewData["Title"] = "Price";
-}
-
 <div class="row">
     <div class="col-md-4 mx-auto">
-        <form asp-action="PriceSave">
+        <form asp-action="SavePrice">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <input asp-for="Id" hidden/>
 
             <div class="form-group">
                 <label asp-for="AveragePrice" class="control-label"></label>

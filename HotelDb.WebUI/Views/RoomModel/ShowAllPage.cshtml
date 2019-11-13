@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<HotelDb.WebUI.Models.RoomModel>
 
 @{
-    ViewData["Title"] = "ShowAvailable";
+    ViewData["Title"] = "ShowAllPage";
 }
 
 <table class="table">
@@ -21,6 +21,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.RoomInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ready)
             </th>
             <th></th>
         </tr>
@@ -45,11 +48,14 @@
                         @Html.DisplayFor(modelItem => item.RoomInfo)
                     </td>
                     <td>
+                        @Html.DisplayFor(modelItem => item.Ready)
+                    </td>
+                    <td>
                         <span class="badge badge-light">
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                            @Html.ActionLink("Edit", "EditPage", new { id = item.Id })
                         </span>
                         <span class="badge badge-light">
-                            @Html.ActionLink("Price", "ShowPrice", new { roomNumber = item.RoomNumber })
+                            @Html.ActionLink("Price", "ShowPricePage", new { id = item.Id })
                         </span>
                     </td>
                 </tr>
