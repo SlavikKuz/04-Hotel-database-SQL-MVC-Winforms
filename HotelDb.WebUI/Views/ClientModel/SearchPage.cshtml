@@ -1,8 +1,19 @@
 ﻿@model IEnumerable<HotelDb.WebUI.Models.ClientModel>
 
 @{
-    ViewData["Title"] = "ShowAll";
+    ViewData["Title"] = "Search";
 }
+
+<form asp-action="SearchPage" method="post">
+    <div class="form-actions no-color input-group">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="SearchString" placeholder="Enter any valid information" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <input type="submit" value="Show" class="btn btn-light btn-sm" />
+            </div>
+        </div>
+    </div>
+</form>
 
 <table class="table">
     <thead>
@@ -47,14 +58,17 @@
                     </td>
                     <td>
                         <span class="badge badge-light">
-                            @Html.ActionLink("Edit Client", "Edit", new { id = item.Id })
+                            @Html.ActionLink("Edit Client", "EditPage", new { id = item.Id })
                         </span>
                         <span class="badge badge-light">
-                            @Html.ActionLink("Booking History", "History", new { id = item.Id })
+                            @Html.ActionLink("Booking History", "HistoryClient", new { id = item.Id })
                         </span>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
+
+
+
 

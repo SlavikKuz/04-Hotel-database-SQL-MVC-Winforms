@@ -30,5 +30,7 @@ namespace HotelDb.DataLayer.Entities
         
         [Column(TypeName = "nvarchar(100)")]
         public string ClientInfo { get; set; }
+
+        public BookingDL Booking { get; set; }
     }
 }

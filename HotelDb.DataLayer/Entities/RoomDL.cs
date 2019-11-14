@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -27,5 +28,7 @@ namespace HotelDb.DataLayer.Entities
         public bool Ready { get; set; }
         
         public RoomPriceDL RoomPrice { get; set; }
+
+        public List<BookingRoomListDL> BookingRoomList { get; set; }
     }
 }

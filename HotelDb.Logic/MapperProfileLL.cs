@@ -16,7 +16,7 @@ namespace HotelDb.DataLogic
             CreateMap<InvoiceDL, InvoiceLL>();
             CreateMap<RoomDL, RoomLL>();
             CreateMap<RoomPriceDL, RoomPriceLL>();            
-            CreateMap<RoomListDL, RoomListLL>();
+            CreateMap<BookingRoomListDL, BookingRoomListLL>();
 
             CreateMap<BookingLL, BookingDL>();
             CreateMap<ClientLL, ClientDL>();
@@ -25,7 +25,7 @@ namespace HotelDb.DataLogic
             CreateMap<InvoiceLL, InvoiceDL>();
             CreateMap<RoomLL, RoomDL>();
             CreateMap<RoomPriceLL, RoomPriceDL>();
-            CreateMap<RoomListLL, RoomListDL>();
+            CreateMap<BookingRoomListLL, BookingRoomListDL>();
         }
     }
 

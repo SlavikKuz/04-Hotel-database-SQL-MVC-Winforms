@@ -17,5 +17,7 @@ namespace HotelDb.WebUI.Models
 
         [Display(Name = "Holiday Price:")]
         public decimal HolidayPrice { get; set; }
+
+        public Guid RoomId { get; set; }
     }
 }

@@ -32,30 +32,23 @@ namespace HotelDb.WebUI.Controllers
             return View(allBookings);
         }
 
-        // ????
-        public ActionResult Create() //CreatePage
+        public ActionResult CreatePage()
         {
-            BookingViewModel bookingView = new BookingViewModel();
-
+            List<ClientModel> clients;
+            
             using (var database = new LogicLL())
             {
-                bookingView.SelectListClient = (mapper.Map<List<ClientModel>>(database.GetAllClients()))
-                    .Select(x => new SelectListItem { Text = x.ClientFullName, Value = x.Id.ToString() })
-                    .ToList();
-
-                bookingView.SelectListRoom = (mapper.Map<List<RoomModel>>
-                    (
-                        database.GetAllRooms()).Where(x => x.Ready == true)
-                    )
-                    .Select(x => new SelectListItem { Text = x.RoomNumber, Value = x.Id.ToString() })
-                    .ToList();
-
-                bookingView.SelectListGuest = (mapper.Map<List<ClientModel>>(database.GetAllClients()))
-                    .Select(x => new SelectListItem { Text = x.ClientFullName, Value = x.Id.ToString() })
-                    .ToList();
+                clients = mapper.Map<List<ClientModel>>(database.GetAllClients());
+                ViewData["RoomList"] = new SelectList(database.GetAllRooms());
+                //ViewData["GuestList"] = 
             }
-            return View(bookingView);
+
+            ViewData["ClientList"] = new SelectList(clients, "Id", "FullClientName");
+
+            return View();
         }
+
+
         // ????
         //[HttpPost]
         //[ValidateAntiForgeryToken]

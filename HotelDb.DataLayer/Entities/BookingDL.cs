@@ -12,9 +12,12 @@ namespace HotelDb.DataLayer.Entities
         public Guid Id { get; set; }
         
         public ClientDL Client { get; set; }
+        public Guid ClientId { get; set; }
+        
         public InvoiceDL Invoice { get; set; }
-        public List<RoomDL> RoomList { get; set; }
-        public List<ClientDL> GuestList { get; set; }
+        public List<BookingRoomListDL> BookingRoomList { get; set; }
+        
+        public List<GuestListDL> GuestList { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime OrderDate { get; set; }        
@@ -29,6 +32,7 @@ namespace HotelDb.DataLayer.Entities
         public string Info { get; set; }
         
         public Status Status { get; set; }
+
     }
 
     public enum Status

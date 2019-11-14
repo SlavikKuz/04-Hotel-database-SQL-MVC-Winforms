@@ -18,5 +18,7 @@ namespace HotelDb.Logic.Entities
         public string Email { get; set; }
 
         public string ClientInfo { get; set; }
+
+        public BookingLL Booking { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace HotelDb.WebUI.Models
@@ -34,7 +35,9 @@ namespace HotelDb.WebUI.Models
         [Required]
         public bool Ready { get; set; }
 
-        public RoomPriceModel RoomPrice { get; set; } 
+        public RoomPriceModel RoomPrice { get; set; }
             = new RoomPriceModel();
+
+        public List<BookingRoomListModel> BookingRoomList { get; set; }
     }
 }

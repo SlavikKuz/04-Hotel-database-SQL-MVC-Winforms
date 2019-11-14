@@ -1,4 +1,4 @@
-﻿@model HotelDb.WebUI.Models.BookingViewModel
+﻿@model HotelDb.WebUI.Models.BookingModel
 
 @{
     ViewData["Title"] = "Create";
@@ -9,6 +9,12 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <div class="form-row">
+            <label asp-for="Client" class="control-label"></label>
+            <select asp-for="Client" class="form-control" asp-items="ViewBag.ClientList"></select>
+        </div>
+
+
+        @*<div class="form-row">
             <label asp-for="Booking.Id" class="form-control-plaintext"></label>
             <div class="form-group col-md-9">
                 <select asp-for="Booking.Id" asp-items="Model.SelectListClient" class="form-control"></select>
@@ -94,16 +100,16 @@
             <label asp-for="Booking.Info" class="form-control-plaintext"></label>
             <input asp-for="Booking.Info" class="form-control" />
             <span asp-validation-for="Booking.Info" class="text-danger"></span>
-        </div>
+        </div>*@
 
-        <div class="form-row">
+        @*<div class="form-row">
             <label asp-for="Invoice.TotalPrice" class="form-control-plaintext"></label>
             <div class="form-control mb-2 col-md-9">
                 @Model.Invoice.TotalPrice
             </div>
             <input type="hidden" id="Invoice.TotalPrice" name="Invoice.TotalPrice" value="@Model.Invoice.TotalPrice" />
             <input type="submit" name="bookingButton" value="Invoice" class="btn btn-primary mb-2 mx-auto" />
-        </div>
+        </div>*@
         <br>
         <div class="form-row ">
             <input type="submit" name="bookingButton" value="Save" class="btn btn-danger mx-auto" />

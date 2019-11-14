@@ -13,5 +13,7 @@ namespace HotelDb.Logic.Entities
         public decimal WeekendPrice { get; set; }
 
         public decimal HolidayPrice { get; set; }
+
+        public Guid RoomId { get; set; }
     }
 }

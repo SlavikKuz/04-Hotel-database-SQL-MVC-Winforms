@@ -14,5 +14,7 @@ namespace HotelDb.DataLayer.Entities
 
         [Column(TypeName = "decimal(6,0)")]
         public decimal TotalPrice { get; set; }
+
+        public Guid BookingId { get; set; }
     }
 }

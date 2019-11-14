@@ -1,14 +1,14 @@
 ﻿@model HotelDb.WebUI.Models.ClientModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create";
 }
 
 <div class="row">
     <div class="col-md-6 mx-auto">
-        <form asp-action="Edit">
+
+        <form asp-action="CreateClient">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @Html.HiddenFor(model => model.Id)
 
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -54,20 +54,21 @@
                     <input asp-for="Email" class="form-control" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
-            </div>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="ClientInfo" class="control-label"></label>
-                <input asp-for="ClientInfo" class="form-control" />
-                <span asp-validation-for="ClientInfo" class="text-danger"></span>
-            </div>
+                <div class="form-group">
+                    <label asp-for="ClientInfo" class="control-label"></label>
+                    <input asp-for="ClientInfo" class="form-control" />
+                    <span asp-validation-for="ClientInfo" class="text-danger"></span>
+                </div>
 
-            <div class="form-row">
-                <input type="submit" value="Edit" class="btn btn-danger mx-auto" />
-            </div>
+                <div class="form-row">
+                    <input type="submit" value="Create" class="btn btn-danger mx-auto" />
+                </div>
         </form>
     </div>
 </div>
+
 
 
 @section Scripts {
