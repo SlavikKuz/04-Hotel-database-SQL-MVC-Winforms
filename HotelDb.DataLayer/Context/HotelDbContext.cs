@@ -23,10 +23,6 @@ namespace HotelDb.DataLayer.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<GuestListDL>()
-                .HasKey(x => new { x.ClientId, x.BookingId });
-            base.OnModelCreating(modelBuilder);
-
             modelBuilder.Entity<BookingRoomListDL>()
                 .HasKey(x => new { x.BookingId, x.RoomId });
             base.OnModelCreating(modelBuilder);

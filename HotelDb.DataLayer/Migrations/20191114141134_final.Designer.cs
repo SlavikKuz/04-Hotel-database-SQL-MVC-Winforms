@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelDb.DataLayer.Migrations
 {
     [DbContext(typeof(HotelDbContext))]
-    [Migration("20191114093009_initializeCreate")]
-    partial class initializeCreate
+    [Migration("20191114141134_final")]
+    partial class final
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,7 +53,8 @@ namespace HotelDb.DataLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientId");
+                    b.HasIndex("ClientId")
+                        .IsUnique();
 
                     b.HasIndex("InvoiceId");
 
@@ -112,20 +113,22 @@ namespace HotelDb.DataLayer.Migrations
 
             modelBuilder.Entity("HotelDb.DataLayer.Entities.GuestListDL", b =>
                 {
-                    b.Property<Guid>("ClientId")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BookingDLId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("BookingId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("GuestId")
+                    b.Property<Guid>("GuestId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("ClientId", "BookingId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("BookingId");
-
-                    b.HasIndex("GuestId");
+                    b.HasIndex("BookingDLId");
 
                     b.ToTable("GuestList");
                 });
@@ -224,8 +227,8 @@ namespace HotelDb.DataLayer.Migrations
             modelBuilder.Entity("HotelDb.DataLayer.Entities.BookingDL", b =>
                 {
                     b.HasOne("HotelDb.DataLayer.Entities.ClientDL", "Client")
-                        .WithMany("Bookings")
-                        .HasForeignKey("ClientId")
+                        .WithOne("Booking")
+                        .HasForeignKey("HotelDb.DataLayer.Entities.BookingDL", "ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -251,15 +254,9 @@ namespace HotelDb.DataLayer.Migrations
 
             modelBuilder.Entity("HotelDb.DataLayer.Entities.GuestListDL", b =>
                 {
-                    b.HasOne("HotelDb.DataLayer.Entities.BookingDL", "Booking")
+                    b.HasOne("HotelDb.DataLayer.Entities.BookingDL", null)
                         .WithMany("GuestList")
-                        .HasForeignKey("BookingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HotelDb.DataLayer.Entities.ClientDL", "Guest")
-                        .WithMany("GuestList")
-                        .HasForeignKey("GuestId");
+                        .HasForeignKey("BookingDLId");
                 });
 
             modelBuilder.Entity("HotelDb.DataLayer.Entities.RoomDL", b =>

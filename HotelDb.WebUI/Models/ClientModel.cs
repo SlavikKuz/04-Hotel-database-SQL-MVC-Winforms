@@ -45,6 +45,8 @@ namespace HotelDb.WebUI.Models
         [StringLength(50)]
         public string ClientInfo { get; set; }
 
+        public BookingModel Booking { get; set; }
+
         [Display(Name = "Client")]
         public string ClientFullName
         {

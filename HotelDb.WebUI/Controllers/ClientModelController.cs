@@ -6,6 +6,7 @@ using HotelDb.Logic;
 using HotelDb.Logic.Entities;
 using HotelDb.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace HotelDb.WebUI.Controllers
 {
@@ -17,20 +18,20 @@ namespace HotelDb.WebUI.Controllers
             this.mapper = mapper;
         }
 
-        public ActionResult Create() //CreatePage
+        public ActionResult CreatePage()
         {
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ClientModel client) //CreateClient
+        public ActionResult CreateClient(ClientModel client)
         {
             try
             {
                 using (var database = new LogicLL())
                     database.AddClient(mapper.Map<ClientLL>(client));
 
-                return RedirectToAction("ShowAll");
+                return RedirectToAction("ShowAllPage");
             }
             catch
             {
@@ -38,36 +39,28 @@ namespace HotelDb.WebUI.Controllers
             }
         }
 
-        public ActionResult Search() //SearchPage
+        public ActionResult SearchPage()
         {
             return View(new List<ClientModel>());
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Search(string searchString) //SearchClient
+        public ActionResult SearchPage(string searchString)
         {
             if (String.IsNullOrWhiteSpace(searchString))
-                return RedirectToAction("Search");
+                return RedirectToAction("SearchPage");
 
             List<ClientModel> output;
 
             using (var database = new LogicLL())
                 output = mapper.Map<List<ClientModel>>(database.GetAllClients());
 
-                output.Where(x =>
-                                   (x.FirstName.Contains(searchString)) ||
-                                   (x.LastName.Contains(searchString)) ||
-                                   (x.Address.Contains(searchString)) ||
-                                   (x.City.Contains(searchString)) ||
-                                   (x.Country.Contains(searchString)) ||
-                                   (x.Email.Contains(searchString)) ||
-                                   (x.Tel.Contains(searchString)) ||
-                                   (x.ClientInfo.Contains(searchString))).ToList();
-
+                output.Where(x => JsonConvert.SerializeObject(x).Contains(searchString));
+                      
             return View(output);
         }
 
-        public ActionResult ShowAll() //ShowAllPage
+        public ActionResult ShowAllPage()
         {
             List<ClientModel> list;
             
@@ -77,7 +70,7 @@ namespace HotelDb.WebUI.Controllers
             return View(list);
         }
 
-        public ActionResult Edit(Guid id) //EditPage
+        public ActionResult EditPage(Guid id)
         {
             ClientModel client;
 
@@ -90,14 +83,14 @@ namespace HotelDb.WebUI.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ClientModel client) //SaveClient
+        public ActionResult SaveClient(ClientModel client)
         {
             try
             {
                 using (var database = new LogicLL())
                     database.UpdateClient(mapper.Map<ClientLL>(client));
 
-                return RedirectToAction("ShowAll");
+                return RedirectToAction("ShowAllPage");
             }
             catch
             {
@@ -105,7 +98,8 @@ namespace HotelDb.WebUI.Controllers
             }
         }
 
-        public ActionResult History(Guid id) //HistoryClient
+        //TODO:
+        public ActionResult HistoryClient(Guid id) 
         {
             List<BookingModel> bookingHistory = new List<BookingModel>();
 
@@ -117,7 +111,8 @@ namespace HotelDb.WebUI.Controllers
 
             return View(bookingHistory);
         }
-
+        
+        //TODO:
         public ActionResult Invoice(Guid id)//InvoiceClient
         {
             InvoiceModel invoice;

@@ -31,8 +31,6 @@ namespace HotelDb.DataLayer.Entities
         [Column(TypeName = "nvarchar(100)")]
         public string ClientInfo { get; set; }
 
-        public List<BookingDL> Bookings { get; set; }
-
-        public List<GuestListDL> GuestList { get; set; }
+        public BookingDL Booking { get; set; }
     }
 }

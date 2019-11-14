@@ -16,6 +16,7 @@ namespace HotelDb.DataLayer.Entities
         
         public InvoiceDL Invoice { get; set; }
         public List<BookingRoomListDL> BookingRoomList { get; set; }
+        
         public List<GuestListDL> GuestList { get; set; }
 
         [Column(TypeName = "date")]
