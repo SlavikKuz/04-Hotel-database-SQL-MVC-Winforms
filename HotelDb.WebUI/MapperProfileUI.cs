@@ -15,7 +15,7 @@ namespace HotelDb.WebUI
             CreateMap<GuestListModel, GuestListLL>(); 
             CreateMap<HolidayListModel, HolidayListLL>();         
             CreateMap<InvoiceModel, InvoiceLL>();
-            CreateMap<RoomListModel, RoomListLL>();
+            CreateMap<BookingRoomListModel, BookingRoomListLL>();
             CreateMap<RoomModel, RoomLL>();
             CreateMap<RoomPriceModel, RoomPriceLL>();
 
@@ -24,7 +24,7 @@ namespace HotelDb.WebUI
             CreateMap<GuestListLL, GuestListModel>();
             CreateMap<HolidayListLL, HolidayListModel>();
             CreateMap<InvoiceLL, InvoiceModel>();
-            CreateMap<RoomListLL, RoomListModel>();
+            CreateMap<BookingRoomListLL, BookingRoomListModel>();
             CreateMap<RoomLL, RoomModel>();
             CreateMap<RoomPriceLL, RoomPriceModel>();
         }

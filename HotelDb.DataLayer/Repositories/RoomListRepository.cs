@@ -16,10 +16,10 @@ namespace HotelDb.DataLayer.Repositories
             database = context;
         }
 
-        public void Create(RoomListDL bookingRoomList)
-        {
-            //database.RoomList.Add(bookingRoomList);
-        }
+        //public void Create(RoomListDL bookingRoomList)
+        //{
+        //    //database.RoomList.Add(bookingRoomList);
+        //}
 
         //public RoomListDL Read(int id)
         //{

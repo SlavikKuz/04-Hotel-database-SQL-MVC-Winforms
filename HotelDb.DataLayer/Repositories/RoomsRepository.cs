@@ -1,6 +1,7 @@
 ﻿using HotelDb.DataLayer.Context;
 using HotelDb.DataLayer.Entities;
 using HotelDb.DataLayer.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -28,18 +29,12 @@ namespace HotelDb.DataLayer.Repositories
 
         public IEnumerable<RoomDL> ReadAll()
         {
-            return database.Rooms;
+            return database.Rooms.Include(x => x.RoomPrice);
         }
 
         public void Update(RoomDL room)
         {
-            database.Rooms.Attach(room);
-            database.Entry(room).Property(x => x.RoomNumber).IsModified = true;
-            database.Entry(room).Property(x => x.NumberBeds).IsModified = true;
-            database.Entry(room).Property(x => x.Description).IsModified = true;
-            database.Entry(room).Property(x => x.Floor).IsModified = true;
-            database.Entry(room).Property(x => x.RoomInfo).IsModified = true;
-            database.Entry(room).Property(x => x.Ready).IsModified = true;
+            database.Rooms.Update(room);
         }
 
         public void Delete(Guid id)

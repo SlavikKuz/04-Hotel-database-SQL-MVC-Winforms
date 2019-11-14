@@ -23,7 +23,7 @@ namespace HotelDb.WebUI.Models
         public long GuestId { get; set; }
 
         [Display(Name = "Selected Rooms:")]
-        public List<RoomListModel> RoomList { get; set; } = new List<RoomListModel>();
+        public List<BookingRoomListModel> RoomList { get; set; } = new List<BookingRoomListModel>();
         public List<SelectListItem> SelectListRoom { get; set; } = new List<SelectListItem>();
         public List<string> ShowSelectedRooms { get; set; } = new List<string>();
         [Display(Name = "Add Room:")]

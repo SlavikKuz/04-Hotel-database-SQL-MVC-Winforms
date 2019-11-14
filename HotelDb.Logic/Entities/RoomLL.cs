@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace HotelDb.Logic.Entities
 {
@@ -17,5 +18,7 @@ namespace HotelDb.Logic.Entities
         public bool Ready { get; set; }
 
         public RoomPriceLL RoomPrice { get; set; }
+
+        public List<BookingRoomListLL> BookingRoomList { get; set; }
     }
 }
