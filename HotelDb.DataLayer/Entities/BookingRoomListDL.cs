@@ -4,13 +4,13 @@ using System.Text;
 
 namespace HotelDb.DataLayer.Entities
 {
-    public class GuestListDL
+    public class BookingRoomListDL
     {
-        public Guid ClientId { get; set; }
-        public ClientDL Guest { get; set; }
-
         public Guid BookingId { get; set; }
         public BookingDL Booking { get; set; }
+
+        public Guid RoomId { get; set; }
+        public RoomDL Room { get; set; }
 
     }
 }

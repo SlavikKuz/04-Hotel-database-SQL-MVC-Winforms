@@ -18,5 +18,7 @@ namespace HotelDb.DataLayer.Entities
         public decimal WeekendPrice { get; set; }
         [Column(TypeName = "decimal(5,0)")]
         public decimal HolidayPrice { get; set; }
+
+        public Guid RoomId { get; set; }
     }
 }
