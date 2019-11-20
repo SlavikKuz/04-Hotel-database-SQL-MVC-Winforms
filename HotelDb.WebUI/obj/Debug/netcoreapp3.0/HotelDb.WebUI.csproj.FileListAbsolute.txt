@@ -319,3 +319,4 @@ d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\BookingM
 d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\BookingModel\EditPage.cshtml.g.cs
 d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\BookingModel\SearchPage.cshtml.g.cs
 d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\BookingModel\ShowAllPage.cshtml.g.cs
+d:\Repos\04 - HotelDB\HotelDb.WebUI\obj\Debug\netcoreapp3.0\Razor\Views\BookingModel\CreatePageName.cshtml.g.cs

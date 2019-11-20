@@ -8,10 +8,10 @@ namespace HotelDb.WebUI.Models
     {
         public Guid Id { get; set; }
 
-        public ClientModel Client { get; set; }
-        public InvoiceModel Invoice { get; set; }
-        public List<RoomModel> RoomList { get; set; }
-        public List<ClientModel> GuestList { get; set; }
+        public ClientModel Client { get; set; } = new ClientModel();
+        public InvoiceModel Invoice { get; set; } = new InvoiceModel();
+        public List<RoomModel> RoomList { get; set; } = new List<RoomModel>();
+        public List<ClientModel> GuestList { get; set; } = new List<ClientModel>();
 
         [Display(Name = "Order Date")]
         [DataType(DataType.Date)]
