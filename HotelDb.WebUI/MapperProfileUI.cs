@@ -20,7 +20,7 @@ namespace HotelDb.WebUI
             CreateMap<RoomPriceModel, RoomPriceLL>();
 
             CreateMap<BookingLL, BookingModel>();
-            CreateMap< ClientLL, ClientModel>();
+            CreateMap<ClientLL, ClientModel>();
             CreateMap<GuestListLL, GuestListModel>();
             CreateMap<HolidayListLL, HolidayListModel>();
             CreateMap<InvoiceLL, InvoiceModel>();

@@ -8,34 +8,30 @@
     <div class="col-md-6 mx-auto">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-        <div class="form-row">
-            <label asp-for="Client" class="control-label"></label>
-            <select asp-for="Client" class="form-control" asp-items="ViewBag.ClientList"></select>
-        </div>
-
-
         @*<div class="form-row">
-            <label asp-for="Booking.Id" class="form-control-plaintext"></label>
-            <div class="form-group col-md-9">
-                <select asp-for="Booking.Id" asp-items="Model.SelectListClient" class="form-control"></select>
-                <span asp-validation-for="SelectListClient" class="text-danger"></span>
+            <label asp-for="Client" class="control-label"></label>
+            <div class="form-group col-md-6">
+                @Html.DropDownList("SelectedEmployee",
+            new SelectList((System.Collections.IEnumerable)ViewData["ClientList"]))
             </div>
             <input type="button" class="btn btn-primary mb-2 mx-auto" value="New Client" onclick="location.href='@Url.Action("Create", "ClientModel")'" />
         </div>
 
+
+
         <div class="form-row">
             <div class="col">
                 <div class="form-group">
-                    <label asp-for="Booking.DayFrom" class="form-control-plaintext"></label>
-                    <input asp-for="Booking.DayFrom" class="form-control" />
-                    <span asp-validation-for="Booking.DayFrom" class="text-danger"></span>
+                    <label asp-for="DayFrom" class="form-control-plaintext"></label>
+                    <input asp-for="DayFrom" class="form-control" />
+                    <span asp-validation-for="DayFrom" class="text-danger"></span>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
-                    <label asp-for="Booking.DayTill" class="form-control-plaintext"></label>
-                    <input asp-for="Booking.DayTill" class="form-control" />
-                    <span asp-validation-for="Booking.DayTill" class="text-danger"></span>
+                    <label asp-for="DayTill" class="form-control-plaintext"></label>
+                    <input asp-for="DayTill" class="form-control" />
+                    <span asp-validation-for="DayTill" class="text-danger"></span>
                 </div>
             </div>
         </div>
@@ -102,7 +98,7 @@
             <span asp-validation-for="Booking.Info" class="text-danger"></span>
         </div>*@
 
-        @*<div class="form-row">
+            @*<div class="form-row">
             <label asp-for="Invoice.TotalPrice" class="form-control-plaintext"></label>
             <div class="form-control mb-2 col-md-9">
                 @Model.Invoice.TotalPrice
@@ -110,12 +106,12 @@
             <input type="hidden" id="Invoice.TotalPrice" name="Invoice.TotalPrice" value="@Model.Invoice.TotalPrice" />
             <input type="submit" name="bookingButton" value="Invoice" class="btn btn-primary mb-2 mx-auto" />
         </div>*@
-        <br>
-        <div class="form-row ">
-            <input type="submit" name="bookingButton" value="Save" class="btn btn-danger mx-auto" />
-        </div>
+            <br>
+            <div class="form-row ">
+                <input type="submit" name="bookingButton" value="Save" class="btn btn-danger mx-auto" />
+            </div>
 
-    </div>
+        </div>
 </form>
 
 

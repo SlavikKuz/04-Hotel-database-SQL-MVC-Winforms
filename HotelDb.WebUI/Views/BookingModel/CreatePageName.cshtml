@@ -1,0 +1,24 @@
+﻿@model IEnumerable<HotelDb.WebUI.Models.ClientModel>
+
+@{
+    ViewData["Title"] = "CreatePageName";
+}
+
+
+<form asp-action="CreatePage">
+    <div class="col-md-8 mx-auto">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-row">
+            <label class="control-label">Select Client</label>
+            <div class="form-group col-md-6">
+                @Html.DropDownList("Id",
+               new SelectList(Model.Select(x => new { Value = x.Id, Text = x.FirstName + " " + x.LastName }),
+               "Value", "Text"))
+
+            </div>
+            <input type="submit" class="btn btn-primary mb-2 mx-auto" value="Add Booking" />
+            <input type="button" class="btn btn-primary mb-2 mx-auto" value="Add Client" onclick="location.href='@Url.Action("Create", "ClientModel")'" />
+        </div>
+    </div>
+</form>

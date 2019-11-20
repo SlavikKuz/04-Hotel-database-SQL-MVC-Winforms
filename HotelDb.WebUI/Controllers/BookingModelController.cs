@@ -32,18 +32,36 @@ namespace HotelDb.WebUI.Controllers
             return View(allBookings);
         }
 
-        public ActionResult CreatePage()
+        public ActionResult CreatePageName()
         {
-            List<ClientModel> clients;
-            
+            List<ClientModel> allClients;
+            using (var database = new LogicLL())
+                allClients = mapper.Map<List<ClientModel>>(database.GetAllClients());
+
+            ViewData["AllClients"] = allClients;
+            return View(allClients);          
+        }
+  
+        public ActionResult CreatePage(string id)
+        {
+            BookingModel booking;
+
             using (var database = new LogicLL())
             {
-                clients = mapper.Map<List<ClientModel>>(database.GetAllClients());
-                ViewData["RoomList"] = new SelectList(database.GetAllRooms());
-                //ViewData["GuestList"] = 
+                database.AddBooking(mapper.Map<BookingLL>(new BookingModel()));
+                booking = mapper.Map<BookingModel>(database.GetAllBookings().Last());
             }
 
-            ViewData["ClientList"] = new SelectList(clients, "Id", "FullClientName");
+
+
+                //clients = mapper.Map<List<ClientModel>>(database.GetAllClients());
+
+            //List<string> clientNames = new List<string>();
+
+            //foreach (var cl in clients)
+            //    clientNames.Add(cl.ClientFullName);
+
+            //ViewData["ClientList"] = clientNames;
 
             return View();
         }
